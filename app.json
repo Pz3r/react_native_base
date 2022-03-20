@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "experienciaSM",
+    "slug": "expo-template-bare",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "entryPoint": "node_modules/expo/AppEntry.js"
+  },
+  "name": "experienciaSM",
+  "displayName": "Experiencia Selección Mexicana"
+}
