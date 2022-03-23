@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import MainDrawerNavigator from '../navigation/drawer';
+import MainStackNavigator from '../navigation/stack';
 import AuthenticationStackNavigator from '../sections/authentication/navigation/stack';
 
 function MainComponent({
@@ -14,7 +14,7 @@ function MainComponent({
     )
   } else {
     return (
-      <MainDrawerNavigator />
+      <MainStackNavigator />
     )
   }
 
