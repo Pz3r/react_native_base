@@ -1,9 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { NAVIGATION_PHOTO_ONBOARDING_SCREEN, NAVIGATION_PHOTO_CAMERA_VISION_SCREEN, NAVIGATION_PHOTO_CAMERA_EXPO_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_ONBOARDING_SCREEN, NAVIGATION_PHOTO_PERMISSIONS_SCREEN, NAVIGATION_PHOTO_PREVIEW_SCREEN, NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../navigation/constants';
 import PhotoOnboardingScreen from '../screens';
-import ExpoCameraScreen from '../screens/expo-camera';
-import CameraScreen from '../screens/camera';
+import PhotoPermissionsScreen from '../screens/permissions';
+import PhotoCameraScreen from '../screens/camera';
+import PhotoPreviewScreen from '../screens/preview';
 
 const PhotoStack = createStackNavigator();
 
@@ -21,17 +22,20 @@ export default function PhotoStackNavigator() {
       <PhotoStack.Screen
         options={({ navigation, route }) => ({
           headerTitle: null,
-          headerShown: false,
+          headerShown: false
         })}
-        name={NAVIGATION_PHOTO_CAMERA_VISION_SCREEN}
-        component={CameraScreen} />
-            <PhotoStack.Screen
+        name={NAVIGATION_PHOTO_PERMISSIONS_SCREEN}
+        component={PhotoPermissionsScreen} />
+      <PhotoStack.Screen
         options={({ navigation, route }) => ({
-          headerTitle: null,
-          headerShown: false,
         })}
-        name={NAVIGATION_PHOTO_CAMERA_EXPO_SCREEN}
-        component={ExpoCameraScreen} />
+        name={NAVIGATION_PHOTO_CAMERA_SCREEN}
+        component={PhotoCameraScreen} />
+      <PhotoStack.Screen
+        options={({ navigation, route }) => ({
+        })}
+        name={NAVIGATION_PHOTO_PREVIEW_SCREEN}
+        component={PhotoPreviewScreen} />
     </PhotoStack.Navigator>
   )
 }
