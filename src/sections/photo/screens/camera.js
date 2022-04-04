@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'native-base';
-import { PinchGestureHandler, PinchGestureHandlerGestureEvent, TapGestureHandler } from 'react-native-gesture-handler';
+import { Flex } from 'native-base';
+import { PinchGestureHandler, TapGestureHandler } from 'react-native-gesture-handler';
 import Reanimated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedProps, useSharedValue, runOnJS } from 'react-native-reanimated';
 import {
   Camera,
@@ -17,6 +17,7 @@ import { CONTENT_SPACING, MAX_ZOOM_FACTOR, SAFE_AREA_PADDING } from '../../../co
 import { useIsForeground } from '../../../hooks/useIsForeground';
 import { examplePlugin } from '../../../frame-processors/example-plugin';
 import { CaptureButton } from '../../../components/CaptureButton/CaptureButton';
+import { NAVIGATION_PHOTO_PREVIEW_SCREEN } from '../../../navigation/constants';
 
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
@@ -27,7 +28,7 @@ Reanimated.addWhitelistedNativeProps({
 const SCALE_FULL_ZOOM = 3;
 const BUTTON_SIZE = 40;
 
-function CameraScreen({ navigation }) {
+function PhotoCameraScreen({ navigation }) {
   const camera = useRef(null);
   const [isCameraInitialized, setIsCameraInitialized] = useState(false);
   const [hasMicrophonePermission, setHasMicrophonePermission] = useState(false);
@@ -130,12 +131,10 @@ function CameraScreen({ navigation }) {
   const onMediaCaptured = useCallback(
     (media, type) => {
       console.log(`===== Media captured! ${JSON.stringify(media)}`);
-      /*
-      navigation.navigate('MediaPage', {
+      navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
         path: media.path,
         type: type,
       });
-      */
     },
     [navigation],
   );
@@ -210,9 +209,11 @@ function CameraScreen({ navigation }) {
   }, []);
 
   return (
-    <View style={styles.container}>
-      {device != null && (
-        <PinchGestureHandler onGestureEvent={onPinchGesture} enabled={isActive}>
+    <Flex flex="1" style={{ backgroundColor: '#fff' }}>
+      <Flex flex="1" style={{ backgroundColor: '#f00' }}>
+      </Flex>
+      <Flex flex="3" style={{ backgroundColor: '#000' }}>
+        {device != null && (
           <Reanimated.View style={StyleSheet.absoluteFill}>
             <TapGestureHandler onEnded={onDoubleTap} numberOfTaps={1}>
               <ReanimatedCamera
@@ -238,27 +239,28 @@ function CameraScreen({ navigation }) {
               />
             </TapGestureHandler>
           </Reanimated.View>
-        </PinchGestureHandler>
-      )}
-      {device && !device.supportsParallelVideoProcessing &&
-        <Text style={styles.infoText}>Live face detection NOT supported</Text>
-      }
-      {device && device.supportsParallelVideoProcessing &&
-        <Text style={styles.infoText}>Faces: {faces && device && device.supportsParallelVideoProcessing ? faces.length : 0}</Text>
-      }
-      <CaptureButton
-        style={styles.captureButton}
-        camera={camera}
-        onMediaCaptured={onMediaCaptured}
-        cameraZoom={zoom}
-        minZoom={minZoom}
-        maxZoom={maxZoom}
-        flash={supportsFlash ? flash : 'off'}
-        enabled={isCameraInitialized && isActive}
-        setIsPressingButton={setIsPressingButton}
-      />
-
-    </View>
+        )}
+        {device && !device.supportsParallelVideoProcessing &&
+          <Text style={styles.infoText}>Live face detection NOT supported</Text>
+        }
+        {device && device.supportsParallelVideoProcessing &&
+          <Text style={styles.infoText}>Faces: {faces && device && device.supportsParallelVideoProcessing ? faces.length : 0}</Text>
+        }
+      </Flex>
+      <Flex flex="1" style={{ backgroundColor: '#0f0' }}>
+        <CaptureButton
+          style={styles.captureButton}
+          camera={camera}
+          onMediaCaptured={onMediaCaptured}
+          cameraZoom={zoom}
+          minZoom={minZoom}
+          maxZoom={maxZoom}
+          flash={supportsFlash ? flash : 'off'}
+          enabled={isCameraInitialized && isActive}
+          setIsPressingButton={setIsPressingButton}
+        />
+      </Flex>
+    </Flex>
   );
 }
 
@@ -299,4 +301,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CameraScreen;
+export default PhotoCameraScreen;

@@ -34,6 +34,7 @@ function HomeScreen({ navigation }) {
           <Modal.CloseButton />
           <Modal.Header>Participa</Modal.Header>
           <Modal.Body>
+            <Text>Tómate una foto y forma parte de la experiencia.</Text>
           </Modal.Body>
           <Modal.Footer>
             <Button.Group space={2}>
