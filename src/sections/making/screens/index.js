@@ -8,7 +8,7 @@ function MakingHomeScreen({ navigation }) {
 
   return (
     <Flex flex="1" style={styles.container} alignItems="center" justifyContent="center">
-      <LottieView source={Lottie.confetti} autoPlay loop />
+      <LottieView source={Lottie.fondo3} autoPlay loop />
     </Flex>
   )
 
