@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LottieView from 'lottie-react-native';
 import { Picker, StyleSheet } from 'react-native';
 import { Flex, Text } from 'native-base';
-import Lottie from "assets/lottie";
+import Lottie from 'assets/lottie';
 
 function MakingHomeScreen({ navigation }) {
   const [animation, setAnimation] = useState('confetti')

@@ -7,9 +7,13 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider } from 'native-base';
 import { Provider } from 'react-redux';
+import { Amplify } from 'aws-amplify'
 
 import SetupComponent from './src/components/setup';
 import store from './src/store/store';
+import awsconfig from './src/aws-exports';
+
+Amplify.configure(awsconfig);
 
 export default function App() {
   return (

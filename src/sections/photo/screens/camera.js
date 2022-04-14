@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Flex } from 'native-base';
 import { PinchGestureHandler, TapGestureHandler } from 'react-native-gesture-handler';
 import Reanimated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedProps, useSharedValue, runOnJS } from 'react-native-reanimated';
@@ -12,13 +12,13 @@ import {
 } from 'react-native-vision-camera';
 import { useIsFocused } from '@react-navigation/native';
 import { scanFaces, Face } from 'vision-camera-face-detector';
+import IMG from 'assets/img';
 
 import { CONTENT_SPACING, MAX_ZOOM_FACTOR, SAFE_AREA_PADDING } from '../../../constants/constants';
 import { useIsForeground } from '../../../hooks/useIsForeground';
 import { examplePlugin } from '../../../frame-processors/example-plugin';
 import { CaptureButton } from '../../../components/CaptureButton/CaptureButton';
-import { NAVIGATION_PHOTO_PREVIEW_SCREEN } from '../../../navigation/constants';
-
+import { NAVIGATION_PHOTO_PREVIEW_SCREEN, NAVIGATION_PHOTO_STAMP_SCREEN } from '../../../navigation/constants';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 Reanimated.addWhitelistedNativeProps({
@@ -129,11 +129,13 @@ function PhotoCameraScreen({ navigation }) {
     setCameraPosition('front');
   }, []);
   const onMediaCaptured = useCallback(
-    (media, type) => {
-      console.log(`===== Media captured! ${JSON.stringify(media)}`);
-      navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
-        path: media.path,
-        type: type,
+    (path, width, height, type) => {
+      console.log(`====== Media captured! ${path}//${width}//${height}//${type} =====`);      
+      navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN, {
+        path,
+        width,
+        height,
+        type
       });
     },
     [navigation],
@@ -209,12 +211,12 @@ function PhotoCameraScreen({ navigation }) {
   }, []);
 
   return (
-    <Flex flex="1" style={{ backgroundColor: '#fff' }}>
-      <Flex flex="1" style={{ backgroundColor: '#f00' }}>
-      </Flex>
-      <Flex flex="3" style={{ backgroundColor: '#000' }}>
+    <Flex flex="1" style={styles.container}>
+      <View style={styles.top}>
+      </View>
+      <Flex flex="1" alignItems="center" justifyContent="center" style={styles.middle}>
         {device != null && (
-          <Reanimated.View style={StyleSheet.absoluteFill}>
+          <Reanimated.View style={styles.cameraContainer}>            
             <TapGestureHandler onEnded={onDoubleTap} numberOfTaps={1}>
               <ReanimatedCamera
                 ref={camera}
@@ -238,6 +240,7 @@ function PhotoCameraScreen({ navigation }) {
                 onFrameProcessorPerformanceSuggestionAvailable={onFrameProcessorSuggestionAvailable}
               />
             </TapGestureHandler>
+            <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaPrueba} />            
           </Reanimated.View>
         )}
         {device && !device.supportsParallelVideoProcessing &&
@@ -247,27 +250,39 @@ function PhotoCameraScreen({ navigation }) {
           <Text style={styles.infoText}>Faces: {faces && device && device.supportsParallelVideoProcessing ? faces.length : 0}</Text>
         }
       </Flex>
-      <Flex flex="1" style={{ backgroundColor: '#0f0' }}>
-        <CaptureButton
-          style={styles.captureButton}
-          camera={camera}
-          onMediaCaptured={onMediaCaptured}
-          cameraZoom={zoom}
-          minZoom={minZoom}
-          maxZoom={maxZoom}
-          flash={supportsFlash ? flash : 'off'}
-          enabled={isCameraInitialized && isActive}
-          setIsPressingButton={setIsPressingButton}
-        />
-      </Flex>
+      <CaptureButton
+        style={styles.captureButton}
+        camera={camera}
+        onMediaCaptured={onMediaCaptured}
+        cameraZoom={zoom}
+        minZoom={minZoom}
+        maxZoom={maxZoom}
+        flash={supportsFlash ? flash : 'off'}
+        enabled={isCameraInitialized && isActive}
+        setIsPressingButton={setIsPressingButton}
+      />
     </Flex>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#bbb',
+  },
+  top: {
+    backgroundColor: '#f00',
+    paddingHorizontal: 50
+  },
+  middle: {
+    backgroundColor: '#0f0',
+  },
+  cameraContainer: {
+    width: '100%',
+    //aspectRatio: 65 / 87
+    aspectRatio: 3 / 4
+  },
+  bottom: {
+    backgroundColor: '#00f',
   },
   infoText: {
     position: 'absolute',
@@ -278,6 +293,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignSelf: 'center',
     bottom: SAFE_AREA_PADDING.paddingBottom,
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    //display: 'none'
   },
   button: {
     marginBottom: CONTENT_SPACING,

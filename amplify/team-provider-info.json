@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vivemiseleccin-staging-184443-authRole",
+      "UnauthRoleArn": "arn:aws:iam::140683604096:role/amplify-vivemiseleccin-staging-184443-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::140683604096:role/amplify-vivemiseleccin-staging-184443-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-vivemiseleccin-staging-184443-deployment",
+      "UnauthRoleName": "amplify-vivemiseleccin-staging-184443-unauthRole",
+      "StackName": "amplify-vivemiseleccin-staging-184443",
+      "StackId": "arn:aws:cloudformation:us-east-1:140683604096:stack/amplify-vivemiseleccin-staging-184443/9eb91770-ba90-11ec-b036-0a1a52670c4b",
+      "AmplifyAppId": "ddu4r6igclmet"
+    },
+    "categories": {
+      "auth": {
+        "vivemiseleccin": {}
+      }
+    }
+  }
+}
