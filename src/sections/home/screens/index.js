@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { Flex, Text, Modal, Button } from 'native-base';
 
-import { NAVIGATION_PHOTO_ONBOARDING_SCREEN, NAVIGATION_PHOTO_STACK } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_PERMISSIONS_SCREEN, NAVIGATION_PHOTO_STACK } from '../../../navigation/constants';
 
 function HomeScreen({ navigation }) {
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
@@ -15,7 +15,7 @@ function HomeScreen({ navigation }) {
 
   const takePhoto = () => {
     setPhotoModalOpen(false);
-    navigation.navigate(NAVIGATION_PHOTO_STACK, { screen: {NAVIGATION_PHOTO_ONBOARDING_SCREEN} });
+    navigation.navigate(NAVIGATION_PHOTO_STACK, { screen: NAVIGATION_PHOTO_PERMISSIONS_SCREEN });
   }
 
   return (

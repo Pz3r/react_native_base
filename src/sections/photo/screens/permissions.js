@@ -3,7 +3,7 @@ import { StyleSheet, Linking } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
 import { Camera } from 'react-native-vision-camera';
 
-import { NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_HOME_SCREEN, NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../navigation/constants';
 
 export default function PhotoPermissionsScreen({ navigation }) {
   const [cameraPermissionStatus, setCameraPermissionStatus] = useState('not-determined');
@@ -16,6 +16,10 @@ export default function PhotoPermissionsScreen({ navigation }) {
     setCameraPermissionStatus(permissionStatus);
   }, []);
 
+  const cancel = useCallback(() => {
+    navigation.navigate(NAVIGATION_HOME_STACK);
+  }, []);
+
   useEffect(() => {
     console.log(`===== Photo:PermissionsScreen:useEffect ${cameraPermissionStatus} =====`);
     if (cameraPermissionStatus === 'authorized') navigation.replace(NAVIGATION_PHOTO_CAMERA_SCREEN);
@@ -23,11 +27,19 @@ export default function PhotoPermissionsScreen({ navigation }) {
 
   return (
     <Flex flex="1" style={styles.container}>
-      <Flex flex="2" alignItems="center" justifyContent="center">
-        <Text>Acepta los permisos para usar tu cámara</Text>
+      <Flex flex="1" alignItems="center" justifyContent="flex-end" style={styles.top}>
+        <Text>ANTES DE TOMAR TU FOTO CONSIDERA...</Text>
       </Flex>
-      <Flex flex="1" alignItems="center" justifyContent="center">
-        <Button onPress={requestCameraPermission}>Continuar</Button>
+      <Flex flex="2.5" alignItems="center" justifyContent="center" style={styles.middle}>
+        <Text>PLACEHOLDER CARRUSEL</Text>
+      </Flex>
+      <Flex flex="1" alignItems="center" justifyContent="center" style={styles.bottom}>
+        <Flex flex="1" alignItems="center" justifyContent="center">
+          <Button onPress={requestCameraPermission}>Tomar foto</Button>
+        </Flex>
+        <Flex flex="1" alignItems="center" justifyContent="center">
+          <Button onPress={cancel}>No quiero tomar la foto</Button>
+        </Flex>       
       </Flex>
     </Flex>
   )
@@ -35,6 +47,16 @@ export default function PhotoPermissionsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff'
+    backgroundColor: '#bbb',    
+  },
+  top: {
+    backgroundColor: '#f00',
+    paddingHorizontal: 50
+  },
+  middle: {
+    backgroundColor: '#0f0',
+  },
+  bottom: {
+    backgroundColor: '#00f'
   }
 });

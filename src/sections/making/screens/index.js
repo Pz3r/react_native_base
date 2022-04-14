@@ -2,7 +2,7 @@ import React from 'react';
 import LottieView from 'lottie-react-native';
 import { StyleSheet } from 'react-native';
 import { Flex, Text } from 'native-base';
-import Lottie from "assets/lottie";
+import Lottie from 'assets/lottie';
 
 function MakingHomeScreen({ navigation }) {
 

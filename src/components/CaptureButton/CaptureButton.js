@@ -19,7 +19,9 @@ import Reanimated, {
   useSharedValue,
   withRepeat,
 } from 'react-native-reanimated';
+import CameraRoll from '@react-native-community/cameraroll';
 import { Camera, PhotoFile, TakePhotoOptions, TakeSnapshotOptions, VideoFile } from 'react-native-vision-camera';
+
 import { CAPTURE_BUTTON_SIZE, SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constants/constants';
 
 const PAN_GESTURE_HANDLER_FAIL_X = [-SCREEN_WIDTH, SCREEN_WIDTH];
@@ -60,9 +62,14 @@ const _CaptureButton = ({
     try {
       if (camera.current == null) throw new Error('Camera ref is null!');
 
-      console.log('Taking photo...');
+      console.log('===== Taking photo... =====');      
       const photo = await camera.current.takePhoto(takePhotoOptions);
-      onMediaCaptured(photo, 'photo');
+      console.log(JSON.stringify(photo));
+      /*
+      const cameraRollUri = await CameraRoll.save(`file://${photo.path}`);
+      console.log(`===== takePhoto: ${cameraRollUri} =====`)
+      */
+      onMediaCaptured(photo.path, photo.width, photo.height, 'photo');
     } catch (e) {
       console.error('Failed to take photo!', e);
     }
