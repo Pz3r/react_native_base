@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Image, ImageBackground, View } from 'react-native';
-import { Flex, Text, Button } from 'native-base';
+import { Flex, Text } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import IMG from 'assets/img';
 
-const STORAGE_UUID = 'STORAGE_UUID';
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
 
 const TAG = 'ProfileHomeScreen';
-const PHOTO_WIDTH = 414;
-const PHOTO_HEIGHT = 552;
 
 function ProfileHomeScreen() {
   const [photoBase64, setPhotoBase64] = useState();

@@ -16,13 +16,13 @@ const TAG = 'PhotoStampScreen';
 const PHOTO_WIDTH = 414;
 const PHOTO_HEIGHT = 552;
 
-function PhotoStampScreen({ route, navigation }) {
+function PhotoStampScreen({ route }) {
   const [photoPath, setPhotoPath] = useState();
   const [photoWidth, setPhotoWidth] = useState();
   const [photoHeight, setPhotoHeight] = useState();
 
   useEffect(() => {
-    console.log(`===== PhotoStampScreen:useEffect ${JSON.stringify(route.params)} =====`);
+    console.log(`===== ${TAG}:useEffect ${JSON.stringify(route.params)} =====`);
     if (route.params) {
       setPhotoPath(route.params['path']);
       setPhotoWidth(route.params['width']);
@@ -59,7 +59,7 @@ function PhotoStampScreen({ route, navigation }) {
       diffY = (photoWidth - croppedHeight) / 2;
     }
 
-    console.log(`====== OFFSET DIFFX:${diffX} / DIFFY:${diffY} =====`);
+    console.log(`====== ${TAG}:getProcessedImage diffX:${diffX} / diffY:${diffY} =====`);
     const croppedUri = await ImageEditor.cropImage(`file://${photoPath}`, {
       offset: { x: diffX, y: diffY },
       size: { width: croppedWidth, height: croppedHeight },
