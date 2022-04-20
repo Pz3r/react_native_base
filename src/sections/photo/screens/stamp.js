@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Image, ImageBackground, View } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
+import Modal from "react-native-modal";
 import { Storage } from 'aws-amplify';
 import ImageEditor from '@react-native-community/image-editor';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -20,6 +21,9 @@ function PhotoStampScreen({ route }) {
   const [photoPath, setPhotoPath] = useState();
   const [photoWidth, setPhotoWidth] = useState();
   const [photoHeight, setPhotoHeight] = useState();
+  const [isLoading, setIsLoading] = useState();
+  const [isPhotoSent, setIsPhotoSent] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     console.log(`===== ${TAG}:useEffect ${JSON.stringify(route.params)} =====`);
@@ -83,11 +87,12 @@ function PhotoStampScreen({ route }) {
   const confirmStamp = useCallback(async () => {
     try {
       console.log(`===== ${TAG}:confirmStep file://${photoPath} // height: ${photoHeight} // width: ${photoWidth}=====`)
+      setIsLoading(true);
 
       // Crop and resize image
       const croppedUri = await getProcessedImage(photoPath, photoWidth, photoHeight);
       console.log(`===== ${TAG}:confirmStep croppedUri: ${croppedUri} =====`);
-      
+
       // Obtrain blob
       const response = await fetch(`${croppedUri}`);
       const blob = await response.blob();
@@ -105,26 +110,38 @@ function PhotoStampScreen({ route }) {
 
       // Store processed image
       await storeProcessedImage(croppedUri);
+      setIsPhotoSent(true);
 
     } catch (err) {
       console.log(`===== ${TAG}:confirmStamp error =====`);
       console.log(err);
+      setIsError(true);
     }
   }, [photoPath, photoWidth, photoHeight]);
 
   return (
-    <Flex flex="1" style={styles.container}>
-      <View style={styles.top}>
-        <Text>TÍTULO</Text>
-      </View>
-      <Flex flex="1" alignItems="center" justifyContent="center" style={styles.middle}>
-        <View style={styles.previewContainer}>
-          <Image style={styles.selfie} source={{ uri: `file://${photoPath}` }} />
-          <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smPaniniPrueba} />
+    <>
+      <Flex flex="1" style={styles.container}>
+        <View style={styles.top}>
+          <Text>TÍTULO</Text>
         </View>
+        <Flex flex="1" alignItems="center" justifyContent="center" style={styles.middle}>
+          <View style={styles.previewContainer}>
+            <Image style={styles.selfie} source={{ uri: `file://${photoPath}` }} />
+            <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smPaniniPrueba} />
+          </View>
+        </Flex>
+        <Modal isVisible={isLoading}>
+          <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          <Text>{isPhotoSent ? 'Envío completo' : 'Enviando...'}</Text>
+          <Button disabled={!isPhotoSent} onPress={() => setIsLoading(false)}>
+                  Continuar
+                </Button>
+          </View>
+        </Modal>
       </Flex>
-      <Button onPress={confirmStamp}>Listo</Button>
-    </Flex>
+      {!isPhotoSent && <Button onPress={confirmStamp}>Listo</Button>}
+    </>
   )
 }
 
@@ -152,7 +169,6 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: 'center',
-    display: 'none'
   },
   bottom: {
     position: 'absolute',
