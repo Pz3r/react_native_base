@@ -29,16 +29,22 @@ export default function PhotoStackNavigator() {
         component={PhotoPermissionsScreen} />
       <PhotoStack.Screen
         options={({ navigation, route }) => ({
+          headerTitle: null,
+          headerShown: false
         })}
         name={NAVIGATION_PHOTO_CAMERA_SCREEN}
         component={PhotoCameraScreen} />
       <PhotoStack.Screen
         options={({ navigation, route }) => ({
+          headerTitle: null,
+          headerShown: false
         })}
         name={NAVIGATION_PHOTO_PREVIEW_SCREEN}
         component={PhotoPreviewScreen} />
       <PhotoStack.Screen
         options={({ navigation, route }) => ({
+          headerTitle: null,
+          headerShown: false
         })}
         name={NAVIGATION_PHOTO_STAMP_SCREEN}
         component={PhotoStampScreen} />  

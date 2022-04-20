@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Linking, ImageBackground } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
 import { Camera } from 'react-native-vision-camera';
+import i18n from 'i18n-js';
 
 import IMG from 'assets/img';
 
@@ -31,7 +32,7 @@ export default function PhotoPermissionsScreen({ navigation }) {
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <Flex flex="1" style={styles.container}>
         <Flex flex="1" alignItems="center" justifyContent="flex-end" style={styles.top}>
-          <Text style={styles.title}>ANTES DE TOMAR TU FOTO CONSIDERA...</Text>
+          <Text style={styles.title}>{i18n.t('photo_permissions_title')}</Text>
         </Flex>
         <Flex flex="2.5" alignItems="center" justifyContent="center" style={styles.middle}>
           <Text>PLACEHOLDER CARRUSEL</Text>
