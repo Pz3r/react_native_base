@@ -27,9 +27,8 @@ const PHOTO_WIDTH = 414;
 const PHOTO_HEIGHT = 552;
 
 const SHIRT_OPTIONS = [
-  IMG.smCamisaA,
-  IMG.smCamisaB,
-  IMG.smCamisaC
+  IMG.smCamisaBlanca,
+  IMG.smCamisaNegra,
 ];
 
 function PhotoPreviewScreen({ route, navigation }) {
@@ -158,25 +157,25 @@ function PhotoPreviewScreen({ route, navigation }) {
           <Image style={styles.selfie} source={{ uri: `file://${photoPath}` }} />
           <Image style={styles.shirt} resizeMode="contain" source={SHIRT_OPTIONS[shirtIndex]} />
           {shirtIndex > 0 &&
-          <TouchableOpacity onPress={() => nextShirt(false)} style={styles.leftButton}>
-            <Image source={IMG.flechaCamisetasIzquierda} />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => nextShirt(false)} style={styles.leftButton}>
+              <Image source={IMG.flechaCamisetasIzquierda} />
+            </TouchableOpacity>
           }
           {shirtIndex < (SHIRT_OPTIONS.length) - 1 &&
-          <TouchableOpacity onPress={() => nextShirt(true)} style={styles.rightButton}>
-            <Image source={IMG.flechaCamisetasDerecha} />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => nextShirt(true)} style={styles.rightButton}>
+              <Image source={IMG.flechaCamisetasDerecha} />
+            </TouchableOpacity>
           }
         </View>
         <View style={styles.bottom}>
           <Button onPress={confirmStamp} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
         </View>
-        <LoaderModal 
-          isVisible={isLoading} 
+        <LoaderModal
+          isVisible={isLoading}
           isError={isError}
-          isComplete={isPhotoSent} 
-          loaderText={i18n.t('text_loader_sending')} 
-          errorText={i18n.t('text_loader_sending_error')}        
+          isComplete={isPhotoSent}
+          loaderText={i18n.t('text_loader_sending')}
+          errorText={i18n.t('text_loader_sending_error')}
           closeHandler={(completed) => {
             setIsLoading(false);
             setIsError(false);
@@ -184,8 +183,8 @@ function PhotoPreviewScreen({ route, navigation }) {
             if (completed) {
               navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
             }
-          }} 
-          />
+          }}
+        />
       </Flex>
     </ImageBackground>
   )

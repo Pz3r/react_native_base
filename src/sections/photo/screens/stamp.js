@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Image, ImageBackground, View } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
 import LottieView from 'lottie-react-native';
@@ -11,12 +11,13 @@ import Lottie from 'assets/lottie';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
+import { NAVIGATION_PHOTO_FORM_SCREEN } from '../../../navigation/constants';
 
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
 
 const TAG = 'PhotoStampScreen';
 
-function PhotoStampScreen() {
+function PhotoStampScreen({ navigation }) {
   const [photoBase64, setPhotoBase64] = useState();
 
   useEffect(async () => {
@@ -30,6 +31,10 @@ function PhotoStampScreen() {
     }
   }, []);
 
+  const nextStep = useCallback(() => {
+    navigation.navigate(NAVIGATION_PHOTO_FORM_SCREEN);
+  }, [navigation]);
+
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <Flex flex="1" style={styles.container} alignItems="center">
@@ -41,7 +46,7 @@ function PhotoStampScreen() {
           <Image style={styles.overlay} resizeMode="contain" source={IMG.smPaniniPrueba} />
         </View>
         <Flex flex="1" alignItems="center" justifyContent="center">
-            <Button backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
+            <Button onPress={nextStep} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
           </Flex>
       </Flex>
     </ImageBackground>

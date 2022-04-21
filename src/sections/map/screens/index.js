@@ -1,12 +1,15 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Flex, Text } from 'native-base';
+import LottieView from 'lottie-react-native';
+
+import Lottie from 'assets/lottie';
 
 function MapHomeScreen({ navigation }) {
 
   return (
     <Flex flex="1" style={styles.container} alignItems="center" justifyContent="center">
-      <Text>Map Home</Text>
+      <LottieView source={Lottie.eleva} autoPlay loop />
     </Flex>
   )
 
@@ -14,7 +17,7 @@ function MapHomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
   }
 });
 

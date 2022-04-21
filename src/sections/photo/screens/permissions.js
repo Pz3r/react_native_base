@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, Linking, ImageBackground } from 'react-native';
-import { Flex, Text, Button } from 'native-base';
+import { StyleSheet, Linking, ImageBackground, View } from 'react-native';
 import { Camera } from 'react-native-vision-camera';
+import Swiper from 'react-native-swiper'
+import { Flex, Text, Button } from 'native-base';
+import LottieView from 'lottie-react-native';
 import i18n from 'i18n-js';
 
 import IMG from 'assets/img';
+import Lottie from 'assets/lottie';
 
 import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../navigation/constants';
 
@@ -35,7 +38,29 @@ export default function PhotoPermissionsScreen({ navigation }) {
           <Text style={styles.title}>{i18n.t('photo_permissions_title')}</Text>
         </Flex>
         <Flex flex="2.5" alignItems="center" justifyContent="center" style={styles.middle}>
-          <Text>PLACEHOLDER CARRUSEL</Text>
+          <Swiper showsPagination={false} showsButtons={true}>
+            <View style={styles.slide}>
+              <LottieView source={Lottie.limpia} autoPlay loop />
+              <View style={styles.slideInfoContainer}>
+                <Text style={styles.slideInfoTitle}>1</Text>
+                <Text style={styles.slideInfoText}>{i18n.t('text_photo_onoarding_1')}</Text>
+              </View>
+            </View>
+            <View style={styles.slide}>
+              <LottieView source={Lottie.eleva} autoPlay loop />
+              <View style={styles.slideInfoContainer}>
+                <Text style={styles.slideInfoTitle}>2</Text>
+                <Text style={styles.slideInfoText}>{i18n.t('text_photo_onoarding_2')}</Text>
+              </View>
+            </View>
+            <View style={styles.slide}>
+              <LottieView source={Lottie.cara} autoPlay loop />
+              <View style={styles.slideInfoContainer}>
+                <Text style={styles.slideInfoTitle}>3</Text>
+                <Text style={styles.slideInfoText}>{i18n.t('text_photo_onoarding_3')}</Text>
+              </View>
+            </View>
+          </Swiper>
         </Flex>
         <Flex flex="1" alignItems="center" justifyContent="center" style={styles.bottom}>
           <Flex flex="1" alignItems="center" justifyContent="center">
@@ -87,4 +112,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  slide: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  slideInfoContainer: {
+    alignItems: 'center',
+    paddingBottom: 40,
+    width: '60%'
+  },
+  slideInfoText: {
+    color: '#ffffff',
+    fontFamily: 'Inter-Medium',
+    fontSize: 14,
+    lineHeight: 17,
+    textAlign: 'center'
+  },
+  slideInfoTitle: {
+    fontFamily: 'OperaBlackOblique',
+    color: '#f7ec13',
+    fontSize: 40,
+    lineHeight: 37,
+    paddingBottom: 20
+  }
 });

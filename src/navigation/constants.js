@@ -22,5 +22,6 @@ export const NAVIGATION_PHOTO_PERMISSIONS_SCREEN = 'PhotoPermissionsScreen';
 export const NAVIGATION_PHOTO_CAMERA_SCREEN = 'PhotoCameraScreen';
 export const NAVIGATION_PHOTO_PREVIEW_SCREEN = 'PhotoPreviewScreen';
 export const NAVIGATION_PHOTO_STAMP_SCREEN = 'PhotoStampScreen';
+export const NAVIGATION_PHOTO_FORM_SCREEN = 'PhotoFormScreen';
 
 export const NAVIGATION_AUTHENTICATION_SCREEN = 'AuthenticationScreen';
