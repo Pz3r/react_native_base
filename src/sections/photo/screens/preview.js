@@ -1,33 +1,45 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
-import Modal from "react-native-modal";
+import Modal from 'react-native-modal';
 import { Storage } from 'aws-amplify';
 import ImageEditor from '@react-native-community/image-editor';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import uuid from 'react-native-uuid';
 import * as FileSystem from 'expo-file-system';
+import LottieView from 'lottie-react-native';
 import i18n from 'i18n-js';
 
 import IMG from 'assets/img';
+import Lottie from 'assets/lottie';
 
-import { CONTENT_SPACING, SAFE_AREA_PADDING } from '../../../constants/constants';
+import { NAVIGATION_PHOTO_STAMP_SCREEN } from '../../../navigation/constants';
+import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
+import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 
 const STORAGE_UUID = 'STORAGE_UUID';
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
+const STORAGE_SHIRT = 'STORAGE_SHIRT';
 
 const TAG = 'PhotoPreviewScreen';
 const PHOTO_WIDTH = 414;
 const PHOTO_HEIGHT = 552;
 
+const SHIRT_OPTIONS = [
+  IMG.smCamisaA,
+  IMG.smCamisaB,
+  IMG.smCamisaC
+];
+
 function PhotoPreviewScreen({ route, navigation }) {
   const [photoPath, setPhotoPath] = useState();
   const [photoWidth, setPhotoWidth] = useState();
   const [photoHeight, setPhotoHeight] = useState();
-  const [isLoading, setIsLoading] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [isPhotoSent, setIsPhotoSent] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [shirtIndex, setShirtIndex] = useState(0);
 
   useEffect(() => {
     console.log(`===== ${TAG}:useEffect ${JSON.stringify(route.params)} =====`);
@@ -84,8 +96,8 @@ function PhotoPreviewScreen({ route, navigation }) {
     console.log(`===== ${TAG}:storeProcessedImage base64 =====`);
     console.log(base64);
 
-    // TODO GUARDAR EN ESTADO TAMBIÉN
     await AsyncStorage.setItem(STORAGE_PHOTO, base64);
+    await AsyncStorage.setItem(STORAGE_SHIRT, `${shirtIndex}`);
   }
 
   const confirmStamp = useCallback(async () => {
@@ -107,7 +119,8 @@ function PhotoPreviewScreen({ route, navigation }) {
 
       // Store in S3 bucket
       const result = await Storage.put(uuid, blob, {
-        contentType: 'image/jpeg'
+        contentType: 'image/jpeg',
+        metadata: { shirt: `${shirtIndex}` }
       });
       console.log(`===== ${TAG}:confirmStamp upload result: =====`);
       console.log(JSON.stringify(result));
@@ -127,6 +140,14 @@ function PhotoPreviewScreen({ route, navigation }) {
     navigation.goBack();
   }, [navigation]);
 
+  const nextShirt = (forward) => {
+    if (forward && (shirtIndex + 1) < SHIRT_OPTIONS.length) {
+      setShirtIndex(shirtIndex + 1);
+    } else if (!forward && (shirtIndex - 1) >= 0) {
+      setShirtIndex(shirtIndex - 1);
+    }
+  }
+
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <Flex flex="1" style={styles.container} alignItems="center">
@@ -135,25 +156,36 @@ function PhotoPreviewScreen({ route, navigation }) {
         </View>
         <View style={styles.previewContainer}>
           <Image style={styles.selfie} source={{ uri: `file://${photoPath}` }} />
-          <Image style={styles.shirt} resizeMode="cover" source={IMG.smCamisaPrueba} />
-          <TouchableOpacity style={styles.leftButton}>
+          <Image style={styles.shirt} resizeMode="contain" source={SHIRT_OPTIONS[shirtIndex]} />
+          {shirtIndex > 0 &&
+          <TouchableOpacity onPress={() => nextShirt(false)} style={styles.leftButton}>
             <Image source={IMG.flechaCamisetasIzquierda} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.rightButton}>
+          }
+          {shirtIndex < (SHIRT_OPTIONS.length) - 1 &&
+          <TouchableOpacity onPress={() => nextShirt(true)} style={styles.rightButton}>
             <Image source={IMG.flechaCamisetasDerecha} />
           </TouchableOpacity>
+          }
         </View>
         <View style={styles.bottom}>
-          <Button width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
+          <Button onPress={confirmStamp} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
         </View>
-        <Modal isVisible={isLoading}>
-          <View style={{ flex: 1, backgroundColor: '#fff' }}>
-            <Text>{isPhotoSent ? 'Envío completo' : 'Enviando...'}</Text>
-            <Button disabled={!isPhotoSent} onPress={() => setIsLoading(false)}>
-              Continuar
-            </Button>
-          </View>
-        </Modal>
+        <LoaderModal 
+          isVisible={isLoading} 
+          isError={isError}
+          isComplete={isPhotoSent} 
+          loaderText={i18n.t('text_loader_sending')} 
+          errorText={i18n.t('text_loader_sending_error')}        
+          closeHandler={(completed) => {
+            setIsLoading(false);
+            setIsError(false);
+            setIsPhotoSent(false);
+            if (completed) {
+              navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
+            }
+          }} 
+          />
       </Flex>
     </ImageBackground>
   )

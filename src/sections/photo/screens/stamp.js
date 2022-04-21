@@ -1,178 +1,94 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Image, ImageBackground, View } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
-import Modal from "react-native-modal";
-import { Storage } from 'aws-amplify';
-import ImageEditor from '@react-native-community/image-editor';
+import LottieView from 'lottie-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import uuid from 'react-native-uuid';
-import * as FileSystem from 'expo-file-system';
+import i18n from 'i18n-js';
 
 import IMG from 'assets/img';
+import Lottie from 'assets/lottie';
 
-const STORAGE_UUID = 'STORAGE_UUID';
+import { SAFE_AREA_PADDING } from '../../../constants/constants';
+import StepHeader from '../../../components/StepHeader/StepHeader';
+import LoaderModal from '../../../components/LoaderModal/LoaderModal';
+
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
 
 const TAG = 'PhotoStampScreen';
-const PHOTO_WIDTH = 414;
-const PHOTO_HEIGHT = 552;
 
-function PhotoStampScreen({ route }) {
-  const [photoPath, setPhotoPath] = useState();
-  const [photoWidth, setPhotoWidth] = useState();
-  const [photoHeight, setPhotoHeight] = useState();
-  const [isLoading, setIsLoading] = useState();
-  const [isPhotoSent, setIsPhotoSent] = useState(false);
-  const [isError, setIsError] = useState(false);
+function PhotoStampScreen() {
+  const [photoBase64, setPhotoBase64] = useState();
 
-  useEffect(() => {
-    console.log(`===== ${TAG}:useEffect ${JSON.stringify(route.params)} =====`);
-    if (route.params) {
-      setPhotoPath(route.params['path']);
-      setPhotoWidth(route.params['width']);
-      setPhotoHeight(route.params['height']);
-    }
-  }, [route]);
-
-  const getUUID = async () => {
-    const storedUuid = await AsyncStorage.getItem(STORAGE_UUID);
-    if (storedUuid) {
-      return storedUuid;
-    } else {
-      const newUuid = uuid.v4();
-      await AsyncStorage.setItem(STORAGE_UUID, newUuid);
-      return newUuid;
-    }
-  }
-
-  const getProcessedImage = async (photoPath, photoWidth, photoHeight) => {
-    // Crop and resize photo
-    let diffY = 0;
-    let diffX = 0;
-    let croppedWidth;
-    let croppedHeight;
-
-    if (photoWidth === photoHeight) {
-      croppedWidth = photoWidth * .75;
-      croppedHeight = photoHeight;
-      diffX = (photoWidth - croppedWidth) / 2;
-
-    } else {
-      croppedWidth = photoHeight;
-      croppedHeight = photoHeight / .75;
-      diffY = (photoWidth - croppedHeight) / 2;
-    }
-
-    console.log(`====== ${TAG}:getProcessedImage diffX:${diffX} / diffY:${diffY} =====`);
-    const croppedUri = await ImageEditor.cropImage(`file://${photoPath}`, {
-      offset: { x: diffX, y: diffY },
-      size: { width: croppedWidth, height: croppedHeight },
-      displaySize: { width: PHOTO_WIDTH, height: PHOTO_HEIGHT }
-    });
-
-    return croppedUri;
-  }
-
-  const storeProcessedImage = async (imagePath) => {
-    const base64 = await FileSystem.readAsStringAsync(imagePath, {
-      encoding: FileSystem.EncodingType.Base64
-    });
-    console.log(`===== ${TAG}:storeProcessedImage base64 =====`);
-    console.log(base64);
-
-    // TODO GUARDAR EN ESTADO TAMBIÉN
-    await AsyncStorage.setItem(STORAGE_PHOTO, base64);
-  }
-
-  const confirmStamp = useCallback(async () => {
+  useEffect(async () => {
+    console.log(`===== ${TAG}:useEffect =====`);
     try {
-      console.log(`===== ${TAG}:confirmStep file://${photoPath} // height: ${photoHeight} // width: ${photoWidth}=====`)
-      setIsLoading(true);
-
-      // Crop and resize image
-      const croppedUri = await getProcessedImage(photoPath, photoWidth, photoHeight);
-      console.log(`===== ${TAG}:confirmStep croppedUri: ${croppedUri} =====`);
-
-      // Obtrain blob
-      const response = await fetch(`${croppedUri}`);
-      const blob = await response.blob();
-
-      // Obtain UUID generated from local storage
-      const uuid = await getUUID();
-      console.log(`===== ${TAG}:confirmStamp uuid:${uuid} =====`);
-
-      // Store in S3 bucket
-      const result = await Storage.put(uuid, blob, {
-        contentType: 'image/jpeg'
-      });
-      console.log(`===== ${TAG}:confirmStamp upload result: =====`);
-      console.log(JSON.stringify(result));
-
-      // Store processed image
-      await storeProcessedImage(croppedUri);
-      setIsPhotoSent(true);
-
-    } catch (err) {
-      console.log(`===== ${TAG}:confirmStamp error =====`);
-      console.log(err);
-      setIsError(true);
+      const base64 = await AsyncStorage.getItem(STORAGE_PHOTO);
+      setPhotoBase64(base64);
+    } catch (e) {
+      console.log(`===== ${TAG}:useEffect =====`);
+      console.log(e);
     }
-  }, [photoPath, photoWidth, photoHeight]);
+  }, []);
 
   return (
-    <>
-      <Flex flex="1" style={styles.container}>
+    <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
+      <Flex flex="1" style={styles.container} alignItems="center">
         <View style={styles.top}>
-          <Text>TÍTULO</Text>
+          <StepHeader title={i18n.t('photo_stamp_title')} total={4} step={3} />
         </View>
-        <Flex flex="1" alignItems="center" justifyContent="center" style={styles.middle}>
-          <View style={styles.previewContainer}>
-            <Image style={styles.selfie} source={{ uri: `file://${photoPath}` }} />
-            <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smPaniniPrueba} />
-          </View>
-        </Flex>
-        <Modal isVisible={isLoading}>
-          <View style={{ flex: 1, backgroundColor: '#fff' }}>
-          <Text>{isPhotoSent ? 'Envío completo' : 'Enviando...'}</Text>
-          <Button disabled={!isPhotoSent} onPress={() => setIsLoading(false)}>
-                  Continuar
-                </Button>
-          </View>
-        </Modal>
+        <View style={styles.previewContainer}>
+          <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
+          <Image style={styles.overlay} resizeMode="contain" source={IMG.smPaniniPrueba} />
+        </View>
+        <Flex flex="1" alignItems="center" justifyContent="center">
+            <Button backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
+          </Flex>
       </Flex>
-      {!isPhotoSent && <Button onPress={confirmStamp}>Listo</Button>}
-    </>
+    </ImageBackground>
   )
+
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#bbb',
+    paddingTop: SAFE_AREA_PADDING.paddingTop,
   },
   top: {
-    backgroundColor: '#f00',
     alignItems: 'center'
   },
   middle: {
-    backgroundColor: '#0f0',
+    //backgroundColor: '#0f0',
   },
   selfie: {
     position: 'absolute',
-    width: '74%',
+    width: '76%',
+    top: 0,
     aspectRatio: 3 / 4,
-    left: '13%',
   },
   previewContainer: {
-    width: '90%',
+    width: '85%',
+    alignItems: 'center',
+    justifyContent: 'center',
     aspectRatio: 137 / 160,
+    marginTop: 10
   },
   overlay: {
-    flex: 1,
-    justifyContent: 'center',
+    position: 'absolute',
+    width: '100%',
   },
   bottom: {
     position: 'absolute',
     bottom: 0
+  },
+  background: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#2a5a40',
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 13,
+    lineHeight: 19,
   },
 });
 

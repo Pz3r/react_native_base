@@ -8,6 +8,13 @@ export default {
   photo_permissions_title: 'Antes de tomar tu foto considera...',
   photo_camera_title: 'Toma tu foto',
   photo_preview_title: 'Elige tu camiseta',
+  photo_stamp_title: '¡Ya tienes tu estampa!',
 
-  button_action_ready: '¡Listo!'
+  button_action_ready: '¡Listo!',
+  button_action_close: 'Cerrar',
+  button_action_continue: 'Continuar',
+  button_action_next: 'Siguiente',
+
+  text_loader_sending: 'Enviando...',
+  text_loader_sending_error: 'Ocurrió un error en el envío.',
 }

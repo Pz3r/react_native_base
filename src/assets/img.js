@@ -1,5 +1,8 @@
 const img = {
   appFondo: require('./img/app-fondo.jpg'),
+  smCamisaA: require('./img/SM-camisaA.png'),
+  smCamisaB: require('./img/SM-camisaB.png'),
+  smCamisaC: require('./img/SM-camisaC.png'),
 	smCamisaPrueba: require('./img/SM-camisa-prueba.png'),
 	smPaniniPrueba: require('./img/SM-panini-prueba.png'),
   iconoInicioApagado: require('./img/icono-inicio-apagado.png'),

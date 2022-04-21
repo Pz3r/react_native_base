@@ -9,7 +9,7 @@ export default function StepHeader({ title, backButtonHandler, total, step }) {
 
   const getStepImage = (total, step) => {
     if (total === 4) {
-      switch(step) {
+      switch (step) {
         case 1:
           return IMG.barraProgresoCuatro1;
         case 2:
@@ -27,11 +27,9 @@ export default function StepHeader({ title, backButtonHandler, total, step }) {
 
   return (
     <View style={styles.container}>
-      {backButtonHandler &&
-        <TouchableOpacity onPress={backButtonHandler} style={styles.backButton}>
-          <Image source={IMG.botonRegresar} />
-        </TouchableOpacity>
-      }
+      <TouchableOpacity disabled={!backButtonHandler} onPress={backButtonHandler} style={styles.backButton}>
+        <Image style={!backButtonHandler ? { opacity: 0 } : {}} source={IMG.botonRegresar} />
+      </TouchableOpacity>
       <Image source={getStepImage(total, step)} />
       <Text style={styles.title}>{title}</Text>
     </View>

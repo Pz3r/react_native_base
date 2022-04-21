@@ -253,7 +253,7 @@ function PhotoCameraScreen({ navigation }) {
                 frameProcessorFps={1}
                 onFrameProcessorPerformanceSuggestionAvailable={onFrameProcessorSuggestionAvailable}
               />
-              <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaPrueba} />
+              <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaA} />
             </>
           )}
         </View>
