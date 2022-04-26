@@ -6,6 +6,8 @@ const img = {
   smCamisaBlanca: require('./img/SM-camisa-blanca.png'),
   smCamisaNegra: require('./img/SM-camisa-negra.png'),
 	smCamisaPrueba: require('./img/SM-camisa-prueba.png'),
+  smPaniniBlanca: require('./img/SM-panini-blanca.png'),
+  smPaniniNegra: require('./img/SM-panini-negra.png'),
 	smPaniniPrueba: require('./img/SM-panini-prueba.png'),
   iconoInicioApagado: require('./img/icono-inicio-apagado.png'),
   iconoInicioPrendido: require('./img/icono-inicio-prendido.png'),

@@ -88,15 +88,15 @@ function PhotoPreviewScreen({ route, navigation }) {
     return croppedUri;
   }
 
-  const storeProcessedImage = async (imagePath) => {
+  const storeProcessedImage = async (imagePath, shirtIndex) => {
     const base64 = await FileSystem.readAsStringAsync(imagePath, {
       encoding: FileSystem.EncodingType.Base64
     });
-    console.log(`===== ${TAG}:storeProcessedImage base64 =====`);
-    console.log(base64);
+    console.log(`===== ${TAG}:storeProcessedImage shirtIndex =====`);
+    console.log(shirtIndex);
 
     await AsyncStorage.setItem(STORAGE_PHOTO, base64);
-    await AsyncStorage.setItem(STORAGE_SHIRT, `${shirtIndex}`);
+    await AsyncStorage.setItem(STORAGE_SHIRT, shirtIndex);
   }
 
   const confirmStamp = useCallback(async () => {
@@ -125,7 +125,7 @@ function PhotoPreviewScreen({ route, navigation }) {
       console.log(JSON.stringify(result));
 
       // Store processed image
-      await storeProcessedImage(croppedUri);
+      await storeProcessedImage(croppedUri, `${shirtIndex}`);
       setIsPhotoSent(true);
 
     } catch (err) {
@@ -133,7 +133,7 @@ function PhotoPreviewScreen({ route, navigation }) {
       console.log(err);
       setIsError(true);
     }
-  }, [photoPath, photoWidth, photoHeight]);
+  }, [photoPath, photoWidth, photoHeight, shirtIndex]);
 
   const goBack = useCallback(() => {
     navigation.goBack();

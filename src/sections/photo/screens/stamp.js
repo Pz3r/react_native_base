@@ -14,17 +14,27 @@ import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 import { NAVIGATION_PHOTO_FORM_SCREEN } from '../../../navigation/constants';
 
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
+const STORAGE_SHIRT = 'STORAGE_SHIRT';
 
 const TAG = 'PhotoStampScreen';
 
+const FRAMES = [
+  IMG.smPaniniBlanca,
+  IMG.smPaniniNegra,
+];
+
 function PhotoStampScreen({ navigation }) {
   const [photoBase64, setPhotoBase64] = useState();
+  const [selectedShirt, setSelectedShirt] = useState();
 
   useEffect(async () => {
     console.log(`===== ${TAG}:useEffect =====`);
     try {
       const base64 = await AsyncStorage.getItem(STORAGE_PHOTO);
+      const shirt = await AsyncStorage.getItem(STORAGE_SHIRT);
+      console.log(`===== ${TAG}:useEffect shirt: ${shirt} =====`);
       setPhotoBase64(base64);
+      setSelectedShirt(parseInt(shirt));
     } catch (e) {
       console.log(`===== ${TAG}:useEffect =====`);
       console.log(e);
@@ -43,7 +53,7 @@ function PhotoStampScreen({ navigation }) {
         </View>
         <View style={styles.previewContainer}>
           <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
-          <Image style={styles.overlay} resizeMode="contain" source={IMG.smPaniniPrueba} />
+          <Image style={styles.overlay} resizeMode="contain" source={FRAMES[selectedShirt]} />
         </View>
         <Flex flex="1" alignItems="center" justifyContent="center">
             <Button onPress={nextStep} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
