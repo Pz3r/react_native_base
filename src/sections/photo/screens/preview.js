@@ -89,6 +89,8 @@ function PhotoPreviewScreen({ route, navigation }) {
   }
 
   const storeProcessedImage = async (imagePath, shirtIndex) => {
+    console.log(`===== ${TAG}:storeProcessedImage imagePath:${imagePath} =====`);
+
     const base64 = await FileSystem.readAsStringAsync(imagePath, {
       encoding: FileSystem.EncodingType.Base64
     });

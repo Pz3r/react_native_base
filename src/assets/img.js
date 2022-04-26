@@ -23,6 +23,7 @@ const img = {
   barraProgresoCuatro4: require('./img/barra-progreso_cuatro4.png'),
   botonRegresar: require('./img/boton-regresar.png'),
   botonTomarFoto: require('./img/boton-tomar-foto.png'),
+  botonCompartir: require('./img/boton-compartir.png'),
   flechaCamisetasIzquierda: require('./img/flecha-camisetas-izquierda.png'),
   flechaCamisetasDerecha: require('./img/flecha-camisetas-derecha.png'),
 };

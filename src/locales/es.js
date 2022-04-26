@@ -19,6 +19,7 @@ export default {
   button_action_finish: 'Terminar',
   button_action_date: 'Fecha',
   button_action_time: 'Hora',
+  button_action_share: 'Compartir',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
