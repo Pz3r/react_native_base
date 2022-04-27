@@ -23,7 +23,7 @@ export default function PhotoPermissionsScreen({ navigation }) {
   }, []);
 
   const cancel = useCallback(() => {
-    navigation.navigate(NAVIGATION_HOME_STACK);
+    navigation.goBack();
   }, []);
 
   useEffect(() => {

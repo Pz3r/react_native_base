@@ -10,9 +10,9 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
-import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
-import { NAVIGATION_PHOTO_FORM_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_PHOTO_STACK, NAVIGATION_PHOTO_PERMISSIONS_SCREEN } from '../../../navigation/constants';
+import AppHeader from '../../../components/AppHeader/AppHeader';
 
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
 const STORAGE_SHIRT = 'STORAGE_SHIRT';
@@ -72,20 +72,31 @@ function ProfileHomeScreen({ navigation }) {
     }
   }, []);
 
+  const onEdit = useCallback(() => {
+    navigation.navigate(NAVIGATION_PHOTO_STACK, { screen: NAVIGATION_PHOTO_PERMISSIONS_SCREEN });
+  }, []);
+
+  const onDoQuiz = useCallback(() => {
+    console.log(`===== ${TAG}:onDoQuiz =====`);
+  }, []);
+
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.top}>
-          <StepHeader title={i18n.t('photo_stamp_title')} total={4} step={3} />
-        </View>
+        <AppHeader />
+        <Text style={styles.title}>{i18n.t('text_profile_title')}</Text>
         <ViewShot ref={viewShotRef} style={styles.previewContainer}>
           <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
           <Image style={styles.overlay} resizeMode="contain" source={FRAMES[selectedShirt]} />
+          <TouchableOpacity onPress={onEdit} style={styles.editButton}>
+            <Image source={IMG.botonEditar} />
+          </TouchableOpacity>
         </ViewShot>
-        <TouchableOpacity onPress={onCapture} style={styles.shareButton}>
-          <Text style={styles.shareText}>{i18n.t('button_action_share')}</Text>
-          <Image source={IMG.botonCompartir} />
-        </TouchableOpacity>
+        <View style={styles.subContainer}>
+          <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
+          <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
+          <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
+        </View>
       </ScrollView>
     </ImageBackground>
   )
@@ -94,7 +105,6 @@ function ProfileHomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: SAFE_AREA_PADDING.paddingTop,
     alignItems: 'center'
   },
   top: {
@@ -109,13 +119,16 @@ const styles = StyleSheet.create({
     top: 0,
     aspectRatio: 3 / 4,
   },
+  subContainer: {
+    width: '76%'
+  },
   previewContainer: {
     width: '85%',
     alignItems: 'center',
     justifyContent: 'center',
     aspectRatio: 137 / 160,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 20,
   },
   overlay: {
     position: 'absolute',
@@ -129,24 +142,55 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  button: {
+    width: '70%',
+    alignSelf: 'center',
+    marginVertical: 20
+  },
   buttonText: {
     color: '#2a5a40',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
   },
+  editButton: {
+    position: 'absolute',
+    top: -15,
+    right: -15
+  },
   shareButton: {
-    alignSelf: 'flex-end',
-    paddingEnd: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    position: 'absolute',
+    bottom: -10,
+    right: -10
   },
   shareText: {
     color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
+  },
+  title: {
+    fontFamily: 'OperaBlackOblique',
+    color: '#e74a7b',
+    fontSize: 35,
+    lineHeight: 37,
+    paddingTop: 10,
+    alignSelf: 'flex-start',
+    paddingStart: 20
+  },
+  subTitle: {
+    fontFamily: 'OperaBlackOblique',
+    color: '#8cbe5d',
+    fontSize: 30,
+    paddingVertical: 10,
+    alignSelf: 'center',
+  },
+  quizDescription: {
+    color: '#ffffff',
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 16,
+    lineHeight: 19,
+    textAlign: 'center'
   }
 });
 

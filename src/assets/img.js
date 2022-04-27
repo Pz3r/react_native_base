@@ -17,6 +17,7 @@ const img = {
   iconoFaqsPrendido: require('./img/icono-faqs-prendido.png'),
   iconoPerfilApagado: require('./img/icono-perfil-apagado.png'),
   iconoPerfilPrendido: require('./img/icono-perfil-prendido.png'),
+  iconoMenu: require('./img/icono-menu.png'),
   barraProgresoCuatro1: require('./img/barra-progreso_cuatro1.png'),
   barraProgresoCuatro2: require('./img/barra-progreso_cuatro2.png'),
   barraProgresoCuatro3: require('./img/barra-progreso_cuatro3.png'),
@@ -24,6 +25,7 @@ const img = {
   botonRegresar: require('./img/boton-regresar.png'),
   botonTomarFoto: require('./img/boton-tomar-foto.png'),
   botonCompartir: require('./img/boton-compartir.png'),
+  botonEditar: require('./img/boton-editar.png'),
   flechaCamisetasIzquierda: require('./img/flecha-camisetas-izquierda.png'),
   flechaCamisetasDerecha: require('./img/flecha-camisetas-derecha.png'),
 };

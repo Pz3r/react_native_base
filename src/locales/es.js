@@ -20,6 +20,7 @@ export default {
   button_action_date: 'Fecha',
   button_action_time: 'Hora',
   button_action_share: 'Compartir',
+  button_action_do_quiz: 'Hacer quiz',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
@@ -27,6 +28,10 @@ export default {
   text_photo_onoarding_1: 'Limpia tu lente y ponte en un lugar iluminado',
   text_photo_onoarding_2: 'Eleva tu cámara a la altura de tu rostro y ponte de frente',
   text_photo_onoarding_3: 'Deja libre tu cara. Evita sombreros, mascadas o lentes.',
-
   text_photo_form_skip: 'Aún no tengo una fecha',
+
+  text_profile_title: 'Mi Perfil',
+  text_profile_quiz_title: 'Quiz Futbolero',
+  text_profile_quiz_description: 'Descubre qué tipo de futbolero eres con este quiz.',
+
 }
