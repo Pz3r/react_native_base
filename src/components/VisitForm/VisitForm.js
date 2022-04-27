@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button } from 'native-base';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -8,9 +8,12 @@ import i18n from 'i18n-js';
 
 const TAG = 'VisitForm';
 
+const STORAGE_DATE = 'STORAGE_DATE';
+const STORAGE_TIME = 'STORAGE_TIME';
+
 import LoaderModal from '../LoaderModal/LoaderModal';
 
-export default function VisitForm({ finishHandler }) {
+export default function VisitForm({ finishHandler, shouldPreload, buttonText }) {
   const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +21,22 @@ export default function VisitForm({ finishHandler }) {
   const [isError, setIsError] = useState(false);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+
+  useEffect(async () => {
+    console.log(`===== ${TAG}:useEffect =====`);
+    if (shouldPreload || true) {
+      try {
+        const storedDate = await AsyncStorage.getItem(STORAGE_DATE);
+        const storedTime = await AsyncStorage.getItem(STORAGE_TIME);
+        console.log(`===== ${TAG}:useEffect date: ${storedDate} time: ${storedTime} =====`);
+        setDate(storedDate);
+        setTime(storedTime);
+      } catch (e) {
+        console.log(`===== ${TAG}:useEffect =====`);
+        console.log(e);
+      }
+    }
+  }, []);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -58,7 +77,9 @@ export default function VisitForm({ finishHandler }) {
   const sendDateTime = useCallback(() => {
     console.log(`===== ${TAG}:sendDateTime ${date} // ${time} =====`);
     setIsLoading(true);
-    setTimeout(() => {
+    setTimeout(async () => {
+      await AsyncStorage.setItem(STORAGE_DATE, date);
+      await AsyncStorage.setItem(STORAGE_TIME, time);
       setIsDataSent(true);
     }, 3000);
   }, [date, time]);
@@ -67,7 +88,7 @@ export default function VisitForm({ finishHandler }) {
     <>
       <View style={styles.form}>
         <View style={styles.formInput}>
-          <Button backgroundColor="#0f2d25" onPress={showDatePicker}>{date || i18n.t('button_action_date')}</Button>
+          <Button backgroundColor="#231f20" onPress={showDatePicker}>{date || i18n.t('button_action_date')}</Button>
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="date"
@@ -76,7 +97,7 @@ export default function VisitForm({ finishHandler }) {
           />
         </View>
         <View style={styles.formInputBottom}>
-          <Button backgroundColor="#0f2d25" onPress={showTimePicker}>{time || i18n.t('button_action_time')}</Button>
+          <Button backgroundColor="#231f20" onPress={showTimePicker}>{time || i18n.t('button_action_time')}</Button>
           <DateTimePickerModal
             isVisible={isTimePickerVisible}
             mode="time"
@@ -84,7 +105,7 @@ export default function VisitForm({ finishHandler }) {
             onCancel={hideTimePicker}
           />
         </View>
-        <Button onPress={sendDateTime} isDisabled={!date || !time} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_finish')}</Button>
+        <Button onPress={sendDateTime} isDisabled={!date || !time} backgroundColor="#c1e645" _text={styles.buttonText}>{buttonText || i18n.t('button_action_finish')}</Button>
       </View>
       <LoaderModal
         isVisible={isLoading}
@@ -98,7 +119,7 @@ export default function VisitForm({ finishHandler }) {
           setIsDataSent(false);
           if (completed) {
             finishHandler();
-          } 
+          }
         }}
       />
     </>
@@ -108,7 +129,7 @@ export default function VisitForm({ finishHandler }) {
 
 const styles = StyleSheet.create({
   form: {
-    paddingTop: 20,
+    paddingTop: 10,
     width: '80%',
     alignSelf: 'center'
   },

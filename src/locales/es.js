@@ -19,6 +19,7 @@ export default {
   button_action_finish: 'Terminar',
   button_action_date: 'Fecha',
   button_action_time: 'Hora',
+  button_action_update_visit: 'Actualizar visita',
   button_action_share: 'Compartir',
   button_action_do_quiz: 'Hacer quiz',
 
@@ -33,5 +34,5 @@ export default {
   text_profile_title: 'Mi Perfil',
   text_profile_quiz_title: 'Quiz Futbolero',
   text_profile_quiz_description: 'Descubre qué tipo de futbolero eres con este quiz.',
-
+  text_profile_visit_title: '¿Qué día nos visitas?',
 }

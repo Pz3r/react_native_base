@@ -13,6 +13,7 @@ import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 import { NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_PHOTO_STACK, NAVIGATION_PHOTO_PERMISSIONS_SCREEN } from '../../../navigation/constants';
 import AppHeader from '../../../components/AppHeader/AppHeader';
+import VisitForm from '../../../components/VisitForm/VisitForm';
 
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
 const STORAGE_SHIRT = 'STORAGE_SHIRT';
@@ -80,6 +81,10 @@ function ProfileHomeScreen({ navigation }) {
     console.log(`===== ${TAG}:onDoQuiz =====`);
   }, []);
 
+  const finishHandler = () => {
+    console.log(`===== ${TAG}:finishHandler =====`);
+  };
+
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -96,6 +101,10 @@ function ProfileHomeScreen({ navigation }) {
           <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
           <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
           <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
+          <View style={styles.formContainer}>
+            <Text style={styles.formTitle}>{i18n.t('text_profile_visit_title')}</Text>
+            <VisitForm finishHandler={finishHandler} buttonText={i18n.t('button_action_update_visit')} />
+          </View>
         </View>
       </ScrollView>
     </ImageBackground>
@@ -143,7 +152,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    width: '70%',
+    width: '80%',
     alignSelf: 'center',
     marginVertical: 20
   },
@@ -191,6 +200,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     textAlign: 'center'
+  },
+  formContainer: {
+    backgroundColor: '#231f20bb',
+    paddingBottom: 20,
+    paddingTop: 20
+  },
+  formTitle: {
+    color: '#8cbe5d',
+    fontFamily: 'Inter-ExtraBold',
+    fontSize: 15,
+    lineHeight: 18,
+    fontWeight: "700",
+    paddingStart: 28,
   }
 });
 
