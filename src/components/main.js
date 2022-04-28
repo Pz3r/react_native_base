@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import MainStackNavigator from '../navigation/stack';
 import AuthenticationStackNavigator from '../sections/authentication/navigation/stack';
+import { QuietConsumer, QuietProvider } from '../context/Audioguide';
 
 function MainComponent({
   authenticated,
@@ -14,7 +15,16 @@ function MainComponent({
     )
   } else {
     return (
-      <MainStackNavigator />
+      <QuietProvider>
+        <QuietConsumer>
+          {context => {
+            console.log(`===== GUIDE INDEX ${context.lastMessage} / ${context.count}`);
+            return (
+              <MainStackNavigator />
+            )
+          }}
+        </QuietConsumer>
+      </QuietProvider>
     )
   }
 

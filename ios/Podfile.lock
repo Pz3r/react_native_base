@@ -93,6 +93,7 @@ PODS:
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
   - Protobuf (3.19.4)
+  - QuietModemKit (0.0.9)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -293,6 +294,9 @@ PODS:
     - React-RCTImage
   - react-native-netinfo (8.2.0):
     - React-Core
+  - react-native-quiet (0.1.0):
+    - QuietModemKit (~> 0.0.1)
+    - React
   - react-native-safe-area-context (4.2.1):
     - RCT-Folly
     - RCTRequired
@@ -452,6 +456,7 @@ DEPENDENCIES:
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
   - "react-native-image-editor (from `../node_modules/@react-native-community/image-editor`)"
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-quiet (from `../node_modules/react-native-quiet`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -480,6 +485,8 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
+  https://github.com/Pz3r/MySpecs.git:
+    - QuietModemKit
   trunk:
     - boost-for-react-native
     - GoogleDataTransport
@@ -557,6 +564,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/image-editor"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-quiet:
+    :path: "../node_modules/react-native-quiet"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-view-shot:
@@ -641,6 +650,7 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Protobuf: 235750e4696ff59fb07d949a9dbbc92b3c0700fe
+  QuietModemKit: ef577e8532d7663b5c79ea1cd3f19ff65a064302
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: d34bf57e17cb6e3b2681f4809b13843c021feb6c
   RCTTypeSafety: 8dab4933124ed39bb0c1d88d74d61b1eb950f28f
@@ -655,6 +665,7 @@ SPEC CHECKSUMS:
   react-native-cameraroll: 2957f2bce63ae896a848fbe0d5352c1bd4d20866
   react-native-image-editor: 9361a215c3991cafbe5e7f28cbbad6e72c9c2705
   react-native-netinfo: e922cb2e3eaf9ccdf16b8d4744a89657377aa4a1
+  react-native-quiet: e032f726c2fe22a4d92b6e9d7a65710cfb998cf3
   react-native-safe-area-context: 806f8370bf9fc9db90a3413aaa1aab0d2e22fdf3
   react-native-view-shot: 4475fde003fe8a210053d1f98fb9e06c1d834e1c
   React-perflogger: cc76a4254d19640f1d8ad1c66fdee800414b805c
@@ -682,6 +693,6 @@ SPEC CHECKSUMS:
   VisionCamera: 57487a11a98a0d5d3ed73946062ab3920110f08e
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
-PODFILE CHECKSUM: 1035f5a3041dc3f749bf4917d086d1bb83597f01
+PODFILE CHECKSUM: cb29a4bce8ff05eb3ffa5c527ead9561821c5a2e
 
 COCOAPODS: 1.10.1
