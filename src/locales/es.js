@@ -22,6 +22,8 @@ export default {
   button_action_update_visit: 'Actualizar visita',
   button_action_share: 'Compartir',
   button_action_do_quiz: 'Hacer quiz',
+  button_action_participate: 'Quiero tomar mi foto',
+  button_action_activate_notifications: 'Activar mis notificaciones',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
@@ -35,4 +37,16 @@ export default {
   text_profile_quiz_title: 'Quiz Futbolero',
   text_profile_quiz_description: 'Descubre qué tipo de futbolero eres con este quiz.',
   text_profile_visit_title: '¿Qué día nos visitas?',
+
+  text_home_experience_1: 'En preparación para Catar 2022 vive con nosotros la pasión por Mi Selección.',
+  text_home_experience_2: 'Dentro de este adoratorio del futbol vivirás un viaje en el tiempo de los momentos más icónicos de Mi Selección y serás testigo de cómo la pasión de la afición uniforma a los seleccionados para el próximo mundial.',
+  text_home_participate_title: '¿Cómo participar en el show?',
+  text_home_participate_description: '¿Quieres participar en nuestra experiencia? Toma tu foto y crea tu perfil. Cuando menos lo esperes, te descubrirás dentro de la experiencia.',
+  text_home_notifications_description: '¡Además vive la experiencia a través de tu celular! Para participar en el show es necesario que actives tus notificaciones y descubrirás una nueva manera de ser parte de ella.',
+  text_home_subtitle: '¡Disfruta del show a través de la app!',
+  text_home_bracelet_title: '¿Ya tienes tu pulsera?',
+  text_home_bracelet_description: 'Al llegar, recibirás dos listones: amarra uno a la ofrenda de Mi Selección y el otro pórtalo como pulsera.',
+  text_home_receive: 'Recíbela',
+  text_home_put: 'Póntela',
+  text_home_offer: 'Ofrenda',
 }

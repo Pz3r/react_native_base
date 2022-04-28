@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#2a5a40',
     fontFamily: 'Inter-SemiBold',
+    fontWeight: 'bold',
     fontSize: 13,
     lineHeight: 19,
   },
