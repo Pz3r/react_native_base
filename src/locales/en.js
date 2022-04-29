@@ -51,16 +51,10 @@ export default {
   text_home_offer: 'Ofrenda',
 
   text_plan_title: 'Plano',
-
+  
   text_plan_item_1_title: 'Ofrenda',
   text_plan_item_2_title: 'Adoratorio',
   text_plan_item_3_title: 'Activaciones',
   text_plan_item_4_title: 'Tienda',
   text_plan_item_5_title: 'Alimentos y bebidas',
-
-  text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición en esta gran ofrenda, hecha de los listones que tejerán el futuro de Mi Selección. ¡No olvides ofrendar tu pasión!',
-  text_plan_item_2_description: 'En este monumental adoratorio del futbol viven las memorias del pasado y las esperanzas del futuro de Mi Selección. ¡Únete a esta celebración!',
-  text_plan_item_3_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
-  text_plan_item_4_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
-  text_plan_item_5_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
 }

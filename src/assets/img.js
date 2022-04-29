@@ -23,6 +23,12 @@ const img = {
   iconoPaso1Recibela: require('./img/icono-paso1-recibela.png'),
   iconoPaso2Pontela: require('./img/icono-paso2-pontela.png'),
   iconoPaso3Ofrenda: require('./img/icono-paso3-ofrenda.png'),
+  iconoActivaciones: require('./img/icono-activaciones.png'),
+  iconoAdoratorio: require('./img/icono-adoratorio.png'),
+  iconoAlimentos: require('./img/icono-alimentos.png'),
+  iconoOfrenda: require('./img/icono-ofrenda.png'),
+  iconoTienda: require('./img/icono-tienda.png'),
+  iconoTunel: require('./img/icono-tunel.png'),
   barraProgresoCuatro1: require('./img/barra-progreso_cuatro1.png'),
   barraProgresoCuatro2: require('./img/barra-progreso_cuatro2.png'),
   barraProgresoCuatro3: require('./img/barra-progreso_cuatro3.png'),
@@ -33,6 +39,10 @@ const img = {
   botonEditar: require('./img/boton-editar.png'),
   flechaCamisetasIzquierda: require('./img/flecha-camisetas-izquierda.png'),
   flechaCamisetasDerecha: require('./img/flecha-camisetas-derecha.png'),
+  flechaIzquierda: require('./img/flecha-izquierda.png'),
+  flechaDerecha: require('./img/flecha-derecha.png'),
+  mapa: require('./img/mapa.png'),
+  zonasPlaceholder: require('./img/zonas-placeholder.jpg'),
 };
 
 export default img;

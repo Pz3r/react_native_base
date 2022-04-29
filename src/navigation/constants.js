@@ -10,6 +10,9 @@ export const NAVIGATION_MAKING_HOME_SCREEN = 'MakingHomeScreen';
 export const NAVIGATION_MAP_STACK = 'MapStack';
 export const NAVIGATION_MAP_HOME_SCREEN = 'MapHomeScreen';
 
+export const NAVIGATION_MAP_DETAIL_STACK = 'MapDetailStack';
+export const NAVIGATION_MAP_DETAIL_SCREEN = 'MapDetailScreen';
+
 export const NAVIGATION_PROFILE_STACK = 'ProfileStack';
 export const NAVIGATION_PROFILE_HOME_SCREEN = 'ProfileHomeScreen';
 
