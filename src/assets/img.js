@@ -41,6 +41,8 @@ const img = {
   flechaCamisetasDerecha: require('./img/flecha-camisetas-derecha.png'),
   flechaIzquierda: require('./img/flecha-izquierda.png'),
   flechaDerecha: require('./img/flecha-derecha.png'),
+  flechaArriba: require('./img/flecha-arriba.png'),
+  flechaAbajo: require('./img/flecha-abajo.png'),
   mapa: require('./img/mapa.png'),
   zonasPlaceholder: require('./img/zonas-placeholder.jpg'),
 };

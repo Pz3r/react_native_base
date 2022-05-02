@@ -11,3 +11,6 @@ apply from: new File(["node", "--print", "require.resolve('@react-native-communi
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'
+
+include ':quiet'
+project(':quiet').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-quiet/android/Transducer/quiet')
