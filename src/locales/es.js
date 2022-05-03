@@ -24,6 +24,7 @@ export default {
   button_action_do_quiz: 'Hacer quiz',
   button_action_participate: 'Quiero tomar mi foto',
   button_action_activate_notifications: 'Activar mis notificaciones',
+  button_action_start_quiz: 'Comenzar',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
@@ -66,7 +67,9 @@ export default {
 
   text_faq_title: 'Preguntas Frecuentes',
 
-
+  text_quiz_title: '¿Qué tipo de fan eres?',
+  text_quiz_subtitle: 'Quiz Futbolero',
+  text_quiz_description: 'Contesta este rápido y divertido quiz y descubre el tipo de fan futbolero eres.',
 
   faq_q_1: `¿Cuáles son los horarios?`,
   faq_a_1: `

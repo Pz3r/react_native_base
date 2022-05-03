@@ -11,7 +11,7 @@ import IMG from 'assets/img';
 
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
-import { NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_PHOTO_STACK, NAVIGATION_PHOTO_PERMISSIONS_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_PHOTO_STACK, NAVIGATION_PHOTO_PERMISSIONS_SCREEN, NAVIGATION_QUIZ_STACK, NAVIGATION_QUIZ_HOME_SCREEN } from '../../../navigation/constants';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import VisitForm from '../../../components/VisitForm/VisitForm';
 
@@ -50,6 +50,7 @@ function ProfileHomeScreen({ navigation }) {
 
   const onDoQuiz = useCallback(() => {
     console.log(`===== ${TAG}:onDoQuiz =====`);
+    navigation.navigate(NAVIGATION_QUIZ_STACK, { screen: NAVIGATION_QUIZ_HOME_SCREEN });
   }, []);
 
   const finishHandler = () => {

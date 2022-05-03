@@ -19,6 +19,9 @@ export const NAVIGATION_PROFILE_HOME_SCREEN = 'ProfileHomeScreen';
 export const NAVIGATION_FAQ_STACK = 'FaqStack';
 export const NAVIGATION_FAQ_HOME_SCREEN = 'FaqHomeScreen';
 
+export const NAVIGATION_QUIZ_STACK = 'QuizStack';
+export const NAVIGATION_QUIZ_HOME_SCREEN = 'QuizHomeScrenn';
+
 export const NAVIGATION_PHOTO_STACK = 'PhotoStack';
 export const NAVIGATION_PHOTO_ONBOARDING_SCREEN = 'PhotoOnboardingScreen';
 export const NAVIGATION_PHOTO_PERMISSIONS_SCREEN = 'PhotoPermissionsScreen';
