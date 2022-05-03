@@ -21,6 +21,19 @@ export default function StepHeader({ title, backButtonHandler, total, step }) {
         default:
           return IMG.barraProgresoCuatro1;
       }
+    } else if (total === 5) {
+      switch (step) {
+        case 1:
+          return IMG.barraProgresoCinco1;
+        case 2:
+          return IMG.barraProgresoCinco2;
+        case 3:
+          return IMG.barraProgresoCinco3;
+        case 4:
+          return IMG.barraProgresoCinco4;
+        default:
+          return IMG.barraProgresoCinco5;
+      }
     }
     return IMG.barraProgresoCuatro1;
   }

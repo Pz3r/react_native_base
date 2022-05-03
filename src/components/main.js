@@ -9,7 +9,7 @@ function MainComponent({
   authenticated,
 }) {
 
-  if (!authenticated) {
+  if (!authenticated && false) {
     return (
       <AuthenticationStackNavigator />
     )

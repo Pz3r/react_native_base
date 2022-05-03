@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
 import ViewShot from 'react-native-view-shot';
 import Share from 'react-native-share';
-import { Flex, Text, Button, ScrollView } from 'native-base';
+import { Text, Button, ScrollView } from 'native-base';
 import * as FileSystem from 'expo-file-system';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18n-js';
@@ -11,7 +11,7 @@ import IMG from 'assets/img';
 
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
-import { NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_PHOTO_STACK, NAVIGATION_PHOTO_PERMISSIONS_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_PHOTO_STACK, NAVIGATION_PHOTO_PERMISSIONS_SCREEN, NAVIGATION_QUIZ_STACK, NAVIGATION_QUIZ_HOME_SCREEN } from '../../../navigation/constants';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import VisitForm from '../../../components/VisitForm/VisitForm';
 
@@ -44,59 +44,44 @@ function ProfileHomeScreen({ navigation }) {
     }
   }, []);
 
-  const nextStep = useCallback(() => {
-    navigation.navigate(NAVIGATION_PHOTO_FORM_SCREEN);
-  }, [navigation]);
-
-  const onCapture = useCallback(async () => {
-    try {
-      const uri = await viewShotRef.current.capture();
-      console.log(`===== ${TAG}:onCapture uri: =====`);
-      console.log(uri);
-
-      const base64 = await FileSystem.readAsStringAsync(`file://${uri}`, {
-        encoding: FileSystem.EncodingType.Base64
-      });
-      console.log(`===== ${TAG}:onCapture base64: =====`);
-      //console.log(base64);
-
-      const shareResponse = await Share.open({
-        title: 'Vive Mi Selección',
-        url: 'data:image/png;base64,' + base64
-      });
-      console.log(`===== ${TAG}:onCapture shareResponse: =====`);
-      console.log(shareResponse);
-
-    } catch (error) {
-      console.log(`===== ${TAG}:onCapture error: =====`);
-      console.log(error);
-    }
-  }, []);
-
   const onEdit = useCallback(() => {
     navigation.navigate(NAVIGATION_PHOTO_STACK, { screen: NAVIGATION_PHOTO_PERMISSIONS_SCREEN });
   }, []);
 
   const onDoQuiz = useCallback(() => {
     console.log(`===== ${TAG}:onDoQuiz =====`);
+    navigation.navigate(NAVIGATION_QUIZ_STACK, { screen: NAVIGATION_QUIZ_HOME_SCREEN });
   }, []);
 
   const finishHandler = () => {
     console.log(`===== ${TAG}:finishHandler =====`);
   };
 
+  const takePhoto = useCallback(() => {
+    navigation.navigate(NAVIGATION_PHOTO_STACK, { screen: NAVIGATION_PHOTO_PERMISSIONS_SCREEN });
+  }, [navigation]);
+
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
         <AppHeader />
         <Text style={styles.title}>{i18n.t('text_profile_title')}</Text>
-        <ViewShot ref={viewShotRef} style={styles.previewContainer}>
-          <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
-          <Image style={styles.overlay} resizeMode="contain" source={FRAMES[selectedShirt]} />
-          <TouchableOpacity onPress={onEdit} style={styles.editButton}>
-            <Image source={IMG.botonEditar} />
-          </TouchableOpacity>
-        </ViewShot>
+        {photoBase64 &&
+          <ViewShot ref={viewShotRef} style={styles.previewContainer}>
+            <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
+            <Image style={styles.overlay} resizeMode="contain" source={FRAMES[selectedShirt]} />
+            <TouchableOpacity onPress={onEdit} style={styles.editButton}>
+              <Image source={IMG.botonEditar} />
+            </TouchableOpacity>
+          </ViewShot>
+        }
+        {!photoBase64 &&
+          <View style={styles.showInfoContainer}>
+            <Text style={styles.subTitle}>{i18n.t('text_home_participate_title')}</Text>
+            <Text style={styles.quizDescription}>{i18n.t('text_home_participate_description')}</Text>
+            <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
+          </View>
+        }
         <View style={styles.subContainer}>
           <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
           <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
@@ -114,7 +99,14 @@ function ProfileHomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingBottom: 20
+  },
+  showInfoContainer: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingHorizontal: 20,
+    width: '100%'
   },
   top: {
     alignItems: 'center'
@@ -129,7 +121,9 @@ const styles = StyleSheet.create({
     aspectRatio: 3 / 4,
   },
   subContainer: {
-    width: '76%'
+    paddingBottom: 30,
+    paddingHorizontal: 20,
+    width: '100%'
   },
   previewContainer: {
     width: '85%',
@@ -137,7 +131,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     aspectRatio: 137 / 160,
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 30,
   },
   overlay: {
     position: 'absolute',
@@ -205,7 +199,8 @@ const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: '#231f20bb',
     paddingBottom: 20,
-    paddingTop: 20
+    paddingTop: 20,
+    marginTop: 20
   },
   formTitle: {
     color: '#8cbe5d',

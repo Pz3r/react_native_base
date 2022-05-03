@@ -2,7 +2,7 @@ export default {
   section_name_home: 'Inicio',
   section_name_map: 'Plano',
   section_name_faq: 'Información',
-  section_name_profile: 'Perfil', 
+  section_name_profile: 'Perfil',
   section_name_making_of: 'Creación',
 
   photo_permissions_title: 'Antes de tomar tu foto considera...',
@@ -24,6 +24,7 @@ export default {
   button_action_do_quiz: 'Hacer quiz',
   button_action_participate: 'Quiero tomar mi foto',
   button_action_activate_notifications: 'Activar mis notificaciones',
+  button_action_start_quiz: 'Comenzar',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
@@ -63,4 +64,83 @@ export default {
   text_plan_item_3_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
   text_plan_item_4_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
   text_plan_item_5_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
+
+  text_faq_title: 'Preguntas Frecuentes',
+
+  text_quiz_title: '¿Qué tipo de fan eres?',
+  text_quiz_subtitle: 'Quiz Futbolero',
+  text_quiz_description: 'Contesta este rápido y divertido quiz y descubre el tipo de fan futbolero eres.',
+
+  faq_q_1: `¿Cuáles son los horarios?`,
+  faq_a_1: `
+Martes a viernes (13:30 / 2:50 / 4:10 / 5:30 / 6:50 / 20:00)
+Sábado y domingo (12:00 13:30 / 2:50 / 4:10 / 5:30 / 6:50 / 20:00)
+La duración aproximada de la visita es de una hora y media.
+`,
+
+  faq_q_2: `¿Dónde puedo descargar el app?`,
+  faq_a_2: `Encuentra el App Vive Mi Selección en App Store o Play Store y selecciona la opción de descarga. `,
+
+  faq_q_3: `¿Dónde puedo conseguir boletos?`,
+  faq_a_3: `Puedes comprar boletos en la taquilla a un costado del Pabellón Este del Palacio de los Deportes o en la página de Ticketmaster.`,
+
+  faq_q_4: `¿Necesito imprimir mis boletos si los compro en línea?`,
+  faq_a_4: `Si elegiste TicketFast o boleto digital, no es necesario que imprimas tu boleto. Lo puedes presentar en tu celular para ser escaneado. Si elegiste el método de entrega Will Call, deberás recoger tus boletos en la taquilla.`,
+
+  faq_q_5: `¿La experiencia es para niños?`,
+  faq_a_5: `Sí, es para toda la familia.`,
+
+  faq_q_6: `¿Los niños pagan boletos?`,
+  faq_a_6: `A partir de los 3 años de edad, todos pagan boleto.`,
+
+  faq_q_7: `¿Cuánto tiempo me tomará recorrer la experiencia?`,
+  faq_a_7: `Aproximadamente 1 hora y media.`,
+
+  faq_q_8: `¿Qué más puedo encontrar dentro de la experiencia?`,
+  faq_a_8: `Si, contamos con una zona con juegos interactivos, bebidas, alimentos y cortesías de nuestros patrocinadores.`,
+
+  faq_q_9: `¿Puedo adquirir mercancía oficial del evento?`,
+  faq_a_9: `Si, contamos con una tienda oficial.`,
+
+  faq_q_10: `¿Necesito un guía para disfrutar la experiencia?`,
+  faq_a_10: `El recorrido es libre y no necesita de un guía. Te recomendamos descargar el App para disfrutar aún más de la experiencia.`,
+  
+  faq_q_11: `¿Existe alguna regla con respecto a tomar fotos?`,
+  faq_a_11: `Puedes tomar fotos y videos con tu celular, siempre y cuando sea sin flash. No se permite el ingreso con tripié, selfie sticks o equipo profesional de grabación.`,
+
+  faq_q_12: `¿Puedo reservar para un grupo o para un evento?`,
+  faq_a_12: `Sí, escríbenos a ventagrupos@ticketmaster.com.mx.`,
+
+  faq_q_13: `Extravié algo durante mi visita, ¿Qué puedo hacer?`,
+  faq_a_13: `Acércate con alguna persona de operaciones del inmueble. Si ya no estás ahí, comunícate al 55 4743 1100.`,
+
+  faq_q_14: `¿Hay estacionamiento?`,
+  faq_a_14: `Sí, sobre Avenida Añil en la Puerta 5 del Palacio de los Deportes.`,
+
+  faq_q_15: `¿Cuál es el transporte público más cercano a la experiencia?`,
+  faq_a_15: `El Metro Velódromo está a unos metros de la entrada principal.`,
+
+  faq_q_16: `¿El espacio es accesible para personas en sillas de ruedas?`,
+  faq_a_16: `Sí, todas las personas son bienvenidas.`,
+
+  faq_q_17: `¿Puedo entrar con mi mochila o pañalera?`,
+  faq_a_17: `Puedes acceder con pañalera pero te invitamos a dejar en casa cualquier pertenencia de valor, mochilas grandes o paquetes.`,
+
+  faq_q_18: `¿Se permite el acceso con carriolas?`,
+  faq_a_18: `Sí.`,
+
+  faq_q_19: `¿Hay baños dentro de las instalaciones?`,
+  faq_a_19: `Sí.`,
+
+  faq_q_20: `¿Puedo traer a mi mascota?`,
+  faq_a_20: `No se aceptan mascotas.`,
+
+  faq_q_21: `¿Cuáles son sus medidas de seguridad contra Covid-19?`,
+  faq_a_21: `
+Uso obligatorio de cubrebocas.
+Aforos limitados para evitar aglomeraciones.
+Toma de temperatura en los accesos a la experiencia.
+Estaciones de gel antibacterial en todas las zonas del inmueble.
+Sanitización constante de todo el recinto.  
+`,
 }

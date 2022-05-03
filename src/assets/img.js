@@ -33,6 +33,11 @@ const img = {
   barraProgresoCuatro2: require('./img/barra-progreso_cuatro2.png'),
   barraProgresoCuatro3: require('./img/barra-progreso_cuatro3.png'),
   barraProgresoCuatro4: require('./img/barra-progreso_cuatro4.png'),
+  barraProgresoCinco1: require('./img/barra-progreso_cinco1.png'),
+  barraProgresoCinco2: require('./img/barra-progreso_cinco2.png'),
+  barraProgresoCinco3: require('./img/barra-progreso_cinco3.png'),
+  barraProgresoCinco4: require('./img/barra-progreso_cinco4.png'),
+  barraProgresoCinco5: require('./img/barra-progreso_cinco5.png'),
   botonRegresar: require('./img/boton-regresar.png'),
   botonTomarFoto: require('./img/boton-tomar-foto.png'),
   botonCompartir: require('./img/boton-compartir.png'),
@@ -41,8 +46,11 @@ const img = {
   flechaCamisetasDerecha: require('./img/flecha-camisetas-derecha.png'),
   flechaIzquierda: require('./img/flecha-izquierda.png'),
   flechaDerecha: require('./img/flecha-derecha.png'),
+  flechaArriba: require('./img/flecha-arriba.png'),
+  flechaAbajo: require('./img/flecha-abajo.png'),
   mapa: require('./img/mapa.png'),
   zonasPlaceholder: require('./img/zonas-placeholder.jpg'),
+  ball: require('./img/ball.png'),
 };
 
 export default img;
