@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Flex } from 'native-base';
-import { PinchGestureHandler, TapGestureHandler } from 'react-native-gesture-handler';
 import Reanimated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedProps, useSharedValue, runOnJS } from 'react-native-reanimated';
 import {
   Camera,
@@ -12,13 +11,14 @@ import {
 } from 'react-native-vision-camera';
 import { useIsFocused } from '@react-navigation/native';
 import { scanFaces, Face } from 'vision-camera-face-detector';
+import i18n from 'i18n-js';
+
 import IMG from 'assets/img';
 
-import { CONTENT_SPACING, MAX_ZOOM_FACTOR, SAFE_AREA_PADDING } from '../../../constants/constants';
-import { useIsForeground } from '../../../hooks/useIsForeground';
-import { examplePlugin } from '../../../frame-processors/example-plugin';
+import { CONTENT_SPACING, SAFE_AREA_PADDING } from '../../../constants/constants';
 import { CaptureButton } from '../../../components/CaptureButton/CaptureButton';
-import { NAVIGATION_PHOTO_PREVIEW_SCREEN, NAVIGATION_PHOTO_STAMP_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_PREVIEW_SCREEN } from '../../../navigation/constants';
+import StepHeader from '../../../components/StepHeader/StepHeader';
 
 const ReanimatedCamera = Reanimated.createAnimatedComponent(Camera);
 Reanimated.addWhitelistedNativeProps({
@@ -130,13 +130,23 @@ function PhotoCameraScreen({ navigation }) {
   }, []);
   const onMediaCaptured = useCallback(
     (path, width, height, type) => {
-      console.log(`====== Media captured! ${path}//${width}//${height}//${type} =====`);      
-      navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN, {
-        path,
-        width,
-        height,
-        type
-      });
+      console.log(`====== Media captured! ${path}//${width}//${height}//${type} =====`);
+      if (device && !device.supportsParallelVideoProcessing) {
+        // TODO face check Rekognition
+        navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
+          path,
+          width,
+          height,
+          type
+        });
+      } else {
+        navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
+          path,
+          width,
+          height,
+          type
+        });
+      }
     },
     [navigation],
   );
@@ -210,15 +220,20 @@ function PhotoCameraScreen({ navigation }) {
     console.log(`===== Suggestion available! ${suggestion.type}: Can do ${suggestion.suggestedFrameProcessorFps} FPS`);
   }, []);
 
+  const goBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
+
   return (
-    <Flex flex="1" style={styles.container}>
-      <View style={styles.top}>
-      </View>
-      <Flex flex="1" alignItems="center" justifyContent="center" style={styles.middle}>
-        {device != null && (
-          <Reanimated.View style={styles.cameraContainer}>            
-            <TapGestureHandler onEnded={onDoubleTap} numberOfTaps={1}>
-              <ReanimatedCamera
+    <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
+      <Flex flex="1" style={styles.container} alignItems="center">
+        <View style={styles.top}>
+          <StepHeader title={i18n.t('photo_camera_title')} backButtonHandler={goBack} total={4} step={1} />
+        </View>
+        <View style={styles.cameraContainer}>
+          {device != null && (
+            <>
+              <Camera
                 ref={camera}
                 style={StyleSheet.absoluteFill}
                 device={device}
@@ -230,7 +245,6 @@ function PhotoCameraScreen({ navigation }) {
                 onInitialized={onInitialized}
                 onError={onError}
                 enableZoomGesture={false}
-                animatedProps={cameraAnimatedProps}
                 photo={true}
                 video={false}
                 audio={false}
@@ -239,47 +253,49 @@ function PhotoCameraScreen({ navigation }) {
                 frameProcessorFps={1}
                 onFrameProcessorPerformanceSuggestionAvailable={onFrameProcessorSuggestionAvailable}
               />
-            </TapGestureHandler>
-            <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaPrueba} />            
-          </Reanimated.View>
-        )}
-        {device && !device.supportsParallelVideoProcessing &&
+              <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaBlanca} />
+            </>
+          )}
+        </View>
+        {device && !device.supportsParallelVideoProcessing && false &&
           <Text style={styles.infoText}>Live face detection NOT supported</Text>
         }
-        {device && device.supportsParallelVideoProcessing &&
+        {device && device.supportsParallelVideoProcessing && false &&
           <Text style={styles.infoText}>Faces: {faces && device && device.supportsParallelVideoProcessing ? faces.length : 0}</Text>
         }
+        <CaptureButton
+          style={styles.captureButton}
+          camera={camera}
+          onMediaCaptured={onMediaCaptured}
+          cameraZoom={zoom}
+          minZoom={minZoom}
+          maxZoom={maxZoom}
+          flash={supportsFlash ? flash : 'off'}
+          enabled={(faces && device && device.supportsParallelVideoProcessing && faces.length < 1) ? false : true}
+          setIsPressingButton={setIsPressingButton}
+        />
       </Flex>
-      <CaptureButton
-        style={styles.captureButton}
-        camera={camera}
-        onMediaCaptured={onMediaCaptured}
-        cameraZoom={zoom}
-        minZoom={minZoom}
-        maxZoom={maxZoom}
-        flash={supportsFlash ? flash : 'off'}
-        enabled={isCameraInitialized && isActive}
-        setIsPressingButton={setIsPressingButton}
-      />
-    </Flex>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#bbb',
+    //backgroundColor: '#bbb',
+    paddingTop: SAFE_AREA_PADDING.paddingTop,
   },
   top: {
-    backgroundColor: '#f00',
     paddingHorizontal: 50
   },
   middle: {
-    backgroundColor: '#0f0',
+    //backgroundColor: '#0f0',
   },
   cameraContainer: {
     width: '100%',
     //aspectRatio: 65 / 87
-    aspectRatio: 3 / 4
+    aspectRatio: 3 / 4,
+    position: 'absolute',
+    bottom: 0
   },
   bottom: {
     backgroundColor: '#00f',
@@ -318,6 +334,10 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  background: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 

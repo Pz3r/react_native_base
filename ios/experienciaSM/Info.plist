@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>El uso de la galería es necesario para obtener y almacenar tu fotografía personalizada para la experiencia.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>El uso de la galería es necesario para obtener y almacenar tu fotografía personalizada para la experiencia.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -43,6 +39,32 @@
 	<string>Allow $(PRODUCT_NAME) to use the camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow $(PRODUCT_NAME) to use the microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>El uso de la galería es necesario para obtener y almacenar tu fotografía personalizada para la experiencia.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>El uso de la galería es necesario para obtener y almacenar tu fotografía personalizada para la experiencia.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter-Black.ttf</string>
+		<string>Inter-Bold.ttf</string>
+		<string>Inter-ExtraBold.ttf</string>
+		<string>Inter-ExtraLight.ttf</string>
+		<string>Inter-Light.ttf</string>
+		<string>Inter-Medium.ttf</string>
+		<string>Inter-Regular.ttf</string>
+		<string>Inter-SemiBold.ttf</string>
+		<string>Inter-Thin.ttf</string>
+		<string>OperaBlackOblique.otf</string>
+		<string>OperaBoldOblique.otf</string>
+		<string>OperaInlineOblique.otf</string>
+		<string>OperaLightOblique.otf</string>
+		<string>OperaMediumOblique.otf</string>
+		<string>OperaOutlineOblique.otf</string>
+		<string>OperaRegularOblique.otf</string>
+		<string>OperaStencilOblique.otf</string>
+		<string>OperaThinOblique.otf</string>
+		<string>OperaWesternOblique.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>SplashScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

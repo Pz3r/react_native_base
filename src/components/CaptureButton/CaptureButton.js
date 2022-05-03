@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useRef } from 'react';
-import { StyleSheet, View, ViewProps } from 'react-native';
+import { StyleSheet, View, ViewProps, Image } from 'react-native';
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
@@ -21,6 +21,8 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import CameraRoll from '@react-native-community/cameraroll';
 import { Camera, PhotoFile, TakePhotoOptions, TakeSnapshotOptions, VideoFile } from 'react-native-vision-camera';
+
+import IMG from 'assets/img';
 
 import { CAPTURE_BUTTON_SIZE, SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constants/constants';
 
@@ -274,7 +276,7 @@ const _CaptureButton = ({
           simultaneousHandlers={tapHandler}>
           <Reanimated.View style={styles.flex}>
             <Reanimated.View style={[styles.shadow, shadowStyle]} />
-            <View style={styles.button} />
+            <Image source={IMG.botonTomarFoto} style={styles.button} />
           </Reanimated.View>
         </PanGestureHandler>
       </Reanimated.View>
@@ -296,10 +298,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#e34077',
   },
   button: {
-    width: CAPTURE_BUTTON_SIZE,
-    height: CAPTURE_BUTTON_SIZE,
-    borderRadius: CAPTURE_BUTTON_SIZE / 2,
-    borderWidth: BORDER_WIDTH,
-    borderColor: 'white',
+    //width: CAPTURE_BUTTON_SIZE,
+    //height: CAPTURE_BUTTON_SIZE,
+    //borderRadius: CAPTURE_BUTTON_SIZE / 2,
+    //borderWidth: BORDER_WIDTH,
+    //borderColor: 'white',
   },
 });

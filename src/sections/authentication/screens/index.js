@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
+import i18n from 'i18n-js';
 
 import { USER_LOGIN } from '../../../store/actions/user';
 
@@ -12,6 +13,9 @@ function AuthenticationScreen({ loginUser }) {
       <Flex flex="2" alignItems="center" justifyContent="center">
       <Text>
         AuthenticationScreen
+      </Text>
+      <Text>
+        {i18n.t('section_name_home')}
       </Text>
       </Flex>
       <Flex flex="1" alignItems="center" justifyContent="center">

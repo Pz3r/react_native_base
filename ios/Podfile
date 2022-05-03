@@ -2,6 +2,9 @@ require File.join(File.dirname(`node --print "require.resolve('expo/package.json
 require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
 require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
 
+source 'https://github.com/Pz3r/MySpecs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+
 platform :ios, '12.0'
 
 require 'json'
