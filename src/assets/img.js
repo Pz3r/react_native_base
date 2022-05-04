@@ -55,6 +55,10 @@ const img = {
   pregunta1Respuesta2: require('./img/pregunta1-respuesta2.jpg'),
   pregunta1Respuesta3: require('./img/pregunta1-respuesta3.jpg'),
   pregunta1Respuesta4: require('./img/pregunta1-respuesta4.jpg'),
+  pregunta2Respuesta1: require('./img/pregunta2-respuesta1.gif'),
+  pregunta2Respuesta2: require('./img/pregunta2-respuesta2.gif'),
+  pregunta2Respuesta3: require('./img/pregunta2-respuesta3.gif'),
+  pregunta2Respuesta4: require('./img/pregunta2-respuesta4.gif'),
 };
 
 export default img;
