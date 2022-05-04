@@ -51,6 +51,10 @@ const img = {
   mapa: require('./img/mapa.png'),
   zonasPlaceholder: require('./img/zonas-placeholder.jpg'),
   ball: require('./img/ball.png'),
+  pregunta1Respuesta1: require('./img/pregunta1-respuesta1.jpg'),
+  pregunta1Respuesta2: require('./img/pregunta1-respuesta2.jpg'),
+  pregunta1Respuesta3: require('./img/pregunta1-respuesta3.jpg'),
+  pregunta1Respuesta4: require('./img/pregunta1-respuesta4.jpg'),
 };
 
 export default img;

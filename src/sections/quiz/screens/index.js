@@ -10,7 +10,7 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
 
-import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 
@@ -23,7 +23,7 @@ export default function QuizHomeScreen({ navigation }) {
   }, []);
 
   const startQuiz = useCallback(() => {
-
+    navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0 });
   }, []);
 
   const onFinishRating = useCallback(() => {
@@ -33,7 +33,7 @@ export default function QuizHomeScreen({ navigation }) {
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <Flex style={styles.top}>
-        <StepHeader backButtonHandler={cancel} total={5} step={1} />
+        <StepHeader backButtonHandler={cancel} />
       </Flex>
       <Flex flex="1" style={styles.container}>
         <Flex flex="1" alignItems="center" justifyContent="flex-start">

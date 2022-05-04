@@ -38,7 +38,7 @@ export default function StepHeader({ title, backButtonHandler, total, step }) {
     return IMG.barraProgresoCuatro1;
   }
 
-  if (!title) {
+  if (!title && !total) {
     return (
       <View style={styles.container}>
         <TouchableOpacity disabled={!backButtonHandler} onPress={backButtonHandler} style={styles.backButton}>
