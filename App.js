@@ -13,10 +13,10 @@ import i18n from 'i18n-js';
 import locales from './src/locales';
 import SetupComponent from './src/components/setup';
 import store from './src/store/store';
-import awsconfig from './src/aws-exports';
+// import awsconfig from './src/aws-exports';
 
 // Setup Amplify
-Amplify.configure(awsconfig);
+// Amplify.configure(awsconfig);
 
 // Setup internationalization
 i18n.translations = locales;

@@ -3,6 +3,8 @@ import { StyleSheet, Image, ImageBackground, View } from 'react-native';
 import { Flex, Text, ScrollView } from 'native-base';
 import i18n from 'i18n-js';
 
+import Beacon from '../../../components/Beacon/Beacons'
+
 import IMG from 'assets/img';
 
 import { NAVIGATION_MAP_DETAIL_SCREEN, NAVIGATION_MAP_DETAIL_STACK } from '../../../navigation/constants';
@@ -16,7 +18,7 @@ function MapHomeScreen({ navigation }) {
 
   const planItemHandler = useCallback((index) => {
     console.log(`===== ${TAG}:planItemHandler index:${index} =====`);
-    navigation.navigate(NAVIGATION_MAP_DETAIL_STACK, { 
+    navigation.navigate(NAVIGATION_MAP_DETAIL_STACK, {
       screen: NAVIGATION_MAP_DETAIL_SCREEN,
       params: { index }
      });
@@ -27,18 +29,19 @@ function MapHomeScreen({ navigation }) {
   ));
 
   return (
-    <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <AppHeader />
-        <Text style={styles.title}>{i18n.t('text_plan_title')}</Text>
-        <View style={styles.showInfoContainer}>
-          <Image source={IMG.mapa} />
-        </View>
-        <View style={{ width: '100%', paddingHorizontal: 20, marginVertical: 20 }}>
-          { RENDERED_PLAN_ITEMS }
-        </View>
-      </ScrollView>
-    </ImageBackground>
+    <Beacon />
+    // <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
+    //   <ScrollView contentContainerStyle={styles.container}>
+    //     <AppHeader />
+    //     <Text style={styles.title}>{i18n.t('text_plan_title')}</Text>
+    //     <View style={styles.showInfoContainer}>
+    //       <Image source={IMG.mapa} />
+    //     </View>
+    //     <View style={{ width: '100%', paddingHorizontal: 20, marginVertical: 20 }}>
+    //       { RENDERED_PLAN_ITEMS }
+    //     </View>
+    //   </ScrollView>
+    // </ImageBackground>
   )
 
 }

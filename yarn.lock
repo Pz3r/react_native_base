@@ -7940,6 +7940,11 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-kontaktio@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-kontaktio/-/react-native-kontaktio-3.1.0.tgz#b001e239a325d599ed8647454a4e2bc9d39c149d"
+  integrity sha512-Dws97hPS6hK7Bw5d3dTCE8I4msepemVJeU6iPBbq2Z+5dCpmj0IuG4Y/Whc4+rbfYqo+jCS+bPdTIpHTng92hw==
+
 react-native-modal-datetime-picker@^13.1.2:
   version "13.1.2"
   resolved "https://registry.yarnpkg.com/react-native-modal-datetime-picker/-/react-native-modal-datetime-picker-13.1.2.tgz#7c8bd3402acb4dcfbca49c926a7f18dd108c69c4"
