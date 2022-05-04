@@ -14,6 +14,8 @@ import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 
+const TAG = 'QuizHomeScreen';
+
 export default function QuizHomeScreen({ navigation }) {
 
   const cancel = useCallback(() => {
@@ -22,6 +24,10 @@ export default function QuizHomeScreen({ navigation }) {
 
   const startQuiz = useCallback(() => {
 
+  }, []);
+
+  const onFinishRating = useCallback(() => {
+    console.log(`===== ${TAG}:onFinishRating =====`);
   }, []);
 
   return (
@@ -35,15 +41,14 @@ export default function QuizHomeScreen({ navigation }) {
           <Text style={styles.subTitle}>{i18n.t('text_quiz_subtitle')}</Text>
           <Text style={styles.title}>{i18n.t('text_quiz_title')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_quiz_description')}</Text>
-          <Rating
-            type='star'
-            ratingColor='#f00'
-            ratingBackgroundColor='#0f0'
-            ratingCount={10}
-            imageSize={30}
-            onFinishRating={this.ratingCompleted}
-            style={{ paddingVertical: 10 }}
-          />
+          <Text style={styles.ratingParagraph}>{i18n.t('text_quiz_instructions')}</Text>
+          <AirbnbRating
+            count={10}          
+            defaultRating={5}
+            size={20}
+            showRating={false}
+            selectedColor="#e74a7b"
+            onFinishRating={onFinishRating} />
         </Flex>
         <Flex>
           <Button backgroundColor="#c1e645" _text={styles.buttonText} onPress={startQuiz}>{i18n.t('button_action_start_quiz')}</Button>
@@ -85,6 +90,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingVertical: 30,
     textAlign: 'center'
+  },
+  ratingParagraph: {
+    color: '#ffffff',
+    fontFamily: 'Inter-Regular',
+    fontSize: 15,
+    lineHeight: 18,
+    paddingTop: 10,
+    paddingBottom: 20,
+    paddingHorizontal: 40,
   },
   top: {
     width: '100%',
