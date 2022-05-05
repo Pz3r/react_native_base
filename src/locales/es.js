@@ -25,6 +25,7 @@ export default {
   button_action_participate: 'Quiero tomar mi foto',
   button_action_activate_notifications: 'Activar mis notificaciones',
   button_action_start_quiz: 'Comenzar',
+  button_action_quiz_next: 'Siguiente',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
@@ -167,8 +168,8 @@ quiz_question3_answer3: 'El futbol ya no es lo que era antes.',
 quiz_question3_answer4: 'Rodeado de gente que quiero.',
 
 quiz_question4_title: 'Pregunta 4',
-quiz_question4_description: 'Miguel Mejía Barón',
-quiz_question4_answer1: 'En el estadio.',
+quiz_question4_description: '¿Quién es tu director técnico favorito en la historia de Mi Selección?',
+quiz_question4_answer1: 'Miguel Mejía Barón',
 quiz_question4_answer2: 'Mónica Vergara',
 quiz_question4_answer3: 'Nacho Trelles',
 quiz_question4_answer4: 'Piojo Herrera',

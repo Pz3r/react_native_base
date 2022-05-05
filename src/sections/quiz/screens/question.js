@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
 import Modal from 'react-native-modal';
+import FastImage from 'react-native-fast-image';
 import { Storage } from 'aws-amplify';
 import ImageEditor from '@react-native-community/image-editor';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,7 +14,7 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
 
-import { NAVIGATION_PHOTO_STAMP_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_STAMP_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
@@ -41,9 +42,13 @@ function QuizQuestionScreen({ route, navigation }) {
     }
   }, [route]);
 
-  const confirmStamp = useCallback(async () => {
-
-  }, []);
+  const nextQuestion = useCallback(async () => {
+    if ((questionIndex + 1) <= 4) {
+      navigation.push(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: questionIndex + 1 });
+    } else {
+      // TODO MOSTRAR MODAL
+    }
+  }, [questionIndex]);
 
   const selectAnswer = (index) => {
     setSelectedAnswer(index);
@@ -59,14 +64,14 @@ function QuizQuestionScreen({ route, navigation }) {
         {questionIndex != undefined && questionIndex != null &&
           <>
             <View style={styles.top}>
-              <StepHeader backButtonHandler={goBack} total={5} step={1} />
+              <StepHeader backButtonHandler={goBack} total={5} step={questionIndex + 1} />
             </View>
             <View style={styles.previewContainer}>
               <Text style={styles.subTitle}>{i18n.t(QUIZ[questionIndex].title)}</Text>
               <Text style={styles.paragraph}>{i18n.t(QUIZ[questionIndex].description)}</Text>
               <Flex flexDirection="row" justifyContent="space-between" style={{ paddingHorizontal: 10 }}>
                 <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 0 ? '#e74a7b' : '#00000000' }]}>
-                  <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => selectAnswer(0)}>
+                  <TouchableOpacity onPress={() => selectAnswer(0)}>
                     <Image source={QUIZ[questionIndex].options[0].media} />
                     <View style={{ minHeight: 80, alignItems: 'center', justifyContent: 'center' }}>
                       <Text style={styles.answerParagraph}>{i18n.t(QUIZ[questionIndex].options[0].text)}</Text>
@@ -104,7 +109,7 @@ function QuizQuestionScreen({ route, navigation }) {
           </>
         }
         <View style={styles.bottom}>
-          <Button onPress={confirmStamp} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
+          <Button onPress={nextQuestion} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_quiz_next')}</Button>
         </View>
         <LoaderModal
           isVisible={isLoading}

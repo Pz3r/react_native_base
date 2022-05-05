@@ -23,7 +23,7 @@ export default function QuizHomeScreen({ navigation }) {
   }, []);
 
   const startQuiz = useCallback(() => {
-    navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 1 });
+    navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0 });
   }, []);
 
   const onFinishRating = useCallback(() => {

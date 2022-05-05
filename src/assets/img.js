@@ -59,6 +59,18 @@ const img = {
   pregunta2Respuesta2: require('./img/pregunta2-respuesta2.gif'),
   pregunta2Respuesta3: require('./img/pregunta2-respuesta3.gif'),
   pregunta2Respuesta4: require('./img/pregunta2-respuesta4.gif'),
+  pregunta3Respuesta1: require('./img/pregunta3-respuesta1.jpg'),
+  pregunta3Respuesta2: require('./img/pregunta3-respuesta2.jpg'),
+  pregunta3Respuesta3: require('./img/pregunta3-respuesta3.jpg'),
+  pregunta3Respuesta4: require('./img/pregunta3-respuesta4.jpg'),
+  pregunta4Respuesta1: require('./img/pregunta4-respuesta1.jpg'),
+  pregunta4Respuesta2: require('./img/pregunta4-respuesta2.jpg'),
+  pregunta4Respuesta3: require('./img/pregunta4-respuesta3.jpg'),
+  pregunta4Respuesta4: require('./img/pregunta4-respuesta4.jpg'),
+  pregunta5Respuesta1: require('./img/pregunta5-respuesta1.jpg'),
+  pregunta5Respuesta2: require('./img/pregunta5-respuesta2.jpg'),
+  pregunta5Respuesta3: require('./img/pregunta5-respuesta3.jpg'),
+  pregunta5Respuesta4: require('./img/pregunta5-respuesta4.jpg'),
 };
 
 export default img;
