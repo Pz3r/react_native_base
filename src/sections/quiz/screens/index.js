@@ -3,6 +3,7 @@ import { StyleSheet, Linking, Image, ImageBackground, View } from 'react-native'
 import { Camera } from 'react-native-vision-camera';
 import Swiper from 'react-native-swiper'
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import { connect } from 'react-redux';
 import { Flex, Text, Button } from 'native-base';
 import LottieView from 'lottie-react-native';
 import i18n from 'i18n-js';
@@ -13,10 +14,15 @@ import Lottie from 'assets/lottie';
 import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
+import { APP_RESET_QUIZ } from '../../../store/actions/app';
 
 const TAG = 'QuizHomeScreen';
 
-export default function QuizHomeScreen({ navigation }) {
+function QuizHomeScreen({ navigation, resetQuiz }) {
+
+  useEffect(() => {
+    resetQuiz();
+  }, []);
 
   const cancel = useCallback(() => {
     navigation.goBack();
@@ -153,3 +159,14 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   }
 });
+
+export default connect(
+  (state, ownProps) => ({ ...state.App, ...ownProps }),
+  dispatch => ({
+    resetQuiz: () => {
+      dispatch({
+        type: APP_RESET_QUIZ
+      })
+    }
+  })
+)(QuizHomeScreen);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, ImageBackground, View, ScrollView, TouchableOpacity } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
+import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import FastImage from 'react-native-fast-image';
 import { Storage } from 'aws-amplify';
@@ -19,17 +20,17 @@ import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 import QUIZ from '../../../data/quiz';
+import { APP_SET_ANSWER } from '../../../store/actions/app';
 
-const STORAGE_UUID = 'STORAGE_UUID';
+const STORAGE_QUIZ_RESULT = 'STORAGE_QUIZ_RESULT';
 
 const TAG = 'QuizQuestionScreen';
 
-function QuizQuestionScreen({ route, navigation }) {
+function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
   const [questionIndex, setQuestionIndex] = useState();
-  const [questionAnswers, setQuestionAnswers] = useState([]);
-  const [selectedAnwer, setSelectedAnswer] = useState();
+  const [selectedAnwer, setSelectedAnswer] = useState(-1);
   const [isLoading, setIsLoading] = useState(false);
-  const [isPhotoSent, setIsPhotoSent] = useState(false);
+  const [isDataSent, setIsDataSent] = useState(false);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -42,17 +43,37 @@ function QuizQuestionScreen({ route, navigation }) {
     }
   }, [route]);
 
+  const getQuizResult = (answers) => {
+    console.log(`===== ${TAG}:getQuizResult =====`);
+    console.log(JSON.stringify(answers));
+    return 'VILLAMELON';
+  } 
+
   const nextQuestion = useCallback(async () => {
-    if ((questionIndex + 1) <= 4) {
+    await setAnswer({questionId: `answer${questionIndex}`, answerIndex: selectedAnwer});
+    if ((questionIndex + 1) <= 4) {      
       navigation.push(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: questionIndex + 1 });
     } else {
-      // TODO MOSTRAR MODAL
-    }
-  }, [questionIndex]);
+      setIsLoading(true);
+      console.log(JSON.stringify(quiz));
+      //TODO LÓGICA PARA CALCULAR RESULTADO
+      const result = getQuizResult([ quiz.answer0, quiz.answer1, quiz.answer2, quiz.answer3 ]);
+      
+      // ALMACENAR RESULTADO EN ASYNC STORAGE
+      await AsyncStorage.setItem(STORAGE_QUIZ_RESULT, result);
 
-  const selectAnswer = (index) => {
+      // TODO ENVIAR RESULTADOS A SERVIDOR
+      setTimeout(async () => {
+        setIsDataSent(true);
+      }, 3000);
+      
+    }
+  }, [questionIndex, selectedAnwer]);
+
+  const selectAnswer = useCallback((index) => {
+    console.log(`===== ${TAG}:selectAnswer ${index} =====`);
     setSelectedAnswer(index);
-  };
+  }, []);
 
   const goBack = useCallback(() => {
     navigation.goBack();
@@ -109,20 +130,21 @@ function QuizQuestionScreen({ route, navigation }) {
           </>
         }
         <View style={styles.bottom}>
-          <Button onPress={nextQuestion} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_quiz_next')}</Button>
+          <Button isDisabled={selectedAnwer < 0} onPress={nextQuestion} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_quiz_next')}</Button>
         </View>
         <LoaderModal
           isVisible={isLoading}
           isError={isError}
-          isComplete={isPhotoSent}
+          isComplete={isDataSent}
           loaderText={i18n.t('text_loader_sending')}
           errorText={i18n.t('text_loader_sending_error')}
           closeHandler={(completed) => {
             setIsLoading(false);
             setIsError(false);
-            setIsPhotoSent(false);
+            setIsDataSent(false);
             if (completed) {
-              navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
+              // TODO NAVEGAR A RESULTADO DE QUIZ
+              //navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
             }
           }}
         />
@@ -170,7 +192,6 @@ const styles = StyleSheet.create({
     width: '50%',
     alignItems: 'center',
     position: 'absolute',
-    paddingBottom: 15,
     bottom: SAFE_AREA_PADDING.paddingBottom,
   },
   background: {
@@ -193,8 +214,8 @@ const styles = StyleSheet.create({
   paragraph: {
     color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
-    fontSize: 15,
-    lineHeight: 18,
+    fontSize: 13,
+    lineHeight: 16,
     fontWeight: 'bold',
     textAlign: 'center',
     paddingHorizontal: 40,
@@ -212,4 +233,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuizQuestionScreen;
+export default connect(
+  (state, ownProps) => ({ ...state.App, ...ownProps }),
+  dispatch => ({
+    setAnswer: (payload) => {
+      dispatch({
+        type: APP_SET_ANSWER,
+        payload
+      })
+    }
+  })
+)(QuizQuestionScreen);
