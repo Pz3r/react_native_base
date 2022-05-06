@@ -71,6 +71,11 @@ const img = {
   pregunta5Respuesta2: require('./img/pregunta5-respuesta2.jpg'),
   pregunta5Respuesta3: require('./img/pregunta5-respuesta3.jpg'),
   pregunta5Respuesta4: require('./img/pregunta5-respuesta4.jpg'),
+  aficionadoClavado: require('./img/aficionado-clavado.png'),
+  aficionadoNostalgico: require('./img/aficionado-nostalgico.png'),
+  aficionadoSabelotodo: require('./img/aficionado-sabelotodo.png'),
+  aficionadoVillamelon: require('./img/aficionado-villamelon.png'),
+  logoBlanco: require('./img/logo-blanco.png'),
 };
 
 export default img;

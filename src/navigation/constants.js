@@ -22,6 +22,7 @@ export const NAVIGATION_FAQ_HOME_SCREEN = 'FaqHomeScreen';
 export const NAVIGATION_QUIZ_STACK = 'QuizStack';
 export const NAVIGATION_QUIZ_HOME_SCREEN = 'QuizHomeScreen';
 export const NAVIGATION_QUIZ_QUESTION_SCREEN = 'QuizQuestionScreen';
+export const NAVIGATION_QUIZ_RESULT_SCREEN = 'QuizResultScreen';
 
 export const NAVIGATION_PHOTO_STACK = 'PhotoStack';
 export const NAVIGATION_PHOTO_ONBOARDING_SCREEN = 'PhotoOnboardingScreen';

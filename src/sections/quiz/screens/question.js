@@ -15,7 +15,7 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
 
-import { NAVIGATION_PHOTO_STAMP_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_STAMP_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN, NAVIGATION_QUIZ_RESULT_SCREEN } from '../../../navigation/constants';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
@@ -47,26 +47,29 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
     console.log(`===== ${TAG}:getQuizResult =====`);
     console.log(JSON.stringify(answers));
     return 'VILLAMELON';
-  } 
+  }
 
   const nextQuestion = useCallback(async () => {
-    await setAnswer({questionId: `answer${questionIndex}`, answerIndex: selectedAnwer});
-    if ((questionIndex + 1) <= 4) {      
+    await setAnswer({ questionId: `answer${questionIndex}`, answerIndex: selectedAnwer });
+    if ((questionIndex + 1) <= 4) {
       navigation.push(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: questionIndex + 1 });
     } else {
       setIsLoading(true);
       console.log(JSON.stringify(quiz));
       //TODO LÓGICA PARA CALCULAR RESULTADO
-      const result = getQuizResult([ quiz.answer0, quiz.answer1, quiz.answer2, quiz.answer3 ]);
-      
+      const result = getQuizResult([quiz.answer0, quiz.answer1, quiz.answer2, quiz.answer3]);
+
       // ALMACENAR RESULTADO EN ASYNC STORAGE
       await AsyncStorage.setItem(STORAGE_QUIZ_RESULT, result);
 
       // TODO ENVIAR RESULTADOS A SERVIDOR
       setTimeout(async () => {
-        setIsDataSent(true);
+        setIsLoading(false);
+        setIsError(false);
+        setIsDataSent(false);
+        navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN);
       }, 3000);
-      
+
     }
   }, [questionIndex, selectedAnwer]);
 
