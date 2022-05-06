@@ -46,7 +46,45 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
   const getQuizResult = (answers) => {
     console.log(`===== ${TAG}:getQuizResult =====`);
     console.log(JSON.stringify(answers));
-    return 'VILLAMELON';
+
+    let count = {
+      'CLAVADO': 0,
+      'SABELOTODO': 0,
+      'NOSTALGICO': 0,
+      'VILLAMELON': 0
+    }
+
+    answers.forEach(answer => {
+      switch (answer) {
+        case 0:
+          count['CLAVADO'] += 1;
+          break;
+        case 1:
+          count['SABELOTODO'] += 1;
+          break;
+        case 2:
+          count['NOSTALGICO'] += 1;
+          break;
+        case 3:
+          count['VILLAMELON'] += 1;
+          break;
+      }
+    });
+
+    console.log(`===== ${TAG}:getQuizResult count:${JSON.stringify(count)} =====`);
+
+    let result = 'CLAVADO';
+    let tempCount = 0;
+    const keys = Object.keys(count);
+    for (let i = 0; i < keys.length; i++) {
+      if (count[keys[i]] >= tempCount) {
+        tempCount = count[keys[i]];
+        result = keys[i];
+      }
+    }
+    console.log(`===== ${TAG}:getQuizResult result:${result} =====`);
+
+    return result;
   }
 
   const nextQuestion = useCallback(async () => {
