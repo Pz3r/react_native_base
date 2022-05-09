@@ -37,8 +37,8 @@ export default function PhotoPermissionsScreen({ navigation }) {
         <Flex flex="1" alignItems="center" justifyContent="flex-end" style={styles.top}>
           <Text style={styles.title}>{i18n.t('photo_permissions_title')}</Text>
         </Flex>
-        <Flex flex="2.5" alignItems="center" justifyContent="center" style={styles.middle}>
-          <Swiper showsPagination={false} showsButtons={true}>
+        <Flex flex="3" alignItems="flex-start" justifyContent="flex-start" style={styles.middle}>
+          <Swiper style={{ bottom: '15%' }} showsPagination={false} showsButtons={true}>
             <View style={styles.slide}>
               <LottieView source={Lottie.limpia} autoPlay loop />
               <View style={styles.slideInfoContainer}>
@@ -115,11 +115,12 @@ const styles = StyleSheet.create({
   slide: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    //backgroundColor: '#f00'
   },
   slideInfoContainer: {
     alignItems: 'center',
-    paddingBottom: 40,
+    paddingBottom: 0,
     width: '60%'
   },
   slideInfoText: {
