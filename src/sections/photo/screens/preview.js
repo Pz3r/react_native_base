@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
 import { Flex, Text, Button } from 'native-base';
+import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Storage } from 'aws-amplify';
 import ImageEditor from '@react-native-community/image-editor';
@@ -17,6 +18,7 @@ import { NAVIGATION_PHOTO_STAMP_SCREEN } from '../../../navigation/constants';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
+import { APP_SET_STAMP } from '../../../store/actions/app';
 
 const STORAGE_UUID = 'STORAGE_UUID';
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
@@ -31,7 +33,7 @@ const SHIRT_OPTIONS = [
   IMG.smCamisaNegra,
 ];
 
-function PhotoPreviewScreen({ route, navigation }) {
+function PhotoPreviewScreen({ route, navigation, setStamp }) {
   const [photoPath, setPhotoPath] = useState();
   const [photoWidth, setPhotoWidth] = useState();
   const [photoHeight, setPhotoHeight] = useState();
@@ -99,6 +101,7 @@ function PhotoPreviewScreen({ route, navigation }) {
 
     await AsyncStorage.setItem(STORAGE_PHOTO, base64);
     await AsyncStorage.setItem(STORAGE_SHIRT, shirtIndex);
+    await setStamp({ base64, shirtIndex });
   }
 
   const confirmStamp = useCallback(async () => {
@@ -249,4 +252,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PhotoPreviewScreen;
+export default connect(
+  (state, ownProps) => ({ ...state.App, ...ownProps }),
+  dispatch => ({
+    setStamp: (payload) => {
+      dispatch({
+        type: APP_SET_STAMP,
+        payload
+      })
+    }
+  })
+)(PhotoPreviewScreen);

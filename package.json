@@ -22,7 +22,7 @@
     "expo": ">=44.0.0-0 <45.0.0",
     "expo-camera": "~12.1.1",
     "expo-file-system": "^13.1.4",
-    "expo-splash-screen": "~0.14.1",
+    "expo-splash-screen": "^0.15.1",
     "expo-status-bar": "~1.2.0",
     "i18n-js": "^3.9.2",
     "lottie-ios": "3.2.3",

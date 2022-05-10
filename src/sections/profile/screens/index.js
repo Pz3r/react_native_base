@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
 import ViewShot from 'react-native-view-shot';
+import { connect } from 'react-redux';
 import Share from 'react-native-share';
 import { Text, Button, ScrollView } from 'native-base';
 import * as FileSystem from 'expo-file-system';
@@ -25,11 +26,12 @@ const FRAMES = [
   IMG.smPaniniNegra,
 ];
 
-function ProfileHomeScreen({ navigation }) {
+function ProfileHomeScreen({ navigation, stamp, shirt }) {
   const [photoBase64, setPhotoBase64] = useState();
   const [selectedShirt, setSelectedShirt] = useState();
   const viewShotRef = useRef();
 
+  /*
   useEffect(async () => {
     console.log(`===== ${TAG}:useEffect =====`);
     try {
@@ -43,6 +45,7 @@ function ProfileHomeScreen({ navigation }) {
       console.log(e);
     }
   }, []);
+  */
 
   const onEdit = useCallback(() => {
     navigation.navigate(NAVIGATION_PHOTO_STACK, { screen: NAVIGATION_PHOTO_PERMISSIONS_SCREEN });
@@ -66,16 +69,16 @@ function ProfileHomeScreen({ navigation }) {
       <ScrollView contentContainerStyle={styles.container}>
         <AppHeader />
         <Text style={styles.title}>{i18n.t('text_profile_title')}</Text>
-        {photoBase64 &&
+        {stamp &&
           <ViewShot ref={viewShotRef} style={styles.previewContainer}>
-            <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
-            <Image style={styles.overlay} resizeMode="contain" source={FRAMES[selectedShirt]} />
+            <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${stamp}` }} />
+            <Image style={styles.overlay} resizeMode="contain" source={FRAMES[shirt || 0]} />
             <TouchableOpacity onPress={onEdit} style={styles.editButton}>
               <Image source={IMG.botonEditar} />
             </TouchableOpacity>
           </ViewShot>
         }
-        {!photoBase64 &&
+        {!stamp &&
           <View style={styles.showInfoContainer}>
             <Text style={styles.subTitle}>{i18n.t('text_home_participate_title')}</Text>
             <Text style={styles.quizDescription}>{i18n.t('text_home_participate_description')}</Text>
@@ -212,4 +215,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProfileHomeScreen;
+export default connect(
+  (state, ownProps) => ({ ...state.App, ...ownProps }),
+)(ProfileHomeScreen);

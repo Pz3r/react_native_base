@@ -13,6 +13,7 @@ export default {
       answer4: 0
     },
     stamp: null,
+    shirt: null,
     quizResult: null
   }
 };

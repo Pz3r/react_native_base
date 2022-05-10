@@ -1,5 +1,5 @@
 import initialState from '../initialState';
-import { APP_SET_ANSWER, APP_RESET_QUIZ } from '../actions/app';
+import { APP_SET_ANSWER, APP_RESET_QUIZ, APP_SET_STAMP } from '../actions/app';
 
 const resetQuiz = () => {
   return {
@@ -24,6 +24,7 @@ const typeMap = {
     console.log(JSON.stringify(newState));
     return newState;
   },
+  [APP_SET_STAMP]: (state, payload) => ({ ...state, stamp: payload.base64, shirt: payload.shirtIndex }),
   [APP_RESET_QUIZ]: (state) => ({ ...state, quiz: resetQuiz() }),
 };
 
