@@ -21,7 +21,7 @@ function HomeScreen({ navigation }) {
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
-        <AppHeader />
+        <AppHeader navigation={navigation} />
         <Image source={IMG.smPlaceholderPortada} />
         <View style={styles.showInfoContainer}>
           <Text style={styles.paragraph}>{i18n.t('text_home_experience_1')}</Text>

@@ -29,7 +29,7 @@ function MapHomeScreen({ navigation }) {
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
-        <AppHeader />
+        <AppHeader navigation={navigation} />
         <Text style={styles.title}>{i18n.t('text_plan_title')}</Text>
         <View style={styles.showInfoContainer}>
           <Image source={IMG.mapa} />

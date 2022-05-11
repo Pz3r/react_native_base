@@ -67,7 +67,7 @@ function ProfileHomeScreen({ navigation, stamp, shirt }) {
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
-        <AppHeader />
+        <AppHeader navigation={navigation} />
         <Text style={styles.title}>{i18n.t('text_profile_title')}</Text>
         {stamp &&
           <ViewShot ref={viewShotRef} style={styles.previewContainer}>

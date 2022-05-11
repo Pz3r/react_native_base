@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MainStackNavigator from '../navigation/stack';
+import MainDrawerNavigator from '../navigation/drawer';
 import AuthenticationStackNavigator from '../sections/authentication/navigation/stack';
 import { QuietConsumer, QuietProvider } from '../context/Audioguide';
 import { APP_SET_STAMP } from '../store/actions/app';
@@ -40,7 +41,7 @@ function MainComponent({
           {context => {
             console.log(`===== GUIDE INDEX ${context.lastMessage} / ${context.count}`);
             return (
-              <MainStackNavigator />
+              <MainDrawerNavigator />
             )
           }}
         </QuietConsumer>

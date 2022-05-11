@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { DrawerActions } from "@react-navigation/native";
 
 import IMG from 'assets/img';
 
@@ -7,10 +8,13 @@ import { SAFE_AREA_PADDING } from '../../constants/constants';
 
 const TAG = 'AppHeader';
 
-export default function AppHeader({ }) {
+export default function AppHeader({ navigation }) {
 
   const openMenu = useCallback(() => {
     console.log(`===== ${TAG}:openMenu =====`);
+    if (navigation) {
+      navigation.dispatch(DrawerActions.toggleDrawer())
+    }
   }, []);
 
   return (

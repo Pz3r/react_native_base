@@ -13,6 +13,9 @@ export const NAVIGATION_MAP_HOME_SCREEN = 'MapHomeScreen';
 export const NAVIGATION_MAP_DETAIL_STACK = 'MapDetailStack';
 export const NAVIGATION_MAP_DETAIL_SCREEN = 'MapDetailScreen';
 
+export const NAVIGATION_PRIVACY_NOTICE_STACK = 'PrivacyNoticeStack';
+export const NAVIGATION_PRIVACY_NOTICE_SCREEN = 'PrivacyNoticeScreen';
+
 export const NAVIGATION_PROFILE_STACK = 'ProfileStack';
 export const NAVIGATION_PROFILE_HOME_SCREEN = 'ProfileHomeScreen';
 
