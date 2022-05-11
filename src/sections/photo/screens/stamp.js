@@ -88,9 +88,10 @@ function PhotoStampScreen({ navigation }) {
           <Text style={styles.shareText}>{i18n.t('button_action_share')}</Text>
           <Image source={IMG.botonCompartir} />
         </TouchableOpacity>
-        <Flex flex="1" alignItems="center" justifyContent="center">
-          <Button onPress={nextStep} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
-        </Flex>
+      </Flex>
+      <LottieView source={Lottie.confettiVertical} autoPlay loop style={{ position: 'absolute', top: 0 }} />
+      <Flex flex="1" alignItems="center" justifyContent="flex-end" style={{ paddingBottom: 20 }}>
+        <Button onPress={nextStep} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
       </Flex>
     </ImageBackground>
   )

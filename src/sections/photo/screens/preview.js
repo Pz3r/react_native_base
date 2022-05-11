@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
-import { Flex, Text, Button } from 'native-base';
+import { Flex, Text, Button, Checkbox } from 'native-base';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Storage } from 'aws-amplify';
@@ -14,7 +14,7 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
 
-import { NAVIGATION_PHOTO_STAMP_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_PHOTO_STAMP_SCREEN, NAVIGATION_PRIVACY_NOTICE_STACK } from '../../../navigation/constants';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
@@ -41,6 +41,7 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
   const [isPhotoSent, setIsPhotoSent] = useState(false);
   const [isError, setIsError] = useState(false);
   const [shirtIndex, setShirtIndex] = useState(0);
+  const [isTerms, setIsTerms] = useState();
 
   useEffect(() => {
     console.log(`===== ${TAG}:useEffect ${JSON.stringify(route.params)} =====`);
@@ -131,7 +132,11 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
 
       // Store processed image
       await storeProcessedImage(croppedUri, `${shirtIndex}`);
-      setIsPhotoSent(true);
+
+      setIsLoading(false);
+      setIsError(false);
+      setIsPhotoSent(false);
+      navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
 
     } catch (err) {
       console.log(`===== ${TAG}:confirmStamp error =====`);
@@ -173,7 +178,11 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
           }
         </View>
         <View style={styles.bottom}>
-          <Button onPress={confirmStamp} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
+          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+            <Checkbox value={isTerms} onChange={setIsTerms} accessibilityLabel={i18n.t(`button_accept_terms`)} />
+            <Button _text={styles.underlinedButton} variant="unstyled" onPress={() => navigation.navigate(NAVIGATION_PRIVACY_NOTICE_STACK)}>{i18n.t(`button_accept_terms`)}</Button>
+          </Flex>
+          <Button isDisabled={!isTerms} style={{ marginTop: 20 }} onPress={confirmStamp} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
         </View>
         <LoaderModal
           isVisible={isLoading}
@@ -234,7 +243,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bottom: {
-    width: '50%',
+    width: '70%',
     alignItems: 'center',
     position: 'absolute',
     paddingBottom: 15,
@@ -249,6 +258,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
+  },
+  underlinedButton: {
+    color: '#ffffff',
+    fontFamily: 'Inter-Medium',
+    textDecorationLine: 'underline',
+    fontSize: 13,
+    lineHeight: 19,
+    paddingStart: 10
   },
 });
 

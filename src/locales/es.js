@@ -30,9 +30,11 @@ export default {
   button_action_quiz_next: 'Siguiente',
   button_action_quiz_restart: 'Repetir quiz',
   button_action_quiz_finish: 'Terminar',
+  button_accept_terms: 'He leído el aviso de privacidad',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
+  text_loader_success: 'Envío satisfactorio',
 
   text_photo_onoarding_1: 'Limpia tu lente y ponte en un lugar iluminado',
   text_photo_onoarding_2: 'Eleva tu cámara a la altura de tu rostro y ponte de frente',
