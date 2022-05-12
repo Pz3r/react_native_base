@@ -31,6 +31,7 @@ export default {
   button_action_quiz_restart: 'Repetir quiz',
   button_action_quiz_finish: 'Terminar',
   button_accept_terms: 'He leído el aviso de privacidad',
+  button_action_party: 'Únete a la fiesta',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
@@ -65,6 +66,7 @@ export default {
   text_plan_item_3_title: 'Activaciones',
   text_plan_item_4_title: 'Tienda',
   text_plan_item_5_title: 'Alimentos y bebidas',
+  text_plan_item_placeholder_title: 'Próximamente',
 
   text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición en esta gran ofrenda, hecha de los listones que tejerán el futuro de Mi Selección. ¡No olvides ofrendar tu pasión!',
   text_plan_item_2_description: 'En este monumental adoratorio del futbol viven las memorias del pasado y las esperanzas del futuro de Mi Selección. ¡Únete a esta celebración!',

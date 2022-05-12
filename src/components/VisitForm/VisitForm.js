@@ -10,8 +10,10 @@ const TAG = 'VisitForm';
 
 const STORAGE_DATE = 'STORAGE_DATE';
 const STORAGE_TIME = 'STORAGE_TIME';
+const STORAGE_UUID = 'STORAGE_UUID';
 
 import LoaderModal from '../LoaderModal/LoaderModal';
+import { ENDPOINT_POST_DATE_URL } from '../../utils/endpoints';
 
 export default function VisitForm({ finishHandler, shouldPreload, buttonText }) {
   const [date, setDate] = useState();
@@ -74,14 +76,56 @@ export default function VisitForm({ finishHandler, shouldPreload, buttonText }) 
     return dd + '/' + mm + '/' + yyyy;
   }
 
-  const sendDateTime = useCallback(() => {
+  const sendDateTime = useCallback(async () => {
     console.log(`===== ${TAG}:sendDateTime ${date} // ${time} =====`);
     setIsLoading(true);
-    setTimeout(async () => {
+
+    try {
       await AsyncStorage.setItem(STORAGE_DATE, date);
       await AsyncStorage.setItem(STORAGE_TIME, time);
-      setIsDataSent(true);
-    }, 3000);
+      const storeId = await AsyncStorage.getItem(STORAGE_UUID);
+
+      if (date && time) {
+        const postDate = date.split('/').reverse().join('');
+        const postTime = time.split(':').join('');
+        const schedule = `${postDate}${postTime}`;
+        console.log(`===== ${TAG}:sendDate schedule: ${schedule} storeId: ${storeId} =====`);
+
+        const response = await fetch(
+          ENDPOINT_POST_DATE_URL,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              storeId: storeId,
+              schedule: schedule
+            })
+          }
+        );
+
+        console.log(`===== ${TAG}:sendDate response status: ${response.status} =====`);
+        setIsDataSent(true);
+
+      } else {
+        setIsError(true);
+      }
+
+      /*
+      setTimeout(async () => {
+        await AsyncStorage.setItem(STORAGE_DATE, date);
+        await AsyncStorage.setItem(STORAGE_TIME, time);
+        setIsDataSent(true);
+      }, 3000);
+  */
+    } catch (error) {
+      console.log(`===== ${TAG}:sendDateTime ERROR =====`);
+      console.log(error);
+      setIsError(true);
+    }
+
   }, [date, time]);
 
   return (

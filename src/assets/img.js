@@ -80,6 +80,7 @@ const img = {
   smImagenAdoratorio: require('./img/SM-imagen-adoratorio.jpg'),
   smImagenPlaceholder: require('./img/SM-imagen-placeholder.jpg'),
   smImagenAcceso: require('./img/SM-imagen-acceso.jpg'),
+  manitaClick: require('./img/manita-click.png'),
 };
 
 export default img;

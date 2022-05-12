@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useState, useRef } from 'react';
 import Quiet from 'react-native-quiet';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ENDPOINT_POST_DATE_URL } from '../../utils/endpoints';
 
 const SYNC_OFFSET = 4;
 const SYNC_CATCHUP = 5;
 const SHOW_DURATION = 3000;
+const STORAGE_UUID = 'STORAGE_UUID';
 
 const { Provider, Consumer } = createContext('audio');
 
@@ -30,8 +32,49 @@ const QuietProvider = (props) => {
       if (lastMessage === null) {
         // LOCALLY STORE FIRST MESSAGE AND TIMESTAMP
         (async () => {
+          const today = new Date();
           await AsyncStorage.setItem('FIRST_SYNC_VALUE', timestamp.toString());
           await AsyncStorage.setItem('FIRST_SYNC_TIMESTAMP', Date.now().toString());
+
+          // OBTAIN CURRENT DATE AND TIME
+          const storedDate = await AsyncStorage.getItem('SYNC_FORMATTED_DATE');
+          const dd = String(today.getDate()).padStart(2, '0');
+          const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+          const yyyy = today.getFullYear();
+          const formattedDate = yyyy + mm + dd;
+          const formattedTime = today.getHours() + '' + today.getMinutes();
+          const schedule = formattedDate + formattedTime;
+          console.log(`===== QuietProvider schedule: ${schedule} ======`)
+          if (storedDate !== formattedDate) {
+            const storeId = await AsyncStorage.getItem(STORAGE_UUID);
+
+            if (storeId && schedule) {
+              fetch(
+                ENDPOINT_POST_DATE_URL,
+                {
+                  method: 'POST',
+                  headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    storeId: storeId,
+                    schedule: schedule
+                  })
+                }
+              ).then(async (response) => {
+                console.log(`===== QuietProvider response ${response.status} =====`);
+                await AsyncStorage.setItem('SYNC_FORMATTED_DATE', formattedDate);
+                await AsyncStorage.setItem('SYNC_FORMATTED_TIME', formattedTime);
+              }).catch((error) => {
+                console.log(`===== QuietProvider error ${error} =====`);
+              });
+            } else {
+              console.log(`===== QuietProvider NO SEND (INNER) storeId: ${storeId} schedule: ${schedule} =====`);
+            }
+          } else {
+            console.log(`===== QuietProvider NO SEND (OUTTER) storedDate: ${storedDate} formattedDate: ${formattedDate} =====`);
+          }
         })();
       }
 
