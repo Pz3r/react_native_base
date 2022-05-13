@@ -48,7 +48,7 @@ export default {
   text_profile_visit_title: '¿Qué día nos visitas?',
 
   text_home_experience_1: 'En preparación para Catar 2022 vive con nosotros la pasión por Mi Selección.',
-  text_home_experience_2: 'Dentro de este adoratorio del futbol vivirás un viaje en el tiempo de los momentos más icónicos de Mi Selección y serás testigo de cómo la pasión de la afición uniforma a los seleccionados para el próximo mundial.',
+  text_home_experience_2: 'Dentro de este adoratorio del fútbol vivirás un viaje en el tiempo de los momentos más icónicos de Mi Selección y serás testigo de cómo la pasión de la afición uniforma a los seleccionados para el próximo mundial.',
   text_home_participate_title: '¿Cómo participar en el show?',
   text_home_participate_description: '¿Quieres participar en nuestra experiencia? Toma tu foto y crea tu perfil. Cuando menos lo esperes, te descubrirás dentro de la experiencia.',
   text_home_notifications_description: '¡Además vive la experiencia a través de tu celular! Para participar en el show es necesario que actives tus notificaciones y descubrirás una nueva manera de ser parte de ella.',
@@ -69,7 +69,7 @@ export default {
   text_plan_item_placeholder_title: 'Próximamente',
 
   text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición en esta gran ofrenda, hecha de los listones que tejerán el futuro de Mi Selección. ¡No olvides ofrendar tu pasión!',
-  text_plan_item_2_description: 'En este monumental adoratorio del futbol viven las memorias del pasado y las esperanzas del futuro de Mi Selección. ¡Únete a esta celebración!',
+  text_plan_item_2_description: 'En este monumental adoratorio del fútbol viven las memorias del pasado y las esperanzas del futuro de Mi Selección. ¡Únete a esta celebración!',
   text_plan_item_3_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
   text_plan_item_4_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
   text_plan_item_5_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección.',
@@ -169,10 +169,10 @@ Sanitización constante de todo el recinto.
   quiz_question2_answer4: 'Chucky Lozano vs. Alemania en Rusia 2018.',
 
   quiz_question3_title: 'Pregunta 3',
-  quiz_question3_description: '¿Cómo te gusta vivir el futbol?',
+  quiz_question3_description: '¿Cómo te gusta vivir el fútbol?',
   quiz_question3_answer1: 'En el estadio.',
   quiz_question3_answer2: 'En la TV con una pantalla gigante y mi tablet para checar estadísticas.',
-  quiz_question3_answer3: 'El futbol ya no es lo que era antes.',
+  quiz_question3_answer3: 'El fútbol ya no es lo que era antes.',
   quiz_question3_answer4: 'Rodeado de gente que quiero.',
 
   quiz_question4_title: 'Pregunta 4',
@@ -195,7 +195,7 @@ Sanitización constante de todo el recinto.
   quiz_result_sabelotodo_title: 'El Sabelotodo',
   quiz_result_sabelotodo_description: `Te pueden confundir con un comentarista o analista por todo tu conocimiento pambolero. Durante un partido del mundial das el contexto de cada jugada y sabes las estadísticas de cada jugador. Te sabes todos los datos que a un mortal se le escaparían. Todos te buscan para armar sus "top pics" de su liga de fantasía.`,
   quiz_result_nostalgico_title: 'El Nostálgico',
-  quiz_result_nostalgico_description: 'Eres un almanaque con pies. Tienes grabados en tu mente los mejores goles de la historia, los jugadores que marcaron tu infancia y anhelas las épocas doradas del futbol. Te gusta el fútbol pero piensas que los jugadores de antes eran mejores.',
+  quiz_result_nostalgico_description: 'Eres un almanaque con pies. Tienes grabados en tu mente los mejores goles de la historia, los jugadores que marcaron tu infancia y anhelas las épocas doradas del fútbol. Te gusta el fútbol pero piensas que los jugadores de antes eran mejores.',
   quiz_result_villamelon_title: 'El Villamelón',
   quiz_result_villamelon_description: 'Para ti el mejor momento del partido es el medio tiempo pues puedes platicar con medio mundo y seguir disfrutando del ambiente. Te interesa más saber quien  sale con Belinda que quienes van a pasar a la siguiente ronda.',
 
