@@ -1,5 +1,5 @@
 import initialState from '../initialState';
-import { APP_SET_ANSWER, APP_RESET_QUIZ, APP_SET_STAMP } from '../actions/app';
+import { APP_SET_ANSWER, APP_RESET_QUIZ, APP_SET_STAMP, APP_SET_RATING } from '../actions/app';
 
 const resetQuiz = () => {
   return {
@@ -26,6 +26,16 @@ const typeMap = {
   },
   [APP_SET_STAMP]: (state, payload) => ({ ...state, stamp: payload.base64, shirt: payload.shirtIndex }),
   [APP_RESET_QUIZ]: (state) => ({ ...state, quiz: resetQuiz() }),
+  [APP_SET_RATING]: (state, payload) => {
+    console.log(`===== Redux:App:APP_SET_RATING =====`);
+    console.log(JSON.stringify(payload));
+    let newState = { ...state };
+    if (payload) {
+      newState.quiz['experienceRating'] = payload.rating;
+    }
+    console.log(JSON.stringify(newState));
+    return newState;
+  },
 };
 
 export default function APP(state = initialState, { type, payload }) {

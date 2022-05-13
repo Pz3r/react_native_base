@@ -16,7 +16,7 @@ export default function PhotoPermissionsScreen({ navigation }) {
 
   const requestCameraPermission = useCallback(async () => {
     console.log(`===== Photo:PermissionsScreen:requestCameraPermission =====`);
-    const permissionStatus = await Camera.requestMicrophonePermission();
+    const permissionStatus = await Camera.requestCameraPermission();
     console.log(`permissionStatus: ${permissionStatus}`);
     if (permissionStatus === 'denied') await Linking.openSettings();
     setCameraPermissionStatus(permissionStatus);

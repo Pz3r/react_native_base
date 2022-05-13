@@ -14,11 +14,11 @@ import Lottie from 'assets/lottie';
 import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
-import { APP_RESET_QUIZ } from '../../../store/actions/app';
+import { APP_RESET_QUIZ, APP_SET_ANSWER, APP_SET_RATING } from '../../../store/actions/app';
 
 const TAG = 'QuizHomeScreen';
 
-function QuizHomeScreen({ navigation, resetQuiz }) {
+function QuizHomeScreen({ navigation, resetQuiz, setRating }) {
 
   useEffect(() => {
     resetQuiz();
@@ -32,8 +32,9 @@ function QuizHomeScreen({ navigation, resetQuiz }) {
     navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0 });
   }, []);
 
-  const onFinishRating = useCallback(() => {
-    console.log(`===== ${TAG}:onFinishRating =====`);
+  const onFinishRating = useCallback(async (rating) => {
+    console.log(`===== ${TAG}:onFinishRating ${rating} =====`);
+    await setRating({ rating });
   }, []);
 
   return (
@@ -166,6 +167,12 @@ export default connect(
     resetQuiz: () => {
       dispatch({
         type: APP_RESET_QUIZ
+      })
+    },
+    setRating: (payload) => {
+      dispatch({
+        type: APP_SET_RATING,
+        payload
       })
     }
   })

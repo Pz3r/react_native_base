@@ -21,8 +21,10 @@ import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 import QUIZ from '../../../data/quiz';
 import { APP_SET_ANSWER } from '../../../store/actions/app';
+import { ENDPOINT_POST_DATE_URL, ENDPOINT_POST_QUIZ_API_KEY, ENDPOINT_POST_QUIZ_URL } from '../../../utils/endpoints';
 
 const STORAGE_QUIZ_RESULT = 'STORAGE_QUIZ_RESULT';
+const STORAGE_UUID = 'STORAGE_UUID';
 
 const TAG = 'QuizQuestionScreen';
 
@@ -98,15 +100,42 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
       const result = getQuizResult([quiz.answer0, quiz.answer1, quiz.answer2, quiz.answer3]);
 
       // ALMACENAR RESULTADO EN ASYNC STORAGE
+
       await AsyncStorage.setItem(STORAGE_QUIZ_RESULT, result);
+      const storeId = await AsyncStorage.getItem(STORAGE_UUID);
 
       // TODO ENVIAR RESULTADOS A SERVIDOR
+      try { 
+        const response = await fetch(
+          ENDPOINT_POST_QUIZ_URL,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'x-api-key': ENDPOINT_POST_QUIZ_API_KEY
+            },
+            body: JSON.stringify({...quiz, storeId})
+          }
+        );
+
+        console.log(`===== ${TAG}:sendQuiz response status: ${response.status} =====`);
+        setIsDataSent(true);
+
+      } catch (error) {
+        console.log(`===== ${TAG}:sendQuiz ERROR =====`);
+        console.log(error);
+        setIsError(true);
+      }
+      
+      /*
       setTimeout(async () => {
         setIsLoading(false);
         setIsError(false);
         setIsDataSent(false);
         navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN);
       }, 3000);
+      */
 
     }
   }, [questionIndex, selectedAnwer]);
@@ -184,8 +213,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
             setIsError(false);
             setIsDataSent(false);
             if (completed) {
-              // TODO NAVEGAR A RESULTADO DE QUIZ
-              //navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
+              navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN);
             }
           }}
         />
