@@ -5,6 +5,8 @@ export default {
   section_name_profile: 'Perfil',
   section_name_making_of: 'Creación',
 
+  drawer_item_privacy: 'Aviso de privacidad',
+
   photo_permissions_title: 'Antes de tomar tu foto considera...',
   photo_camera_title: 'Toma tu foto',
   photo_preview_title: 'Elige tu camiseta',
@@ -25,9 +27,15 @@ export default {
   button_action_participate: 'Quiero tomar mi foto',
   button_action_activate_notifications: 'Activar mis notificaciones',
   button_action_start_quiz: 'Comenzar',
+  button_action_quiz_next: 'Siguiente',
+  button_action_quiz_restart: 'Repetir quiz',
+  button_action_quiz_finish: 'Terminar',
+  button_accept_terms: 'He leído el aviso de privacidad',
+  button_action_party: 'Únete a la fiesta',
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
+  text_loader_success: 'Envío satisfactorio',
 
   text_photo_onoarding_1: 'Limpia tu lente y ponte en un lugar iluminado',
   text_photo_onoarding_2: 'Eleva tu cámara a la altura de tu rostro y ponte de frente',
@@ -58,6 +66,7 @@ export default {
   text_plan_item_3_title: 'Activaciones',
   text_plan_item_4_title: 'Tienda',
   text_plan_item_5_title: 'Alimentos y bebidas',
+  text_plan_item_placeholder_title: 'Próximamente',
 
   text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición en esta gran ofrenda, hecha de los listones que tejerán el futuro de Mi Selección. ¡No olvides ofrendar tu pasión!',
   text_plan_item_2_description: 'En este monumental adoratorio del futbol viven las memorias del pasado y las esperanzas del futuro de Mi Selección. ¡Únete a esta celebración!',
@@ -105,7 +114,7 @@ La duración aproximada de la visita es de una hora y media.
 
   faq_q_10: `¿Necesito un guía para disfrutar la experiencia?`,
   faq_a_10: `El recorrido es libre y no necesita de un guía. Te recomendamos descargar el App para disfrutar aún más de la experiencia.`,
-  
+
   faq_q_11: `¿Existe alguna regla con respecto a tomar fotos?`,
   faq_a_11: `Puedes tomar fotos y videos con tu celular, siempre y cuando sea sin flash. No se permite el ingreso con tripié, selfie sticks o equipo profesional de grabación.`,
 
@@ -144,4 +153,105 @@ Toma de temperatura en los accesos a la experiencia.
 Estaciones de gel antibacterial en todas las zonas del inmueble.
 Sanitización constante de todo el recinto.  
 `,
+
+  quiz_question1_title: 'Pregunta 1',
+  quiz_question1_description: '¿Qué hago cuando Mi Selección gana?',
+  quiz_question1_answer1: 'Hago un análisis detallado del juego  y checo mi quiniela.',
+  quiz_question1_answer2: 'Voy al Ángel o salgo a la calle a celebrar.',
+  quiz_question1_answer3: 'Lo comparo con otros momentos de gloria.',
+  quiz_question1_answer4: 'Sigo la fiesta.',
+
+  quiz_question2_title: 'Pregunta 2',
+  quiz_question2_description: '¿Cuál ha sido el gol más bonito de México en un mundial?',
+  quiz_question2_answer1: 'Exorcista de Jared Borgetti vs. Italia en Corea-Japón 2002.',
+  quiz_question2_answer2: 'Mónica Ocampo vs. Inglaterra en Alemania 2011.',
+  quiz_question2_answer3: 'Manuel Negrete vs. Bulgaria en México 1986.',
+  quiz_question2_answer4: 'Chucky Lozano vs. Alemania en Rusia 2018.',
+
+  quiz_question3_title: 'Pregunta 3',
+  quiz_question3_description: '¿Cómo te gusta vivir el futbol?',
+  quiz_question3_answer1: 'En el estadio.',
+  quiz_question3_answer2: 'En la TV con una pantalla gigante y mi tablet para checar estadísticas.',
+  quiz_question3_answer3: 'El futbol ya no es lo que era antes.',
+  quiz_question3_answer4: 'Rodeado de gente que quiero.',
+
+  quiz_question4_title: 'Pregunta 4',
+  quiz_question4_description: '¿Quién es tu director técnico favorito en la historia de Mi Selección?',
+  quiz_question4_answer1: 'Miguel Mejía Barón',
+  quiz_question4_answer2: 'Mónica Vergara',
+  quiz_question4_answer3: 'Nacho Trelles',
+  quiz_question4_answer4: 'Piojo Herrera',
+
+  quiz_question5_title: 'Pregunta 5',
+  quiz_question5_description: '¿Con quién vienes a esta experiencia?',
+  quiz_question5_answer1: 'Con amigos',
+  quiz_question5_answer2: 'Solo',
+  quiz_question5_answer3: 'Familia',
+  quiz_question5_answer4: 'Pareja',
+
+  quiz_result_title: '¿Qué tipo de fan eres?',
+  quiz_result_clavado_title: 'El Clavado',
+  quiz_result_clavado_description: 'Gritas como director técnico para apoyar a tu Selección. Tu sin fin de rituales y supersticiones casi te asemejan a un chamán en plena ceremonia. En año de mundial no tienes otro tema de conversación.',
+  quiz_result_sabelotodo_title: 'El Sabelotodo',
+  quiz_result_sabelotodo_description: `Te pueden confundir con un comentarista o analista por todo tu conocimiento pambolero. Durante un partido del mundial das el contexto de cada jugada y sabes las estadísticas de cada jugador. Te sabes todos los datos que a un mortal se le escaparían. Todos te buscan para armar sus "top pics" de su liga de fantasía.`,
+  quiz_result_nostalgico_title: 'El Nostálgico',
+  quiz_result_nostalgico_description: 'Eres un almanaque con pies. Tienes grabados en tu mente los mejores goles de la historia, los jugadores que marcaron tu infancia y anhelas las épocas doradas del futbol. Te gusta el fútbol pero piensas que los jugadores de antes eran mejores.',
+  quiz_result_villamelon_title: 'El Villamelón',
+  quiz_result_villamelon_description: 'Para ti el mejor momento del partido es el medio tiempo pues puedes platicar con medio mundo y seguir disfrutando del ambiente. Te interesa más saber quien  sale con Belinda que quienes van a pasar a la siguiente ronda.',
+
+
+
+
+
+  privacy_notice_text: `
+Aviso de Privacidad Integral
+Estimado usuario, en cumplimiento con Ley Federal de Protección de Datos Personales en Posesión de los Particulares, el Reglamento del citado ordenamiento legal y demás disposiciones en la materia, ponemos a su disposición el presente Aviso de Privacidad correspondiente  la aplicación denominada Vive Mi Selección y demás servicios que prestamos por cualquier otro medio, a saber:
+
+IDENTIDAD Y DOMICILIO DEL RESPONSABLE
+COCOLAB INTERNATIONAL, SA DE CV, es una persona moral debidamente constituida de conformidad con las leyes mexicanas (en lo sucesivo referido indistintamente como “CL”) se preocupa por la confidencialidad y seguridad de los datos personales de sus clientes y tiene el compromiso de proteger su privacidad y cumplir con la legislación aplicable a la protección de datos personales en posesión de los particulares. CL es el responsable de recabar sus datos personales y nuestro domicilio es el ubicado en:  Lago Texcoco número 112 - D Colonia Anáhuac primera sección, Alcaldía Miguel Hidalgo, CP 11320, CDMX.  Para más información contáctenos vía correo electrónico a info@cocolab.mx.
+
+DATOS PERSONALES QUE VA RECABARÁ.
+Los datos que podrán recabarse por medio de la APP son: (I) perfiles y publicaciones de redes sociales (II) fotografías publicadas en el lugar dónde se llevará a cabo la experiencia inmersiva (III) quotes de opiniones de la experiencia. Toda información personal que identifica al usuario, revelada de manera directa o por cualquier medio de contacto y/o foro público de conexión en línea y/o la aplicación para servicios móviles (App), podrá ser recopilada y tratada por CL.
+
+La recolección de datos que realiza CL es de buena fe y por tal motivo presume que los mismos son verídicos, correctos, completos e identifican al titular que los suministra y/o provee, por lo que es responsabilidad del titular que los datos que éste le proporcione a CL cumplan con tales características y se actualicen en la medida que se requiera. 
+
+¿CON QUÉ FINALIDAD RECABARA LOS DATOS PERSONALES?
+Los datos personales podrán ser tratados y utilizados por CL para llevar a cabo algunas o todas las actividades relacionadas con la experiencia inmersiva Vive Mi Selección, para fines mercadológicos, de perfiles actitudinales y fines de entretenimiento / ocio.
+
+DATOS PERSONALES SENSIBLES
+CL no solicita datos personales sensibles en ninguna sección. (Origen racial o étnico, estado de salud presente y futura, información genética, creencias religiosas, filosóficas y morales, afiliación sindical, opiniones políticas, preferencia sexual)
+
+MEDIOS PARA EJERCER LOS DERECHOS ACCESO, RECTIFICACIÓN, CANCELACIÓN U OPOSICIÓN. (DERECHOS ARCO).
+CL cuenta con los recursos técnicos, materiales y humanos necesarios para asegurar que los datos personales del usuario serán tratados en estricto apego a la Ley. En cualquier momento, el Usuario tendrá el derecho a solicitar a CL el ejercicio de los derechos que le confiere la Ley, mediante el envío de la solicitud correspondiente por escrito al siguiente correo electrónico: info@cocolab.mx. Queda entendido que para que CL pueda atender correcta y oportunamente cualquiera de las solicitudes a las que se refiere esta sección, la solicitud del titular deberá contener como mínimo: (i) Nombre completo del titular, (ii) Número de contacto, (iii) Descripción breve del objeto de la solicitud, y (iv) Razones que motivan su solicitud. Nuestra respuesta a su solicitud será enviada dentro del plazo no mayor a los 20-veinte días al correo electrónico del remitente de esta. El usuario reconoce y acepta que una de las finalidades del tratamiento de sus datos personales es cumplir con sus obligaciones comerciales que mantiene y/o mantendrá con CL, por lo que no podrá cancelar y/u oponerse al tratamiento de datos personales que puedan y/o pudieran afectar y/o restringir el cumplimiento de estas. Asimismo, en cualquier momento podrá revocar el consentimiento de sus datos, por el mismo medio señalado.
+
+MODIFICACIONES AL AVISO DE PRIVACIDAD.
+CL expresamente se reserva el derecho, bajo su exclusiva discreción, de cambiar, modificar, agregar o eliminar partes del presente Aviso en cualquier momento. En tal caso, CL publicará en la aplicación Vive Mi Selección, las modificaciones que se le practiquen al Aviso e indicará en la parte superior de la página electrónica de dicho sitio la fecha de última versión del Aviso. En la medida que el usuario no solicite, en los términos antes mencionados, la cancelación y/u oposición de sus datos personales y continúe accediendo y/o utilizando, parcial o totalmente, los Servicios, implicará que ha aceptado y consentido tales cambios y/o modificaciones.
+
+Al proporcionarle sus datos personales a CL, el usuario expresamente reconoce y acepta el presente Aviso, según el mismo pueda ser modificado o ajustado de tiempo en tiempo, y otorga su consentimiento para que CL proceda con el procesamiento de sus datos personales de la forma que se explica en el presente. Si el usuario no acepta este Aviso, podrá ejercer los derechos que le confiere la Ley, según se describe anteriormente.
+
+CL se compromete a asegurar la privacidad de la información personal obtenida a través de sus servicios en línea.
+
+COOKIES
+Las cookies son pequeñas piezas de información que son enviadas por el sitio web al navegador. Se almacenan en el disco duro de los equipos y utilizan para determinar las preferencias de los usuarios que acceden al la aplicación electrónica Vive Mi Selección, así como para rastrear determinados comportamientos o actividades. Las cookies permiten reconocer a los usuarios, detectar el ancho de banda que han seleccionado, identificar la información más destacada, calcular el tamaño de la audiencia y medir algunos parámetros de tráfico.
+
+Si desea desactivar las cookies entre el panel de configuración de su navegador, diríjase al apartado de “Privacidad” o “General”, dependiendo del navegador, y asegúrese de seleccionar la opción de “Borrar o eliminar cookies”.
+
+CONFIDENCIALIDAD
+Cuando el usuario descargue la APP denominada Vive Mi Selección, la APP, compartirá su información con CL sólo se podrá difundir la información para los fines establecidos en el presente aviso de privacidad integral, por lo que no transferirá a terceros, ni resguardará información y únicamente podrá para fines publicitarios y de memorabilia resguardar videos y fotografías de la experiencia en su totalidad, en la que podrán contener algunos de los momentos de la experiencia inmersiva.
+
+En caso de que al usuario se le hubiese afectado su derecho a la protección de datos personales, se podrá comunicar al 555256 36 46 ext.213 , o asimismo acudir al Instituto Federal de Acceso a la Información-(IFAI). En caso de alguna incidencia, CL se compromete a dar solución en un tiempo no máximo a los 20-veinte días naturales.
+
+CONFIDENCIALIDAD (MENORES DE EDAD) Se recomienda a los padres y tutores que asesoren a los menores de edad al momento de navegar por Internet.
+
+ACEPTACIÓN DE TÉRMINOS
+Esta declaración de Confidencialidad / Privacidad está sujeta a los términos y condiciones de la APP Vive Mi Selección antes descritos, lo cual constituye un acuerdo legal entre el usuario y CL.
+
+Si el usuario utiliza los servicios en la APP Vive Mi Selección, significa que ha leído, entendido y acordado los términos antes expuestos.
+
+DESCRIPCIÓN DEL AVISO.
+Los términos que se utilicen en el presente aviso de privacidad (en lo sucesivo referido como “Aviso”) tendrán la definición que a los mismos le asigna la Ley Federal de Protección de Datos Personales en Posesión de Particulares, publicada en el Diario Oficial de la Federación el 5 de julio de 2010 (en lo sucesivo referida como la “Ley”), con excepción expresa de aquellos que aquí se definen. Este Aviso especifica el tipo de datos que CL recolecta, los fines para los cuales lleva a cabo el tratamiento de los mismos, así como los derechos con que cuenta el titular al respecto.
+
+ACEPTACIÓN DE TÉRMINOS LEGALES.
+Con el objetivo de ofrecerle un ambiente seguro y agradable para nuestros clientes y visitantes, hemos establecido reglas y términos bajo los cuales se delimitan las áreas de responsabilidad y derechos, tanto de CL como de nuestros visitantes.
+`
 }
