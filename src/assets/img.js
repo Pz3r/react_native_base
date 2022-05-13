@@ -80,6 +80,11 @@ const img = {
   smImagenAdoratorio: require('./img/SM-imagen-adoratorio.jpg'),
   smImagenPlaceholder: require('./img/SM-imagen-placeholder.jpg'),
   smImagenAcceso: require('./img/SM-imagen-acceso.jpg'),
+  smImagenActivaciones: require('./img/SM-imagen-activaciones.jpg'),
+  smImagenAlimentos: require('./img/SM-imagen-alimentos.jpg'),
+  smImagenTienda: require('./img/SM-imagen-tienda.jpg'),
+  smImagenHomeA: require('./img/SM-imagen-homeA.jpg'),
+  smImagenHomeB: require('./img/SM-imagen-homeB.jpg'),
   manitaClick: require('./img/manita-click.png'),
 };
 
