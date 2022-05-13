@@ -114,7 +114,7 @@ const beaconSetup = async (setBeaconsArr) => {
   } else {
     // iOS
     init(BEACONS_API_KEY)
-      .then(() => configure({ dropEmptyRanges: true, invalidationAge: 5000, connectNearbyBeacons: trueç }))
+      .then(() => configure({ dropEmptyRanges: true, invalidationAge: 5000, connectNearbyBeacons: true }))
       .then(() => _requestAlwaysAuthorization())
       .then(() => console.log('Successfully initialized beacon ranging, monitoring and scanning'))
       .catch((error) => console.log('error', error));

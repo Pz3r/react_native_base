@@ -35,8 +35,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>El uso de Bluetooth es necesario para activar los beacons de la experiencia.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow $(PRODUCT_NAME) to use the camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>El uso de la locación es necesario para activar los beacons de la experiencia.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>El uso de la locación es necesario para activar los beacons de la experiencia.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Allow $(PRODUCT_NAME) to use the microphone</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
