@@ -3,6 +3,7 @@ import { StyleSheet, Linking, Image, ImageBackground, View } from 'react-native'
 import { Camera } from 'react-native-vision-camera';
 import Swiper from 'react-native-swiper'
 import { Rating, AirbnbRating } from 'react-native-ratings';
+import { connect } from 'react-redux';
 import { Flex, Text, Button } from 'native-base';
 import LottieView from 'lottie-react-native';
 import i18n from 'i18n-js';
@@ -10,30 +11,36 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
 
-import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
+import { APP_RESET_QUIZ, APP_SET_ANSWER, APP_SET_RATING } from '../../../store/actions/app';
 
 const TAG = 'QuizHomeScreen';
 
-export default function QuizHomeScreen({ navigation }) {
+function QuizHomeScreen({ navigation, resetQuiz, setRating }) {
+
+  useEffect(() => {
+    resetQuiz();
+  }, []);
 
   const cancel = useCallback(() => {
     navigation.goBack();
   }, []);
 
   const startQuiz = useCallback(() => {
-
+    navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0 });
   }, []);
 
-  const onFinishRating = useCallback(() => {
-    console.log(`===== ${TAG}:onFinishRating =====`);
+  const onFinishRating = useCallback(async (rating) => {
+    console.log(`===== ${TAG}:onFinishRating ${rating} =====`);
+    await setRating({ rating });
   }, []);
 
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <Flex style={styles.top}>
-        <StepHeader backButtonHandler={cancel} total={5} step={1} />
+        <StepHeader backButtonHandler={cancel} />
       </Flex>
       <Flex flex="1" style={styles.container}>
         <Flex flex="1" alignItems="center" justifyContent="flex-start">
@@ -153,3 +160,20 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   }
 });
+
+export default connect(
+  (state, ownProps) => ({ ...state.App, ...ownProps }),
+  dispatch => ({
+    resetQuiz: () => {
+      dispatch({
+        type: APP_RESET_QUIZ
+      })
+    },
+    setRating: (payload) => {
+      dispatch({
+        type: APP_SET_RATING,
+        payload
+      })
+    }
+  })
+)(QuizHomeScreen);

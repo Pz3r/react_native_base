@@ -13,14 +13,22 @@ export const NAVIGATION_MAP_HOME_SCREEN = 'MapHomeScreen';
 export const NAVIGATION_MAP_DETAIL_STACK = 'MapDetailStack';
 export const NAVIGATION_MAP_DETAIL_SCREEN = 'MapDetailScreen';
 
+export const NAVIGATION_PRIVACY_NOTICE_STACK = 'PrivacyNoticeStack';
+export const NAVIGATION_PRIVACY_NOTICE_SCREEN = 'PrivacyNoticeScreen';
+
 export const NAVIGATION_PROFILE_STACK = 'ProfileStack';
 export const NAVIGATION_PROFILE_HOME_SCREEN = 'ProfileHomeScreen';
 
 export const NAVIGATION_FAQ_STACK = 'FaqStack';
 export const NAVIGATION_FAQ_HOME_SCREEN = 'FaqHomeScreen';
 
+export const NAVIGATION_PARTY_STACK = 'PartyStack';
+export const NAVIGATION_PARTY_HOME_SCREEN = 'PartyHomeScreen';
+
 export const NAVIGATION_QUIZ_STACK = 'QuizStack';
-export const NAVIGATION_QUIZ_HOME_SCREEN = 'QuizHomeScrenn';
+export const NAVIGATION_QUIZ_HOME_SCREEN = 'QuizHomeScreen';
+export const NAVIGATION_QUIZ_QUESTION_SCREEN = 'QuizQuestionScreen';
+export const NAVIGATION_QUIZ_RESULT_SCREEN = 'QuizResultScreen';
 
 export const NAVIGATION_PHOTO_STACK = 'PhotoStack';
 export const NAVIGATION_PHOTO_ONBOARDING_SCREEN = 'PhotoOnboardingScreen';

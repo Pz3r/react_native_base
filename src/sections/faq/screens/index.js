@@ -12,7 +12,7 @@ import FAQ from '../../../data/faq';
 
 const TAG = 'FaqHomeScreen';
 
-function FaqHomeScreen() {
+function FaqHomeScreen({ navigation }) {
   const [activeSections, setActiveSections] = useState([0]);
 
   renderHeader = (item, index, isActive, section) => {
@@ -71,7 +71,7 @@ function FaqHomeScreen() {
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView
         contentContainerStyle={styles.container}>
-        <AppHeader />
+        <AppHeader navigation={navigation} />
         <Text style={styles.title}>{i18n.t('text_faq_title')}</Text>
         <View style={{ paddingHorizontal: 20, paddingTop: 34 }}>
           <Accordion

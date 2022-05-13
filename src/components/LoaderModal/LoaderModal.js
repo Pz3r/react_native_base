@@ -25,8 +25,11 @@ export default function LoaderModal({ loaderText, errorText, isVisible, isError,
   } else if (isComplete) {
     return (
       <Modal isVisible={isVisible} style={styles.container}>
-        <View style={styles.inner}>
-          <LottieView source={Lottie.confetti} autoPlay loop />
+        <View style={styles.innerError}>
+          <Icon as={Ionicons} name="checkmark-circle-outline" color="#c1e645" size={16} />
+          <View style={styles.textContainer}>
+            <Text style={styles.errorText}>{i18n.t('text_loader_success')}</Text>
+          </View>
           <View style={styles.textContainer}>
             <Button onPress={() => closeHandler(true)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_continue')}</Button>
           </View>
@@ -37,8 +40,8 @@ export default function LoaderModal({ loaderText, errorText, isVisible, isError,
     return (
       <Modal isVisible={isVisible} style={styles.container}>
         <View style={styles.inner}>
-          <LottieView source={Lottie.balon} autoPlay loop />
-          <View style={styles.textContainer}>
+          <LottieView style={{ flex: 2, width: '30%', alignSelf: 'center', paddingTop: 20 }} source={Lottie.balon2} autoPlay loop />
+          <View style={styles.textContainer2}>
             <Text style={styles.infoText}>{loaderText}</Text>
           </View>
         </View>
@@ -62,12 +65,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   textContainer: {
     paddingBottom: 20,
     width: '100%',
     alignItems: 'center'
+  },
+  textContainer2: {
+    width: '100%',
+    alignItems: 'center',
+    flex: 1,
+    paddingTop: 40
   },
   infoText: {
     fontFamily: 'Inter-SemiBold',

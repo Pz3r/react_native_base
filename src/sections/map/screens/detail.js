@@ -29,20 +29,28 @@ function MapDetailScreen({ route, navigation }) {
 
   return (
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.top}>
-          <StepHeader backButtonHandler={goBack} />
-        </View>
-        {planItem &&
-          <>
-            <Image source={planItem.cover} />
-            <View style={styles.infoContainer}>
-              <Text style={styles.subTitle}>{i18n.t(planItem.title)}</Text>
-              <Text style={styles.paragraph}>{i18n.t(planItem.description)}</Text>
-            </View>
-          </>
-        }
-      </ScrollView>
+      {planItem && planItem.cover &&
+        <ScrollView contentContainerStyle={styles.container}>
+          <View style={styles.top}>
+            <StepHeader backButtonHandler={goBack} />
+          </View>
+          <Image source={planItem.cover} />
+          <View style={styles.infoContainer}>
+            <Text style={styles.subTitle}>{i18n.t(planItem.title)}</Text>
+            <Text style={styles.paragraph}>{i18n.t(planItem.description)}</Text>
+          </View>
+        </ScrollView>
+      }
+      {planItem && !planItem.cover &&
+        <>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={[styles.subTitle, { fontSize: 40, lineHeight: 42, paddingBottom: 0 }]}>{i18n.t('text_plan_item_placeholder_title')}</Text>
+          </View>
+          <View style={[styles.top, { position: 'absolute', top: SAFE_AREA_PADDING.paddingTop,}]}>
+            <StepHeader backButtonHandler={goBack} />
+          </View>
+        </>
+      }
     </ImageBackground>
   )
 }
