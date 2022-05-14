@@ -36,13 +36,11 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow $(PRODUCT_NAME) to use the camera</string>
+	<string>Forma parte del espectáculo compartiéndonos el uso de de tu cámara y tómate una foto tu playera favorita de la Selección.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow $(PRODUCT_NAME) to use the microphone</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>El uso de la galería es necesario para obtener y almacenar tu fotografía personalizada para la experiencia.</string>
+	<string>Necesitamos el uso de tu micrófono para poderte sincronizar con la experiencia. Únicamente escucharemos la guía ultrasónica de la experiencia. Ningún otro audio será procesado, almacenado o enviado fuera del teléfono.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>El uso de la galería es necesario para obtener y almacenar tu fotografía personalizada para la experiencia.</string>
+	<string>Forma parte del espectáculo dándonos acceso a tu galería de fotos y selecciona una con la cual quieras participar.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Inter-Black.ttf</string>

@@ -19,6 +19,7 @@ import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 import { APP_SET_STAMP } from '../../../store/actions/app';
+import { ENDPOINT_POST_FACE_DETECTION, ENDPOINT_POST_FACE_DETECTION_API_KEY } from '../../../utils/endpoints';
 
 const STORAGE_UUID = 'STORAGE_UUID';
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
@@ -42,6 +43,7 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
   const [isError, setIsError] = useState(false);
   const [shirtIndex, setShirtIndex] = useState(0);
   const [isTerms, setIsTerms] = useState();
+  const [isValidated, setIsValidated] = useState(false);
 
   useEffect(() => {
     console.log(`===== ${TAG}:useEffect ${JSON.stringify(route.params)} =====`);
@@ -49,6 +51,7 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
       setPhotoPath(route.params['path']);
       setPhotoWidth(route.params['width']);
       setPhotoHeight(route.params['height']);
+      setIsValidated(route.params['validated']);
     }
   }, [route]);
 
@@ -91,13 +94,8 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
     return croppedUri;
   }
 
-  const storeProcessedImage = async (imagePath, shirtIndex) => {
-    console.log(`===== ${TAG}:storeProcessedImage imagePath:${imagePath} =====`);
-
-    const base64 = await FileSystem.readAsStringAsync(imagePath, {
-      encoding: FileSystem.EncodingType.Base64
-    });
-    console.log(`===== ${TAG}:storeProcessedImage shirtIndex =====`);
+  const storeProcessedImage = async (base64, shirtIndex) => {
+    console.log(`===== ${TAG}:storeProcessedImage shirtIndex base64.length: ${base64.length} =====`);
     console.log(shirtIndex);
 
     await AsyncStorage.setItem(STORAGE_PHOTO, base64);
@@ -122,28 +120,64 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
       const uuid = await getUUID();
       console.log(`===== ${TAG}:confirmStamp uuid:${uuid} =====`);
 
-      // Store in S3 bucket
-      const result = await Storage.put(uuid, blob, {
-        contentType: 'image/jpeg',
-        metadata: { shirt: `${shirtIndex}` }
+      // Obtain base64
+      const base64 = await FileSystem.readAsStringAsync(croppedUri, {
+        encoding: FileSystem.EncodingType.Base64
       });
-      console.log(`===== ${TAG}:confirmStamp upload result: =====`);
-      console.log(JSON.stringify(result));
 
-      // Store processed image
-      await storeProcessedImage(croppedUri, `${shirtIndex}`);
+      let isFaceDetected = true;
+      if (!isValidated) {
+        console.log(`===== ${TAG}:confirmStamp CALLING FACE DETECTION ENDPOINT =====`);
+        console.log(`${base64}`);
+        const response = await fetch(
+          ENDPOINT_POST_FACE_DETECTION,
+          {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              'x-api-key': ENDPOINT_POST_FACE_DETECTION_API_KEY
+            },
+            body: JSON.stringify({ file: base64 })
+          }
+        );
 
-      setIsLoading(false);
-      setIsError(false);
-      setIsPhotoSent(false);
-      navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
+        console.log(`===== ${TAG}:confirmStamp FACE DETECTION response status: ${response.status} =====`);
+        const faceDetectionResult = await response.json();
+        console.log(`${JSON.stringify(faceDetectionResult)}`);
+        if (!faceDetectionResult['FaceDetails'] || faceDetectionResult['FaceDetails'].length < 1) {
+          isFaceDetected = false;
+        }
+
+      }
+
+      if (isFaceDetected) {
+        // Store in S3 bucket
+        const result = await Storage.put(uuid, blob, {
+          contentType: 'image/jpeg',
+          metadata: { shirt: `${shirtIndex}` }
+        });
+        console.log(`===== ${TAG}:confirmStamp upload result: =====`);
+        console.log(JSON.stringify(result));
+
+        // Store processed image
+        await storeProcessedImage(base64, `${shirtIndex}`);
+
+        setIsLoading(false);
+        setIsError(false);
+        setIsPhotoSent(false);
+        navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
+      } else {
+        console.log(`===== ${TAG}:confirmStamp FACE NOT DETECTED =====`);
+        setIsError(true);
+      }
 
     } catch (err) {
       console.log(`===== ${TAG}:confirmStamp error =====`);
       console.log(err);
       setIsError(true);
     }
-  }, [photoPath, photoWidth, photoHeight, shirtIndex]);
+  }, [photoPath, photoWidth, photoHeight, shirtIndex, isValidated]);
 
   const goBack = useCallback(() => {
     navigation.goBack();
@@ -189,13 +223,15 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
           isError={isError}
           isComplete={isPhotoSent}
           loaderText={i18n.t('text_loader_sending')}
-          errorText={i18n.t('text_loader_sending_error')}
+          errorText={i18n.t('text_loader_face_error')}
           closeHandler={(completed) => {
             setIsLoading(false);
             setIsError(false);
             setIsPhotoSent(false);
             if (completed) {
               navigation.navigate(NAVIGATION_PHOTO_STAMP_SCREEN);
+            } else {
+              navigation.goBack();
             }
           }}
         />

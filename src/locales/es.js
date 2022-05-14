@@ -35,6 +35,7 @@ export default {
 
   text_loader_sending: 'Enviando...',
   text_loader_sending_error: 'Ocurrió un error en el envío.',
+  text_loader_face_error: 'No pudimos identificar una cara en la foto. Asegúrate de estar en un lugar bien iluminado y vuelve a intentar.',
   text_loader_success: 'Envío satisfactorio',
 
   text_photo_onoarding_1: 'Limpia tu lente y ponte en un lugar iluminado',

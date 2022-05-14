@@ -18,7 +18,7 @@ export default function LoaderModal({ loaderText, errorText, isVisible, isError,
           <View style={styles.textContainer}>
             <Text style={styles.errorText}>{errorText}</Text>
           </View>
-          <Button onPress={closeHandler} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_close')}</Button>
+          <Button onPress={() => closeHandler(false)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_close')}</Button>
         </View>
       </Modal>
     )
@@ -87,6 +87,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
+    paddingHorizontal: 30,
+    paddingTop: 10
   },
   buttonText: {
     color: '#2a5a40',

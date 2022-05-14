@@ -131,6 +131,16 @@ function PhotoCameraScreen({ navigation }) {
   const onMediaCaptured = useCallback(
     (path, width, height, type) => {
       console.log(`====== Media captured! ${path}//${width}//${height}//${type} =====`);
+
+      navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
+        path,
+        width,
+        height,
+        type,
+        validated: device ? device.supportsParallelVideoProcessing : false
+      });
+
+      /*
       if (device && !device.supportsParallelVideoProcessing) {
         // TODO face check Rekognition
         navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
@@ -147,8 +157,9 @@ function PhotoCameraScreen({ navigation }) {
           type
         });
       }
+      */
     },
-    [navigation],
+    [navigation, device],
   );
   const onFlipCameraPressed = useCallback(() => {
     console.log(`===== onFlipCameraPressed =====`);
