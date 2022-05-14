@@ -14,6 +14,7 @@ import PartyStackNavigator from '../sections/party/navigation/stack';
 import { QuietConsumer, QuietProvider } from '../context/Audioguide';
 import { APP_SET_STAMP } from '../store/actions/app';
 import Lottie from 'assets/lottie';
+import { BeaconsProvider } from '../context/Beacons'
 
 const STORAGE_PHOTO = 'STORAGE_PHOTO';
 const STORAGE_SHIRT = 'STORAGE_SHIRT';
@@ -41,27 +42,29 @@ function MainComponent({
   }, []);
 
   return (
-    <QuietProvider>
-      <QuietConsumer>
-        {context => {
-          console.log(`===== ${TAG}:GUIDE INDEX ${context.lastMessage} / ${context.count}`);
+    <BeaconsProvider>
+      <QuietProvider>
+        <QuietConsumer>
+          {context => {
+            console.log(`===== ${TAG}:GUIDE INDEX ${context.lastMessage} / ${context.count}`);
 
-          if (context.count >= 120 && context.count <= 180 && isPartyMode) return (<PartyStackNavigator />)
+            if (context.count >= 120 && context.count <= 180 && isPartyMode) return (<PartyStackNavigator />)
 
-          return (
-            <>
-              <Modal isVisible={context.count >= 120 && context.count <= 180} style={styles.container}>
-                <View style={styles.innerError}>
-                  <LottieView source={Lottie.confettiCenter} autoPlay loop />
-                  <Button onPress={() => setIsPartyMode(true)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_party')}</Button>
-                </View>
-              </Modal>
-              <MainDrawerNavigator />
-            </>
-          )
-        }}
-      </QuietConsumer>
-    </QuietProvider>
+            return (
+              <>
+                <Modal isVisible={context.count >= 120 && context.count <= 180} style={styles.container}>
+                  <View style={styles.innerError}>
+                    <LottieView source={Lottie.confettiCenter} autoPlay loop />
+                    <Button onPress={() => setIsPartyMode(true)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_party')}</Button>
+                  </View>
+                </Modal>
+                <MainDrawerNavigator />
+              </>
+            )
+          }}
+        </QuietConsumer>
+      </QuietProvider>
+    </BeaconsProvider>
   )
 
 }

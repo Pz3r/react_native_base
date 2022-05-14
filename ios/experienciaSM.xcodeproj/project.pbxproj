@@ -332,10 +332,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-experienciaSM/Pods-experienciaSM-frameworks.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-kontaktio/ios/KontaktSDK.framework",
 				"${PODS_ROOT}/QuietModemKit/QuietModemKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KontaktSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuietModemKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

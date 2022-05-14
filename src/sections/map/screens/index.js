@@ -16,7 +16,7 @@ function MapHomeScreen({ navigation }) {
 
   const planItemHandler = useCallback((index) => {
     console.log(`===== ${TAG}:planItemHandler index:${index} =====`);
-    navigation.navigate(NAVIGATION_MAP_DETAIL_STACK, { 
+    navigation.navigate(NAVIGATION_MAP_DETAIL_STACK, {
       screen: NAVIGATION_MAP_DETAIL_SCREEN,
       params: { index }
      });

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.artirigo.kontaktio.KontaktPackage;
 import com.reactnativecommunity.imageeditor.ImageEditorPackage;
 import com.reactnativecommunity.cameraroll.CameraRollPackage;
 import com.facebook.react.ReactInstanceManager;
