@@ -22,18 +22,22 @@ function HomeScreen({ navigation }) {
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
         <AppHeader navigation={navigation} />
-        <Image source={IMG.smPlaceholderPortada} />
+        <Image source={IMG.smImagenHomeA} />
         <View style={styles.showInfoContainer}>
           <Text style={styles.paragraph}>{i18n.t('text_home_experience_1')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_home_experience_2')}</Text>
           <Text style={styles.title}>{i18n.t('text_home_participate_title')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_home_participate_description')}</Text>
           <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
-          <Text style={styles.paragraph}>{i18n.t('text_home_notifications_description')}</Text>
-          <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={activateNotification}>{i18n.t('button_action_activate_notifications')}</Button>
+          {false &&
+            <>
+              <Text style={styles.paragraph}>{i18n.t('text_home_notifications_description')}</Text>
+              <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={activateNotification}>{i18n.t('button_action_activate_notifications')}</Button>
+            </>
+          }
           <Text style={styles.subTitle}>{i18n.t('text_home_subtitle')}</Text>
         </View>
-        <Image source={IMG.smPlaceholderHome} />
+        <Image source={IMG.smImagenHomeB} />
         <View style={styles.showInfoContainer}>
           <Text style={styles.title}>{i18n.t('text_home_bracelet_title')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_home_bracelet_description')}</Text>
@@ -58,6 +62,14 @@ function HomeScreen({ navigation }) {
               </View>
             </View>
           </View>
+          {false &&
+            <>
+              <Text style={styles.title}>{i18n.t('text_home_app_title')}</Text>
+              <Text style={styles.paragraph}>{i18n.t('text_home_app_description1')}</Text>
+              <Text style={styles.paragraph}>{i18n.t('text_home_app_description2')}</Text>
+              <Text style={styles.paragraph}>{i18n.t('text_home_app_description3')}</Text>
+            </>
+          }
         </View>
       </ScrollView>
     </ImageBackground>
