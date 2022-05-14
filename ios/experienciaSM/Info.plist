@@ -36,14 +36,14 @@
       </dict>
     </dict>
     <key>NSBluetoothAlwaysUsageDescription</key>
-    <string>El uso de Bluetooth es necesario para activar los beacons de la experiencia.</string>
+    <string>El uso de Bluetooth es necesario para ubicarte dentro de la experiencia y poder hacerte partícipe del espectáculo.</string>
     <key>NSCameraUsageDescription</key>
-    <string>Forma parte del espectáculo compartiéndonos el uso de de tu cámara y tómate una foto tu playera favorita de la Selección.</string>
+    <string>Forma parte del espectáculo compartiéndonos el uso de de tu cámara, tómate una foto y elige tu playera favorita de la Selección.</string>
     <string>Allow $(PRODUCT_NAME) to use the camera</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>El uso de la locación es necesario para activar los beacons de la experiencia.</string>
+    <string>El uso de la locación es necesario para ubicarte dentro de la experiencia y poder hacerte partícipe del espectáculo.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>El uso de la locación es necesario para activar los beacons de la experiencia.</string>
+     <string>El uso de la locación es necesario para ubicarte dentro de la experiencia y poder hacerte partícipe del espectáculo.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Necesitamos el uso de tu micrófono para poderte sincronizar con la experiencia. Únicamente escucharemos la guía ultrasónica de la experiencia. Ningún otro audio será procesado, almacenado o enviado fuera del teléfono.</string>
     <key>NSPhotoLibraryUsageDescription</key>
