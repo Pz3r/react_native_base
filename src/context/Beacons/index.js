@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useEffect } from "react"
 import { Alert, PermissionsAndroid, DeviceEventEmitter, NativeEventEmitter } from 'react-native'
 import Kontakt, { KontaktModule } from 'react-native-kontaktio'
+
 const {
   init,
   connect,
@@ -13,17 +14,18 @@ const {
   // Configurations
   monitoringEnabled,
   requestAlwaysAuthorization,
-  // monitoring
-  startMonitoringForRegion,
-  stopMonitoringForRegion,
 } = Kontakt
 // import discovery from "./discovery"
 export const BeaconsContext = createContext()
 export const useBeacons = () => useContext(BeaconsContext)
 
-const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz'
 const isAndroid = Platform.OS === 'android'
 const kontaktEmitter = new NativeEventEmitter(KontaktModule)
+const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz';
+const accessBeacons = ['11o104Vd', '11o404yC', '11oB00Zo', '11oD00Zq']
+const exitBeacons = ['11oG00Zt', '11oo04xx', '11ou04y2', '11oz04y7']
+
+console.log('[BEACONS_API_KEY]', BEACONS_API_KEY);
 
 /**
  * Android Marshmallow (6.0) and above need to ask the user to grant certain permissions.
@@ -91,30 +93,35 @@ const beaconSetup = async () => {
       .then(() => console.log('[IOS Kontakt] Successfully initialized beacon ranging, monitoring and scanning'))
       .catch((error) => console.log('[IOS Kontakt] error', error))
 
-    await startDiscovery()
+    await startDiscovery({ interval: 1000 })
       .then(() => console.log('[IOS Kontakt] started discovery'))
       .catch((error) => console.log('[IOS Kontakt] startDiscovery error', error));
   }
 }
 
+const deviceDetected = (beacons) => {
+  // Access beacons
+  const accessBeaconsFound = beacons.filter(o => accessBeacons.includes(o.name)).length
+  if(accessBeaconsFound > 0) {
+    console.log('Update user schedule');
+  }
+  // Exit beacons
+  const exitBeaconsFound = beacons.filter(o => exitBeacons.includes(o.name)).length
+  if(exitBeaconsFound > 0) {
+    console.log('show push notification');
+  }
+}
+
 export const BeaconsProvider = ({ children }) => {
-  const discovery = { test: 'test' }
   useEffect(() => {
     beaconSetup()
 
     // Android
-    DeviceEventEmitter.addListener('beaconsDidUpdate',({ beacons }) => {
-        console.log('[Android Kontakt] beaconsDidUpdate', beacons)
-      }
-    )
-
-    DeviceEventEmitter.addListener('profileDidAppear',({ profile }) => {
-        console.log('[Android Kontakt] profileDidAppear', profile.uniqueId)
-      }
-    )
-
-    DeviceEventEmitter.addListener('profileDidDisappear',({ profile }) => {
-        console.log('[Android Kontakt] profileDidDisappear', profile.uniqueId)
+    DeviceEventEmitter.addListener(
+      'profileDidUpdate',
+      ({ profile }) => {
+        console.log('[Android Kontakt] profileDidUpdate', profile.map(i => i.uniqueId))
+        deviceDetected(profile)
       }
     )
 
@@ -123,13 +130,10 @@ export const BeaconsProvider = ({ children }) => {
       'didDiscoverDevices',
       ({ beacons }) => {
         console.log('[IOS Kontakt] didDiscoverDevices', beacons.map(o => o.name))
+        deviceDetected(beacons)
       }
     )
 
-    const discoverFailSubscription = kontaktEmitter.addListener(
-      'discoveryDidFail',
-      ({ error }) => console.log('[IOS Kontakt] discoveryDidFail', error)
-    )
 
     return () => {
       if (isAndroid) {
@@ -138,11 +142,10 @@ export const BeaconsProvider = ({ children }) => {
 
       DeviceEventEmitter.removeAllListeners()
       discoverSubscription.remove()
-      discoverFailSubscription.remove()
     }
   }, [])
 
   return (
-    <BeaconsContext.Provider value={ discovery }>{children}</BeaconsContext.Provider>
+    <BeaconsContext.Provider>{children}</BeaconsContext.Provider>
   )
 }
