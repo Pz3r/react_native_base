@@ -86,6 +86,8 @@ const img = {
   smImagenHomeA: require('./img/SM-imagen-homeA.jpg'),
   smImagenHomeB: require('./img/SM-imagen-homeB.jpg'),
   manitaClick: require('./img/manita-click.png'),
+  tiendaAppleBlanco: require('./img/tienda-apple-blanco.png'),
+  tiendaGoogleBlanco: require('./img/tienda-google-blanco.png'),
 };
 
 export default img;

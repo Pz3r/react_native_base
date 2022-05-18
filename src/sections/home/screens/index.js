@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, Image, ImageBackground, View } from 'react-native';
+import { Platform, Linking, StyleSheet, Image, ImageBackground, View, TouchableOpacity } from 'react-native';
 import { Flex, Text, Modal, Button, ScrollView } from 'native-base';
 import i18n from 'i18n-js';
 
@@ -62,14 +62,19 @@ function HomeScreen({ navigation }) {
               </View>
             </View>
           </View>
-          {false &&
-            <>
-              <Text style={styles.title}>{i18n.t('text_home_app_title')}</Text>
-              <Text style={styles.paragraph}>{i18n.t('text_home_app_description1')}</Text>
-              <Text style={styles.paragraph}>{i18n.t('text_home_app_description2')}</Text>
-              <Text style={styles.paragraph}>{i18n.t('text_home_app_description3')}</Text>
-            </>
-          }
+          <Text style={styles.title}>{i18n.t('text_home_app_title')}</Text>
+          <Text style={styles.paragraph}>{i18n.t('text_home_app_description1')}</Text>
+          <Text style={styles.paragraph}>{i18n.t('text_home_app_description2')}</Text>
+          <Text style={[styles.paragraph, { paddingBottom: 0 }]}>{i18n.t('text_home_app_description3')}</Text>
+          <TouchableOpacity onPress={() => {
+            if (Platform.OS === 'ios') {
+              Linking.openURL('https://apps.apple.com/mx/app/mi-selecci%C3%B3n-mx/id440860179');
+            } else {
+              Linking.openURL('https://play.google.com/store/apps/details?id=com.yinzcam.mff.national');
+            }
+          }}>
+            <Image style={{ resizeMode: 'contain', width: 200, alignSelf: 'center' }} source={Platform.OS === 'ios' ? IMG.tiendaAppleBlanco : IMG.tiendaGoogleBlanco} />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </ImageBackground>
