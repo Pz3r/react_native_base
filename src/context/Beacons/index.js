@@ -1,6 +1,8 @@
 import React, { useContext, createContext, useEffect } from "react"
 import { Alert, PermissionsAndroid, DeviceEventEmitter, NativeEventEmitter } from 'react-native'
 import Kontakt, { KontaktModule } from 'react-native-kontaktio'
+import { ENDPOINT_POST_DATE_URL } from "../../utils/endpoints"
+import getDateTimeToString from './helpers/getDateTimeToString'
 
 const {
   init,
@@ -15,17 +17,15 @@ const {
   monitoringEnabled,
   requestAlwaysAuthorization,
 } = Kontakt
-// import discovery from "./discovery"
+
 export const BeaconsContext = createContext()
 export const useBeacons = () => useContext(BeaconsContext)
 
 const isAndroid = Platform.OS === 'android'
 const kontaktEmitter = new NativeEventEmitter(KontaktModule)
-const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz';
+const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz'
 const accessBeacons = ['11o104Vd', '11o404yC', '11oB00Zo', '11oD00Zq']
 const exitBeacons = ['11oG00Zt', '11oo04xx', '11ou04y2', '11oz04y7']
-
-console.log('[BEACONS_API_KEY]', BEACONS_API_KEY);
 
 /**
  * Android Marshmallow (6.0) and above need to ask the user to grant certain permissions.
@@ -59,8 +59,8 @@ console.log('[BEACONS_API_KEY]', BEACONS_API_KEY);
 const _requestAlwaysAuthorization = () => {
   requestAlwaysAuthorization()
     .then(() => console.log('[IOS Kontakt] requested always authorization'))
-    .catch((error) => console.log('[requestAlwaysAuthorization]', error));
-};
+    .catch((error) => console.log('[requestAlwaysAuthorization]', error))
+}
 
 const beaconSetup = async () => {
   if (isAndroid) {
@@ -95,7 +95,47 @@ const beaconSetup = async () => {
 
     await startDiscovery({ interval: 1000 })
       .then(() => console.log('[IOS Kontakt] started discovery'))
-      .catch((error) => console.log('[IOS Kontakt] startDiscovery error', error));
+      .catch((error) => console.log('[IOS Kontakt] startDiscovery error', error))
+  }
+}
+
+
+
+const storeOne = async () => {
+  const storeId = await AsyncStorage.getItem(STORAGE_UUID)
+  if(storeId) {
+    const now = getDateTimeToString()
+    console.log(now)
+
+    // if (storedDate !== formattedDate) {
+
+    //   if (storeId && schedule) {
+    //     fetch(
+    //       ENDPOINT_POST_DATE_URL,
+    //       {
+    //         method: 'POST',
+    //         headers: {
+    //           Accept: 'application/json',
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //           storeId: storeId,
+    //           schedule: schedule
+    //         })
+    //       }
+    //     ).then(async (response) => {
+    //       console.log(`[ BeaconsProvider ] response ${response.status}`)
+    //       await AsyncStorage.setItem('SYNC_FORMATTED_DATE', formattedDate)
+    //       await AsyncStorage.setItem('SYNC_FORMATTED_TIME', formattedTime)
+    //     }).catch((error) => {
+    //       console.log(`[ BeaconsProvider ] QuietProvider error ${error}`)
+    //     })
+    //   } else {
+    //     console.log(`[ BeaconsProvider ] NO SEND (INNER) storeId: ${storeId} schedule: ${schedule}`)
+    //   }
+    // } else {
+    //   console.log(`[ BeaconsProvider ] NO SEND (OUTTER) storedDate: ${storedDate} formattedDate: ${formattedDate}`)
+    // }
   }
 }
 
@@ -103,12 +143,13 @@ const deviceDetected = (beacons) => {
   // Access beacons
   const accessBeaconsFound = beacons.filter(o => accessBeacons.includes(o.name)).length
   if(accessBeaconsFound > 0) {
-    console.log('Update user schedule');
+    storeOne()
+    console.log('Update user schedule')
   }
   // Exit beacons
   const exitBeaconsFound = beacons.filter(o => exitBeacons.includes(o.name)).length
   if(exitBeaconsFound > 0) {
-    console.log('show push notification');
+    console.log('show push notification')
   }
 }
 
@@ -133,7 +174,6 @@ export const BeaconsProvider = ({ children }) => {
         deviceDetected(beacons)
       }
     )
-
 
     return () => {
       if (isAndroid) {
