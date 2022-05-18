@@ -14,6 +14,7 @@ const STORAGE_UUID = 'STORAGE_UUID';
 
 import LoaderModal from '../LoaderModal/LoaderModal';
 import { ENDPOINT_POST_DATE_URL } from '../../utils/endpoints';
+import getDateTimeToString from '../../context/Beacons/helpers/getDateTimeToString';
 
 export default function VisitForm({ finishHandler, shouldPreload, buttonText }) {
   const [date, setDate] = useState();
@@ -106,6 +107,7 @@ export default function VisitForm({ finishHandler, shouldPreload, buttonText }) 
           }
         );
 
+        await AsyncStorage.setItem('SYNC_FORMATTED_DATE', postDate)
         console.log(`===== ${TAG}:sendDate response status: ${response.status} =====`);
         setIsDataSent(true);
 
