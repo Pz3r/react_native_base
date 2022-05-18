@@ -12,7 +12,10 @@ const getDateTimeToString = () => {
     }
     const intl = new Intl.DateTimeFormat('es-MX', options)
     const parts = intl.formatToParts(date)
-    return `${parts[4].value}${parts[2].value}${parts[0].value}${parts[6].value}${parts[8].value}`
+    return {
+      date: `${parts[4].value}${parts[2].value}${parts[0].value}`,
+      time: `${parts[6].value}${parts[8].value}`
+    }
 }
 
 export default getDateTimeToString

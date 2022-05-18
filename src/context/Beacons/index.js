@@ -1,6 +1,7 @@
 import React, { useContext, createContext, useEffect } from "react"
 import { Alert, PermissionsAndroid, DeviceEventEmitter, NativeEventEmitter } from 'react-native'
 import Kontakt, { KontaktModule } from 'react-native-kontaktio'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ENDPOINT_POST_DATE_URL } from "../../utils/endpoints"
 import getDateTimeToString from './helpers/getDateTimeToString'
 
@@ -21,11 +22,13 @@ const {
 export const BeaconsContext = createContext()
 export const useBeacons = () => useContext(BeaconsContext)
 
+
 const isAndroid = Platform.OS === 'android'
 const kontaktEmitter = new NativeEventEmitter(KontaktModule)
 const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz'
-const accessBeacons = ['11o104Vd', '11o404yC', '11oB00Zo', '11oD00Zq']
-const exitBeacons = ['11oG00Zt', '11oo04xx', '11ou04y2', '11oz04y7']
+const accessBeacons = ['11oB00Zo', '11oD00Zq']
+const exitBeacons = ['11oG00Zt', '11oo04xx', '11ou04y2', '11oz04y7', '11o104Vd', '11o404yC']
+const STORAGE_UUID = 'STORAGE_UUID';
 
 /**
  * Android Marshmallow (6.0) and above need to ask the user to grant certain permissions.
@@ -102,40 +105,31 @@ const beaconSetup = async () => {
 
 
 const storeOne = async () => {
-  const storeId = await AsyncStorage.getItem(STORAGE_UUID)
-  if(storeId) {
-    const now = getDateTimeToString()
-    console.log(now)
+  const now = getDateTimeToString()
+  const storedDate = await AsyncStorage.getItem('SYNC_FORMATTED_DATE');
+  console.log('[ now ]', now)
 
-    // if (storedDate !== formattedDate) {
+  if (storedDate !== now.date) {
+    const storeId = await AsyncStorage.getItem(STORAGE_UUID)
+    const schedule = now.date + now.time;
 
-    //   if (storeId && schedule) {
-    //     fetch(
-    //       ENDPOINT_POST_DATE_URL,
-    //       {
-    //         method: 'POST',
-    //         headers: {
-    //           Accept: 'application/json',
-    //           'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //           storeId: storeId,
-    //           schedule: schedule
-    //         })
-    //       }
-    //     ).then(async (response) => {
-    //       console.log(`[ BeaconsProvider ] response ${response.status}`)
-    //       await AsyncStorage.setItem('SYNC_FORMATTED_DATE', formattedDate)
-    //       await AsyncStorage.setItem('SYNC_FORMATTED_TIME', formattedTime)
-    //     }).catch((error) => {
-    //       console.log(`[ BeaconsProvider ] QuietProvider error ${error}`)
-    //     })
-    //   } else {
-    //     console.log(`[ BeaconsProvider ] NO SEND (INNER) storeId: ${storeId} schedule: ${schedule}`)
-    //   }
-    // } else {
-    //   console.log(`[ BeaconsProvider ] NO SEND (OUTTER) storedDate: ${storedDate} formattedDate: ${formattedDate}`)
-    // }
+    if (storeId && schedule) {
+      const headers = { Accept: 'application/json', 'Content-Type': 'application/json' }
+      const body = JSON.stringify({ storeId, schedule })
+
+      fetch(ENDPOINT_POST_DATE_URL, { method: 'POST', headers, body })
+        .then(async (response) => {
+          console.log(`[ BeaconsProvider ] response ${response.status}`)
+          await AsyncStorage.setItem('SYNC_FORMATTED_DATE', now.date)
+          await AsyncStorage.setItem('SYNC_FORMATTED_TIME', now.time)
+        }).catch((error) => {
+          console.log(`[ BeaconsProvider ] QuietProvider error ${error}`)
+        })
+    } else {
+      console.log(`[ BeaconsProvider ] NO SEND (INNER) storeId: ${storeId} schedule: ${schedule}`)
+    }
+  } else {
+    console.log(`[ BeaconsProvider ] NO SEND (OUTTER) storedDate: ${storedDate} formattedDate: ${now.date}`)
   }
 }
 
