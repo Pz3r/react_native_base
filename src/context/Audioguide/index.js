@@ -59,7 +59,8 @@ const QuietProvider = (props) => {
                   },
                   body: JSON.stringify({
                     storeId: storeId,
-                    schedule: schedule
+                    schedule: schedule,
+                    eventType: 'audioguide'
                   })
                 }
               ).then(async (response) => {
