@@ -14,7 +14,6 @@ const STORAGE_UUID = 'STORAGE_UUID';
 
 import LoaderModal from '../LoaderModal/LoaderModal';
 import { ENDPOINT_POST_DATE_URL } from '../../utils/endpoints';
-import getDateTimeToString from '../../context/Beacons/helpers/getDateTimeToString';
 
 export default function VisitForm({ finishHandler, shouldPreload, buttonText }) {
   const [date, setDate] = useState();
@@ -102,7 +101,8 @@ export default function VisitForm({ finishHandler, shouldPreload, buttonText }) 
             },
             body: JSON.stringify({
               storeId: storeId,
-              schedule: schedule
+              schedule: schedule,
+              eventType: 'form'
             })
           }
         );

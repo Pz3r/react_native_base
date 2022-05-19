@@ -107,7 +107,6 @@ const beaconSetup = async () => {
 const storeOne = async () => {
   const now = getDateTimeToString()
   const storedDate = await AsyncStorage.getItem('SYNC_FORMATTED_DATE');
-  console.log('[ now ]', now)
 
   if (storedDate !== now.date) {
     const storeId = await AsyncStorage.getItem(STORAGE_UUID)
@@ -115,7 +114,7 @@ const storeOne = async () => {
 
     if (storeId && schedule) {
       const headers = { Accept: 'application/json', 'Content-Type': 'application/json' }
-      const body = JSON.stringify({ storeId, schedule })
+      const body = JSON.stringify({ storeId, schedule, eventType: 'beacon' })
 
       fetch(ENDPOINT_POST_DATE_URL, { method: 'POST', headers, body })
         .then(async (response) => {
