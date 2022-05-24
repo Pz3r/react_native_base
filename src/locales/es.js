@@ -59,10 +59,11 @@ export default {
   text_home_receive: 'Recíbela',
   text_home_put: 'Póntela',
   text_home_offer: 'Ofrenda',
-  text_home_app_title: '¡Conoce más del equipo!',
-  text_home_app_description1: 'Si aún no la tienes, te invitamos a descargar “Mi Selección MX”, la App Oficial de la Selección Nacional de México. En ella podrás encontrar todas las noticias, galerías, videos, calendario, resultados y estadística de nuestros equipos, así como enlaces para compra de boletos, mercancía oficial, transmisiones en vivo y highlights de partidos.',
-  text_home_app_description2: 'Te recomendamos visitar la Zona Fan, dedicada al entretenimiento, la cual ofrece juegos interactivos, realidad aumentada, activaciones digitales y descargables.',
-  text_home_app_description3: '¡Descárgala gratis y vive la pasión de tu Selección en un solo lugar!',
+  text_home_app_title: '¡Descarga \nMi Selección MX!',
+  text_home_app_description0: 'La app oficial de la Selección Nacional de México',
+  text_home_app_description1: 'Podrás encontrar noticias, multimedia, calendario de partidos, resultados y estadísticas de nuestros equipos, así como enlaces para la compra de boletos, mercancía oficial, transmisiones en vivo y resúmenes.',
+  text_home_app_description2: 'Además, la App Oficial tiene una sección dedicada al entretenimiento, con juegos interactivos, realidad aumentada, descargables y más.',
+  text_home_app_description3: '¡Vive la pasión de tu Selección en un solo lugar! Descárgala gratis en:',
 
   text_plan_title: 'Plano',
 

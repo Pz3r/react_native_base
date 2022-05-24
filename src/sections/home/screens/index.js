@@ -62,7 +62,13 @@ function HomeScreen({ navigation }) {
               </View>
             </View>
           </View>
-          <Text style={styles.title}>{i18n.t('text_home_app_title')}</Text>
+        </View>
+        <View style={[styles.showInfoContainer, { paddingTop: 0 }]}>
+          <Text style={[styles.title, { alignSelf: 'center', textAlign: 'center' }]}>{i18n.t('text_home_app_title')}</Text>
+          <Text style={styles.paragraph}>{i18n.t('text_home_app_description0')}</Text>
+        </View>
+        <Image source={IMG.smImagenHomeFMF} />
+        <View style={styles.showInfoContainer}>
           <Text style={styles.paragraph}>{i18n.t('text_home_app_description1')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_home_app_description2')}</Text>
           <Text style={[styles.paragraph, { paddingBottom: 0 }]}>{i18n.t('text_home_app_description3')}</Text>
