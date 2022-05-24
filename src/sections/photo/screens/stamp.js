@@ -91,7 +91,7 @@ function PhotoStampScreen({ navigation }) {
       </Flex>
       <LottieView source={Lottie.confettiVertical} autoPlay loop style={{ position: 'absolute', top: 0 }} />
       <Flex flex="1" alignItems="center" justifyContent="flex-end" style={{ paddingBottom: 20 }}>
-        <Button onPress={nextStep} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
+        <Button onPress={nextStep} backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
       </Flex>
     </ImageBackground>
   )
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,

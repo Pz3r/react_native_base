@@ -54,11 +54,11 @@ function QuizHomeScreen({ navigation, resetQuiz, setRating }) {
             defaultRating={5}
             size={20}
             showRating={false}
-            selectedColor="#e74a7b"
+            selectedColor="#f63440"
             onFinishRating={onFinishRating} />
         </Flex>
         <Flex>
-          <Button backgroundColor="#c1e645" _text={styles.buttonText} onPress={startQuiz}>{i18n.t('button_action_start_quiz')}</Button>
+          <Button backgroundColor="#00994c" _text={styles.buttonText} onPress={startQuiz}>{i18n.t('button_action_start_quiz')}</Button>
         </Flex>
       </Flex>
     </ImageBackground>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'OperaBlackOblique',
-    color: '#e74a7b',
+    color: '#f63440',
     fontSize: 64,
     lineHeight: 73,
     paddingTop: 10,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 30,
     paddingVertical: 10,
     alignSelf: 'center',
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     //backgroundColor: '#00f'
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   slideInfoTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#f7ec13',
+    color: '#ffffff',
     fontSize: 40,
     lineHeight: 37,
     paddingBottom: 20

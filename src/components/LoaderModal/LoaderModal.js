@@ -14,11 +14,11 @@ export default function LoaderModal({ loaderText, errorText, isVisible, isError,
     return (
       <Modal isVisible={isVisible} style={styles.container}>
         <View style={styles.innerError}>
-          <Icon as={Ionicons} name="close-circle-outline" color="danger.500" size={16} />
+          <Icon as={Ionicons} name="close-circle-outline" color="#f63440" size={16} />
           <View style={styles.textContainer}>
             <Text style={styles.errorText}>{errorText}</Text>
           </View>
-          <Button onPress={() => closeHandler(false)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_close')}</Button>
+          <Button onPress={() => closeHandler(false)} width="40%" backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_close')}</Button>
         </View>
       </Modal>
     )
@@ -26,12 +26,12 @@ export default function LoaderModal({ loaderText, errorText, isVisible, isError,
     return (
       <Modal isVisible={isVisible} style={styles.container}>
         <View style={styles.innerError}>
-          <Icon as={Ionicons} name="checkmark-circle-outline" color="#c1e645" size={16} />
+          <Icon as={Ionicons} name="checkmark-circle-outline" color="#00994c" size={16} />
           <View style={styles.textContainer}>
             <Text style={styles.errorText}>{i18n.t('text_loader_success')}</Text>
           </View>
           <View style={styles.textContainer}>
-            <Button onPress={() => closeHandler(true)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_continue')}</Button>
+            <Button onPress={() => closeHandler(true)} width="40%" backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_continue')}</Button>
           </View>
         </View>
       </Modal>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,

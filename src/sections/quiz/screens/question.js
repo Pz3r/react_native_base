@@ -161,7 +161,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
               <Text style={styles.subTitle}>{i18n.t(QUIZ[questionIndex].title)}</Text>
               <Text style={styles.paragraph}>{i18n.t(QUIZ[questionIndex].description)}</Text>
               <Flex flexDirection="row" justifyContent="space-between" style={{ paddingHorizontal: 10 }}>
-                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 0 ? '#e74a7b' : '#00000000' }]}>
+                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 0 ? '#f63440' : '#00000000' }]}>
                   <TouchableOpacity onPress={() => selectAnswer(0)}>
                     <Image source={QUIZ[questionIndex].options[0].media} />
                     <View style={{ minHeight: 80, alignItems: 'center', justifyContent: 'center' }}>
@@ -169,7 +169,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
                     </View>
                   </TouchableOpacity>
                 </Flex>
-                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 1 ? '#e74a7b' : '#00000000' }]}>
+                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 1 ? '#f63440' : '#00000000' }]}>
                   <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => selectAnswer(1)}>
                     <Image source={QUIZ[questionIndex].options[1].media} />
                     <View style={{ minHeight: 80, alignItems: 'center', justifyContent: 'center' }}>
@@ -179,7 +179,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
                 </Flex>
               </Flex>
               <Flex flexDirection="row" justifyContent="space-between" style={{ paddingHorizontal: 10, paddingTop: 10 }}>
-                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 2 ? '#e74a7b' : '#00000000' }]}>
+                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 2 ? '#f63440' : '#00000000' }]}>
                   <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => selectAnswer(2)}>
                     <Image source={QUIZ[questionIndex].options[2].media} />
                     <View style={{ minHeight: 80, alignItems: 'center', justifyContent: 'center' }}>
@@ -187,7 +187,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
                     </View>
                   </TouchableOpacity>
                 </Flex>
-                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 3 ? '#e74a7b' : '#00000000' }]}>
+                <Flex flex={1} alignItems="center" justifyContent="center" style={[{ backgroundColor: '#0f2d25', paddingTop: 8, marginEnd: 7, borderRadius: 5, borderWidth: 2 }, { borderColor: selectedAnwer === 3 ? '#f63440' : '#00000000' }]}>
                   <TouchableOpacity style={{ alignItems: 'center' }} onPress={() => selectAnswer(3)}>
                     <Image source={QUIZ[questionIndex].options[3].media} />
                     <View style={{ minHeight: 80, alignItems: 'center', justifyContent: 'center' }}>
@@ -200,7 +200,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
           </>
         }
         <View style={styles.bottom}>
-          <Button isDisabled={selectedAnwer < 0} onPress={nextQuestion} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_quiz_next')}</Button>
+          <Button isDisabled={selectedAnwer < 0} onPress={nextQuestion} width="80%" backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_quiz_next')}</Button>
         </View>
         <LoaderModal
           isVisible={isLoading}
@@ -268,14 +268,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 30,
     paddingVertical: 10,
     alignSelf: 'center',

@@ -104,10 +104,10 @@ function QuizResultScreen({ navigation }) {
         </TouchableOpacity>
         <Flex style={{ width: '100%', paddingTop: 20, paddingBottom: 20 }} flex="1" flexDirection="row" alignItems="flex-end">
           <Flex flex="1" style={{ paddingHorizontal: 20 }}>
-            <Button onPress={restartQuiz} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_quiz_restart')}</Button>
+            <Button onPress={restartQuiz} backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_quiz_restart')}</Button>
           </Flex>
           <Flex flex="1" style={{ paddingHorizontal: 20 }}>
-            <Button onPress={finishQuiz} backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_quiz_finish')}</Button>
+            <Button onPress={finishQuiz} backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_quiz_finish')}</Button>
           </Flex>
         </Flex>
       </ScrollView>
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
@@ -174,13 +174,13 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 25,
     paddingVertical: 10
   },
   title: {
     fontFamily: 'OperaBlackOblique',
-    color: '#e74a7b',
+    color: '#f63440',
     fontSize: 40,
     lineHeight: 37,
   },

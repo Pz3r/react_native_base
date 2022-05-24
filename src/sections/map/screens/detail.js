@@ -110,14 +110,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 30,
     lineHeight: 34,
     paddingBottom: 15,

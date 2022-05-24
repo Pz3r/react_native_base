@@ -64,7 +64,7 @@ export default function PhotoPermissionsScreen({ navigation }) {
         </Flex>
         <Flex flex="1" alignItems="center" justifyContent="center" style={styles.bottom}>
           <Flex flex="1" alignItems="center" justifyContent="center">
-            <Button backgroundColor="#c1e645" _text={styles.buttonText} onPress={requestCameraPermission}>Tomar foto</Button>
+            <Button backgroundColor="#00994c" _text={styles.buttonText} onPress={requestCameraPermission}>Tomar foto</Button>
           </Flex>
           <Flex flex="1" alignItems="center" justifyContent="center">
             <Button _text={styles.underlinedButton} variant="unstyled" onPress={cancel}>No quiero tomar la foto</Button>
@@ -91,12 +91,12 @@ const styles = StyleSheet.create({
   },
   title: { 
     fontFamily: 'OperaBlackOblique', 
-    color: '#e74a7b',
+    color: '#f63440',
     fontSize: 35,
     lineHeight: 37
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   slideInfoTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#f7ec13',
+    color: '#ffffff',
     fontSize: 40,
     lineHeight: 37,
     paddingBottom: 20

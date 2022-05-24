@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 30,
     paddingVertical: 10,
     alignSelf: 'flex-start',

@@ -48,14 +48,14 @@ function MainComponent({
           {context => {
             console.log(`===== ${TAG}:GUIDE INDEX ${context.lastMessage} / ${context.count}`);
 
-            if (context.count >= 120 && context.count <= 180 && isPartyMode) return (<PartyStackNavigator />)
+            if (((context.count >= 990 && context.count <= 1420) || (context.count >= 1943 && context.count <= 2023)) && isPartyMode) return (<PartyStackNavigator />)
 
             return (
               <>
-                <Modal isVisible={context.count >= 120 && context.count <= 180} style={styles.container}>
+                <Modal isVisible={(context.count >= 990 && context.count <= 1420) || (context.count >= 1943 && context.count <= 2023)} style={styles.container}>
                   <View style={styles.innerError}>
                     <LottieView source={Lottie.confettiCenter} autoPlay loop />
-                    <Button onPress={() => setIsPartyMode(true)} width="40%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_party')}</Button>
+                    <Button onPress={() => setIsPartyMode(true)} width="40%" backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_party')}</Button>
                   </View>
                 </Modal>
                 <MainDrawerNavigator />
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     lineHeight: 19,
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,

@@ -82,13 +82,13 @@ function ProfileHomeScreen({ navigation, stamp, shirt }) {
           <View style={styles.showInfoContainer}>
             <Text style={styles.subTitle}>{i18n.t('text_home_participate_title')}</Text>
             <Text style={styles.quizDescription}>{i18n.t('text_home_participate_description')}</Text>
-            <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
+            <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
           </View>
         }
         <View style={styles.subContainer}>
           <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
           <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
-          <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
+          <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
           <View style={styles.formContainer}>
             <Text style={styles.formTitle}>{i18n.t('text_profile_visit_title')}</Text>
             <VisitForm finishHandler={finishHandler} buttonText={i18n.t('button_action_update_visit')} />
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     marginVertical: 20
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontWeight: 'bold',
     fontSize: 13,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'OperaBlackOblique',
-    color: '#e74a7b',
+    color: '#f63440',
     fontSize: 35,
     lineHeight: 37,
     paddingTop: 10,
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 30,
     paddingVertical: 10,
     alignSelf: 'center',
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   formTitle: {
-    color: '#8cbe5d',
+    color: '#00994c',
     fontFamily: 'Inter-ExtraBold',
     fontSize: 15,
     lineHeight: 18,

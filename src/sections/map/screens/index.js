@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'OperaBlackOblique',
-    color: '#e74a7b',
+    color: '#f63440',
     fontSize: 35,
     lineHeight: 37,
     paddingTop: 10,
