@@ -60,7 +60,7 @@ export default {
   text_home_put: 'Póntela',
   text_home_offer: 'Ofréndala',
   text_home_app_title: '¡Descarga \nMi Selección MX!',
-  text_home_app_description0: 'La app oficial de la Selección Nacional de México',
+  text_home_app_description0: 'La app oficial de la Selección Nacional de México.',
   text_home_app_description1: 'Podrás encontrar noticias, multimedia, calendario de partidos, resultados y estadísticas de nuestros equipos, así como enlaces para la compra de boletos, mercancía oficial, transmisiones en vivo y resúmenes.',
   text_home_app_description2: 'Además, la App Oficial tiene una sección dedicada al entretenimiento, con juegos interactivos, realidad aumentada, descargables y más.',
   text_home_app_description3: '¡Vive la pasión de tu Selección en un solo lugar! Descárgala gratis en:',

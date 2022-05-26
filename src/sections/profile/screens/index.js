@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#00994c',
+    color: '#f63440',
     fontSize: 30,
     paddingVertical: 10,
     alignSelf: 'center',

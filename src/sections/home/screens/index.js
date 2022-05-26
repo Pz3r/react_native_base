@@ -34,8 +34,7 @@ function HomeScreen({ navigation }) {
               <Text style={styles.paragraph}>{i18n.t('text_home_notifications_description')}</Text>
               <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={activateNotification}>{i18n.t('button_action_activate_notifications')}</Button>
             </>
-          }
-          <Text style={styles.subTitle}>{i18n.t('text_home_subtitle')}</Text>
+          }          
         </View>
         <Image source={IMG.smImagenHomeB} />
         <View style={styles.showInfoContainer}>
@@ -118,7 +117,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#00994c',
+    color: '#f63440',
     fontSize: 30,
     lineHeight: 34,
     alignSelf: 'center',
