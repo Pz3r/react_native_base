@@ -21,6 +21,15 @@ function PartyHomeScreen({ navigation }) {
     navigation.goBack();
   }, [navigation]);
 
+  /*
+  return (
+
+    <Flex flex={1} style={{ backgroundColor: '#1d1d1d' }}>
+      <LottieView source={Lottie.fondoLoop} />
+    </Flex>
+  )
+  */
+
   return (
 
     <Flex flex={1}>

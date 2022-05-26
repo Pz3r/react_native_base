@@ -53,12 +53,12 @@ export default {
   text_home_participate_title: '¿Cómo participar en el show?',
   text_home_participate_description: '¡Es muy sencillo! Toma tu foto y crea tu perfil. Cuando menos lo esperes, te descubrirás dentro de la experiencia.',
   text_home_notifications_description: '¡Es muy sencillo! Toma tu foto y crea tu perfil. Cuando menos lo esperes, te descubrirás dentro de la experiencia.',
-  text_home_subtitle: '¡Disfruta del show a través de la app!',
+  text_home_subtitle: '¡Disfruta del show desde la app!',
   text_home_bracelet_title: '¿Ya tienes tu pulsera?',
   text_home_bracelet_description: 'Al llegar, recibirás dos listones: amarra uno a la ofrenda de nuestra Selección Nacional y el otro pórtalo como pulsera.',
   text_home_receive: 'Recíbela',
   text_home_put: 'Póntela',
-  text_home_offer: 'Ofrenda',
+  text_home_offer: 'Ofréndala',
   text_home_app_title: '¡Descarga \nMi Selección MX!',
   text_home_app_description0: 'La app oficial de la Selección Nacional de México',
   text_home_app_description1: 'Podrás encontrar noticias, multimedia, calendario de partidos, resultados y estadísticas de nuestros equipos, así como enlaces para la compra de boletos, mercancía oficial, transmisiones en vivo y resúmenes.',
@@ -70,15 +70,15 @@ export default {
   text_plan_item_0_title: 'Acceso',
   text_plan_item_1_title: 'Ofrenda',
   text_plan_item_2_title: 'Adoratorio',
-  text_plan_item_3_title: 'Activaciones',
+  text_plan_item_3_title: 'Zona Interactiva',
   text_plan_item_4_title: 'Tienda',
   text_plan_item_5_title: 'Alimentos y bebidas',
   text_plan_item_placeholder_title: 'Próximamente',
 
   text_plan_item_0_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección. ¡Súmate a la experiencia!',
-  text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición, hecha de los listones que tejerán el futuro de la Selección Nacional de México. ¡No olvides ofrendar tu pasión!',
+  text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición, hecha de los listones que tejerán el futuro de la Selección Nacional de México. ¡No olvides amarrar tu pulsera como ofrenda!',
   text_plan_item_2_description: 'En este monumental adoratorio del fútbol viven las memoreias del pasado y las esperanzas del futuro de nuestra Selección Nacional. ¡Únete a la celebración!',
-  text_plan_item_3_description: 'Para cerrar, te invitamos a la zona de activaciones en la que podrás poner a prueba tu nivel de destreza en las distintas actividades de nuestros patrocinadores.',
+  text_plan_item_3_description: 'Para cerrar, te invitamos a la zona interactiva en la que podrás poner a prueba tu nivel de destreza en las distintas actividades de nuestros patrocinadores. ¡Juega, diviértete y lúcete!',
   text_plan_item_4_description: '¿Quieres llevarte un cachito del show contigo? Checa nuestra tienda y elige los mejores artículos de la experiencia.',
   text_plan_item_5_description: 'Después del show podrás disfrutar de la gran propuesta de alimentos y bebidas que tenemos para tí.',
 
@@ -87,13 +87,15 @@ export default {
   text_quiz_title: '¿Qué tipo de fan eres?',
   text_quiz_subtitle: 'Quiz Futbolero',
   text_quiz_description: 'Contesta este rápido y divertido quiz y descubre el tipo de fan futbolero eres.',
-  text_quiz_instructions: ' ¿Del 1 al 10 volverías con alguien más a la experiencia o la recomendarías?',
+  text_quiz_instructions: '¿Cómo calificarías tu experiencia?',
 
   faq_q_1: `¿Cuáles son los horarios?`,
   faq_a_1: `
-Martes a viernes (13:30 / 2:50 / 4:10 / 5:30 / 6:50 / 20:00)
-Sábado y domingo (12:00 13:30 / 2:50 / 4:10 / 5:30 / 6:50 / 20:00)
-La duración aproximada de la visita es de una hora y media.
+  Martes a Viernes: 13:30, 14:50, 16:10, 17:30, 18:50 y 20:00 hrs.
+
+  Sábado y Domingo: 12:00, 13:30, 14:50, 16:10, 17:30, 16:50 y 20:00 hrs.
+  
+  La duración aproximada de la visita es de una hora y media
 `,
 
   faq_q_2: `¿Dónde puedo descargar el app?`,
@@ -115,7 +117,7 @@ La duración aproximada de la visita es de una hora y media.
   faq_a_7: `Aproximadamente 1 hora y media.`,
 
   faq_q_8: `¿Qué más puedo encontrar dentro de la experiencia?`,
-  faq_a_8: `Si, contamos con una zona con juegos interactivos, bebidas, alimentos y cortesías de nuestros patrocinadores.`,
+  faq_a_8: `Contamos con una zona de juegos interactivos, alimentos y bebidas.`,
 
   faq_q_9: `¿Puedo adquirir mercancía oficial del evento?`,
   faq_a_9: `Si, contamos con una tienda oficial.`,
@@ -138,8 +140,8 @@ La duración aproximada de la visita es de una hora y media.
   faq_q_15: `¿Cuál es el transporte público más cercano a la experiencia?`,
   faq_a_15: `El Metro Velódromo está a unos metros de la entrada principal.`,
 
-  faq_q_16: `¿El espacio es accesible para personas en sillas de ruedas?`,
-  faq_a_16: `Sí, todas las personas son bienvenidas.`,
+  faq_q_16: `¿El espacio es accesible para silla de ruedas o carreolas?`,
+  faq_a_16: `Sí. Contamos con rampas y baños amplios.`,
 
   faq_q_17: `¿Puedo entrar con mi mochila o pañalera?`,
   faq_a_17: `Puedes acceder con pañalera pero te invitamos a dejar en casa cualquier pertenencia de valor, mochilas grandes o paquetes.`,
@@ -198,13 +200,13 @@ Sanitización constante de todo el recinto.
   quiz_question5_answer4: 'Pareja',
 
   quiz_result_title: '¿Qué tipo de fan eres?',
-  quiz_result_clavado_title: 'El Clavado',
+  quiz_result_clavado_title: 'Clavado',
   quiz_result_clavado_description: 'Gritas como director técnico para apoyar a tu Selección. Tu sin fin de rituales y supersticiones casi te asemejan a un chamán en plena ceremonia. En año de mundial no tienes otro tema de conversación.',
-  quiz_result_sabelotodo_title: 'El Sabelotodo',
+  quiz_result_sabelotodo_title: 'Sabelotodo',
   quiz_result_sabelotodo_description: `Te pueden confundir con un comentarista o analista por todo tu conocimiento pambolero. Durante un partido del mundial das el contexto de cada jugada y sabes las estadísticas de cada jugador. Te sabes todos los datos que a un mortal se le escaparían. Todos te buscan para armar sus "top pics" de su liga de fantasía.`,
-  quiz_result_nostalgico_title: 'El Nostálgico',
+  quiz_result_nostalgico_title: 'Nostálgico',
   quiz_result_nostalgico_description: 'Eres un almanaque con pies. Tienes grabados en tu mente los mejores goles de la historia, los jugadores que marcaron tu infancia y anhelas las épocas doradas del fútbol. Te gusta el fútbol pero piensas que los jugadores de antes eran mejores.',
-  quiz_result_villamelon_title: 'El Villamelón',
+  quiz_result_villamelon_title: 'Villamelón',
   quiz_result_villamelon_description: 'Para ti el mejor momento del partido es el medio tiempo pues puedes platicar con medio mundo y seguir disfrutando del ambiente. Te interesa más saber quien  sale con Belinda que quienes van a pasar a la siguiente ronda.',
 
 

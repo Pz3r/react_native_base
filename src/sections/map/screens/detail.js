@@ -34,7 +34,7 @@ function MapDetailScreen({ route, navigation }) {
           <View style={styles.top}>
             <StepHeader backButtonHandler={goBack} />
           </View>
-          <Image source={planItem.cover} />
+          <Image style={{ alignSelf: 'center' }} source={planItem.cover} />
           <View style={styles.infoContainer}>
             <Text style={styles.subTitle}>{i18n.t(planItem.title)}</Text>
             <Text style={styles.paragraph}>{i18n.t(planItem.description)}</Text>
