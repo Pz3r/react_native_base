@@ -9,12 +9,12 @@ export default FANS = {
   'SABELOTODO': {
     title: 'quiz_result_sabelotodo_title',
     description: 'quiz_result_sabelotodo_description',
-    image: IMG.aficionadoNostalgico
+    image: IMG.aficionadoSabelotodo    
   },
   'NOSTALGICO': {
     title: 'quiz_result_nostalgico_title',
     description: 'quiz_result_nostalgico_description',
-    image: IMG.aficionadoSabelotodo
+    image: IMG.aficionadoNostalgico
   },
   'VILLAMELON': {
     title: 'quiz_result_villamelon_title',

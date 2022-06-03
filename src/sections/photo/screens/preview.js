@@ -216,7 +216,7 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
             <Checkbox value={isTerms} onChange={setIsTerms} accessibilityLabel={i18n.t(`button_accept_terms`)} />
             <Button _text={styles.underlinedButton} variant="unstyled" onPress={() => navigation.navigate(NAVIGATION_PRIVACY_NOTICE_STACK)}>{i18n.t(`button_accept_terms`)}</Button>
           </Flex>
-          <Button isDisabled={!isTerms} style={{ marginTop: 20 }} onPress={confirmStamp} width="80%" backgroundColor="#c1e645" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
+          <Button isDisabled={!isTerms} style={{ marginTop: 20 }} onPress={confirmStamp} width="80%" backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_ready')}</Button>
         </View>
         <LoaderModal
           isVisible={isLoading}
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,

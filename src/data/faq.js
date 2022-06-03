@@ -15,7 +15,6 @@ export default FAQ = [
   { title: 'faq_q_15', content: 'faq_a_15' },
   { title: 'faq_q_16', content: 'faq_a_16' },
   { title: 'faq_q_17', content: 'faq_a_17' },
-  { title: 'faq_q_18', content: 'faq_a_18' },
   { title: 'faq_q_19', content: 'faq_a_19' },
   { title: 'faq_q_20', content: 'faq_a_20' },
   { title: 'faq_q_21', content: 'faq_a_21' },

@@ -21,6 +21,15 @@ function PartyHomeScreen({ navigation }) {
     navigation.goBack();
   }, [navigation]);
 
+  /*
+  return (
+
+    <Flex flex={1} style={{ backgroundColor: '#1d1d1d' }}>
+      <LottieView source={Lottie.fondoLoop} />
+    </Flex>
+  )
+  */
+
   return (
 
     <Flex flex={1}>
@@ -50,7 +59,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#00994c',
     fontSize: 30,
     paddingVertical: 10,
     alignSelf: 'flex-start',

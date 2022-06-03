@@ -28,14 +28,13 @@ function HomeScreen({ navigation }) {
           <Text style={styles.paragraph}>{i18n.t('text_home_experience_2')}</Text>
           <Text style={styles.title}>{i18n.t('text_home_participate_title')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_home_participate_description')}</Text>
-          <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
+          <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
           {false &&
             <>
               <Text style={styles.paragraph}>{i18n.t('text_home_notifications_description')}</Text>
-              <Button style={styles.button} backgroundColor="#c1e645" _text={styles.buttonText} onPress={activateNotification}>{i18n.t('button_action_activate_notifications')}</Button>
+              <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={activateNotification}>{i18n.t('button_action_activate_notifications')}</Button>
             </>
-          }
-          <Text style={styles.subTitle}>{i18n.t('text_home_subtitle')}</Text>
+          }          
         </View>
         <Image source={IMG.smImagenHomeB} />
         <View style={styles.showInfoContainer}>
@@ -62,7 +61,13 @@ function HomeScreen({ navigation }) {
               </View>
             </View>
           </View>
-          <Text style={styles.title}>{i18n.t('text_home_app_title')}</Text>
+        </View>
+        <View style={[styles.showInfoContainer, { paddingTop: 0 }]}>
+          <Text style={[styles.title, { alignSelf: 'center', textAlign: 'center' }]}>{i18n.t('text_home_app_title')}</Text>
+          <Text style={styles.paragraph}>{i18n.t('text_home_app_description0')}</Text>
+        </View>
+        <Image source={IMG.smImagenHomeFMF} />
+        <View style={styles.showInfoContainer}>
           <Text style={styles.paragraph}>{i18n.t('text_home_app_description1')}</Text>
           <Text style={styles.paragraph}>{i18n.t('text_home_app_description2')}</Text>
           <Text style={[styles.paragraph, { paddingBottom: 0 }]}>{i18n.t('text_home_app_description3')}</Text>
@@ -103,7 +108,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'OperaBlackOblique',
-    color: '#e74a7b',
+    color: '#f63440',
     fontSize: 35,
     lineHeight: 37,
     alignSelf: 'flex-start',
@@ -112,7 +117,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#8cbe5d',
+    color: '#f63440',
     fontSize: 30,
     lineHeight: 34,
     alignSelf: 'center',
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
   },
   numberTitle: {
     fontFamily: 'OperaBlackOblique',
-    color: '#f7ec13',
+    color: '#ffffff',
     fontSize: 30,
     lineHeight: 34,
     alignSelf: 'center',
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontSize: 13,
     lineHeight: 19,

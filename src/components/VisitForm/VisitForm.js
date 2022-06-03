@@ -107,7 +107,7 @@ export default function VisitForm({ finishHandler, shouldPreload, buttonText }) 
           }
         );
 
-        await AsyncStorage.setItem('SYNC_FORMATTED_DATE', postDate)
+        await AsyncStorage.setItem('SYNC_FORMATTED_DATE', postDate);
         console.log(`===== ${TAG}:sendDate response status: ${response.status} =====`);
         setIsDataSent(true);
 
@@ -151,7 +151,7 @@ export default function VisitForm({ finishHandler, shouldPreload, buttonText }) 
             onCancel={hideTimePicker}
           />
         </View>
-        <Button onPress={sendDateTime} isDisabled={!date || !time} backgroundColor="#c1e645" _text={styles.buttonText}>{buttonText || i18n.t('button_action_finish')}</Button>
+        <Button onPress={sendDateTime} isDisabled={!date || !time} backgroundColor="#00994c" _text={styles.buttonText}>{buttonText || i18n.t('button_action_finish')}</Button>
       </View>
       <LoaderModal
         isVisible={isLoading}
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40
   },
   buttonText: {
-    color: '#2a5a40',
+    color: '#ffffff',
     fontFamily: 'Inter-SemiBold',
     fontWeight: 'bold',
     fontSize: 13,

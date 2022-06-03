@@ -44,7 +44,7 @@ const QuietProvider = (props) => {
           const formattedDate = yyyy + mm + dd;
           const formattedTime = today.getHours() + '' + today.getMinutes();
           const schedule = formattedDate + formattedTime;
-          console.log(`===== QuietProvider schedule: ${schedule} ======`)
+          console.log(`===== QuietProvider schedule: ${schedule} / ${storedDate} / ${formattedDate} ======`)
           if (storedDate !== formattedDate) {
             const storeId = await AsyncStorage.getItem(STORAGE_UUID);
 

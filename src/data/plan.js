@@ -2,7 +2,7 @@ import IMG from 'assets/img';
 
 const PLAN_ITEMS = [
   {
-    color: '#8cbe5d',
+    color: '#00994c',
     icon: IMG.iconoTunel,
     title: 'text_plan_item_0_title',
     cover: IMG.smImagenAcceso,
