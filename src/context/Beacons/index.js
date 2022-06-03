@@ -26,8 +26,8 @@ export const useBeacons = () => useContext(BeaconsContext)
 const isAndroid = Platform.OS === 'android'
 const kontaktEmitter = new NativeEventEmitter(KontaktModule)
 const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz'
-const accessBeacons = ['11oB00Zo', '11oD00Zq']
-const exitBeacons = ['11oG00Zt', '11oo04xx', '11ou04y2', '11oz04y7', '11o104Vd', '11o404yC']
+const accessBeacons = ['11oz04y7', '11oD00Zq', '11ou04y2', '11oo04xx']
+const exitBeacons = ['11oB00Zo', '11o404yC']
 const STORAGE_UUID = 'STORAGE_UUID';
 
 /**
