@@ -87,7 +87,10 @@ export default {
   text_quiz_title: '¿Qué tipo de fan eres?',
   text_quiz_subtitle: 'Quiz Futbolero',
   text_quiz_description: 'Contesta este rápido y divertido quiz y descubre el tipo de fan futbolero eres.',
-  text_quiz_instructions: '¿Cómo calificarías tu experiencia?',
+  text_quiz_instructions: `
+  Antes de comenzar el quiz... 
+  ¿Del 1 al 10 volverías con alguien más a la experiencia o la recomendarías?
+  `,
 
   faq_q_1: `¿Cuáles son los horarios?`,
   faq_a_1: `

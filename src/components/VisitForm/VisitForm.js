@@ -64,7 +64,7 @@ export default function VisitForm({ finishHandler, shouldPreload, buttonText }) 
 
   const handleConfirmTime = (pickedTime) => {
     console.warn("A time has been picked: ", pickedTime);
-    setTime(`${pickedTime.getHours()}:${pickedTime.getMinutes()}`);
+    setTime(`${String(pickedTime.getHours()).padStart(2, '0')}:${String(pickedTime.getMinutes()).padStart(2, '0')}`);
     hideTimePicker();
   };
 

@@ -100,11 +100,12 @@ const styles = StyleSheet.create({
   },
   ratingParagraph: {
     color: '#ffffff',
+    textAlign: 'center',
     fontFamily: 'Inter-Regular',
     fontSize: 15,
     lineHeight: 18,
     paddingTop: 10,
-    paddingBottom: 20,
+    paddingBottom: 10,
     paddingHorizontal: 40,
   },
   top: {
