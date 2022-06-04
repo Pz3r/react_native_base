@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, Platform } from 'react-native';
 import { Flex } from 'native-base';
+import { TapGestureHandler } from 'react-native-gesture-handler';
 import Reanimated, { Extrapolate, interpolate, useAnimatedGestureHandler, useAnimatedProps, useSharedValue, runOnJS } from 'react-native-reanimated';
 import {
   Camera,
@@ -35,6 +36,7 @@ function PhotoCameraScreen({ navigation }) {
   const [faces, setFaces] = useState();
   const zoom = useSharedValue(0);
   const isPressingButton = useSharedValue(false);
+  const [isStarted, setIsStarted] = useState(false);
 
   // check if camera page is active
   const isFocused = useIsFocused();
@@ -131,7 +133,7 @@ function PhotoCameraScreen({ navigation }) {
   const onMediaCaptured = useCallback(
     (path, width, height, type) => {
       console.log(`====== Media captured! ${path}//${width}//${height}//${type} =====`);
-
+      setIsStarted(false);
       navigation.navigate(NAVIGATION_PHOTO_PREVIEW_SCREEN, {
         path,
         width,
@@ -173,6 +175,7 @@ function PhotoCameraScreen({ navigation }) {
   // Tap Gesture
   const onDoubleTap = useCallback(() => {
     console.log(`===== onDoubleTap =====`);
+    setIsStarted(true);
     onFlipCameraPressed();
   }, [onFlipCameraPressed]);
   // END Tap Gesture
@@ -241,33 +244,37 @@ function PhotoCameraScreen({ navigation }) {
         <View style={styles.top}>
           <StepHeader title={i18n.t('photo_camera_title')} backButtonHandler={goBack} total={4} step={1} />
         </View>
-        <View style={styles.cameraContainer}>
+        <Reanimated.View style={styles.cameraContainer}>
           {device != null && (
-            <>
-              <Camera
-                ref={camera}
-                style={StyleSheet.absoluteFill}
-                device={device}
-                format={format}
-                fps={fps}
-                hdr={enableHdr}
-                lowLightBoost={device.supportsLowLightBoost && enableNightMode}
-                isActive={isActive}
-                onInitialized={onInitialized}
-                onError={onError}
-                enableZoomGesture={false}
-                photo={true}
-                video={false}
-                audio={false}
-                frameProcessor={device.supportsParallelVideoProcessing ? frameProcessor : undefined}
-                orientation="portrait"
-                frameProcessorFps={1}
-                onFrameProcessorPerformanceSuggestionAvailable={onFrameProcessorSuggestionAvailable}
-              />
-              <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaBlanca} />
-            </>
+            <TapGestureHandler onEnded={onDoubleTap} numberOfTaps={1}>
+              <View style={styles.cameraContainer}>
+                <Camera
+                  ref={camera}
+                  style={StyleSheet.absoluteFill}
+                  device={device}
+                  format={format}
+                  fps={fps}
+                  hdr={enableHdr}
+                  lowLightBoost={device.supportsLowLightBoost && enableNightMode}
+                  isActive={isActive}
+                  onInitialized={onInitialized}
+                  onError={onError}
+                  enableZoomGesture={false}
+                  photo={true}
+                  video={false}
+                  audio={false}
+                  frameProcessor={device.supportsParallelVideoProcessing ? frameProcessor : undefined}
+                  orientation="portrait"
+                  frameProcessorFps={1}
+                  onFrameProcessorPerformanceSuggestionAvailable={onFrameProcessorSuggestionAvailable}
+                />
+                <Image style={{ position: 'absolute', alignSelf: 'center', height: '20%', resizeMode: 'contain', top: '20%', opacity: isStarted ? 0 : 0 }} source={IMG.manitaClick} />
+                <Text style={{ position: 'absolute', alignSelf: 'center', top: '40%', color: '#ffffff', fontSize: 20, opacity: !isStarted && Platform.OS === 'android' ? 1 : 0 }}>Toca aquí para iniciar</Text>
+                <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaBlanca} />
+              </View>
+            </TapGestureHandler>
           )}
-        </View>
+        </Reanimated.View>
         {device && !device.supportsParallelVideoProcessing && false &&
           <Text style={styles.infoText}>Live face detection NOT supported</Text>
         }
@@ -275,14 +282,14 @@ function PhotoCameraScreen({ navigation }) {
           <Text style={styles.infoText}>Faces: {faces && device && device.supportsParallelVideoProcessing ? faces.length : 0}</Text>
         }
         <CaptureButton
-          style={styles.captureButton}
+          style={[styles.captureButton]}
           camera={camera}
           onMediaCaptured={onMediaCaptured}
           cameraZoom={zoom}
           minZoom={minZoom}
           maxZoom={maxZoom}
           flash={supportsFlash ? flash : 'off'}
-          enabled={(faces && device && device.supportsParallelVideoProcessing && faces.length < 1) ? false : true}
+          enabled={(faces && device && device.supportsParallelVideoProcessing && faces.length < 1) || (!isStarted && Platform.OS === 'android') ? false : true}
           setIsPressingButton={setIsPressingButton}
         />
       </Flex>

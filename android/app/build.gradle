@@ -135,8 +135,8 @@ android {
         applicationId "mx.cocolab.experiencias.seleccion"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 152
-        versionName "1.5.2"
+        versionCode 153
+        versionName "1.5.3"
     }
     splits {
         abi {
