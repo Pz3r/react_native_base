@@ -77,7 +77,7 @@ export default {
 
   text_plan_item_0_description: 'Aquí te prepararás para participar en la experiencia. Recibirás tus listones y podrás subir tu foto al App de Vive Mi Selección. ¡Súmate a la experiencia!',
   text_plan_item_1_description: 'En este espacio de esperanza y ritual se suma la pasión de la afición, hecha de los listones que tejerán el futuro de la Selección Nacional de México. ¡No olvides amarrar tu pulsera como ofrenda!',
-  text_plan_item_2_description: 'En este monumental adoratorio del fútbol viven las memoreias del pasado y las esperanzas del futuro de nuestra Selección Nacional. ¡Únete a la celebración!',
+  text_plan_item_2_description: 'En este monumental adoratorio del fútbol viven las memorias del pasado y las esperanzas del futuro de nuestra Selección Nacional. ¡Únete a la celebración!',
   text_plan_item_3_description: 'Para cerrar, te invitamos a la zona interactiva en la que podrás poner a prueba tu nivel de destreza en las distintas actividades de nuestros patrocinadores. ¡Juega, diviértete y lúcete!',
   text_plan_item_4_description: '¿Quieres llevarte un cachito del show contigo? Checa nuestra tienda y elige los mejores artículos de la experiencia.',
   text_plan_item_5_description: 'Después del show podrás disfrutar de la gran propuesta de alimentos y bebidas que tenemos para tí.',

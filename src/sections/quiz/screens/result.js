@@ -98,10 +98,12 @@ function QuizResultScreen({ navigation }) {
           <Text style={styles.title}>{i18n.t(resultFan.title)}</Text>
           <Text style={styles.ratingParagraph}>{i18n.t(resultFan.description)}</Text>
         </ViewShot>
-        <TouchableOpacity onPress={onCapture} style={styles.shareButton}>
-          <Text style={styles.shareText}>{i18n.t('button_action_share')}</Text>
-          <Image source={IMG.botonCompartir} />
-        </TouchableOpacity>
+        <Flex style={{ width: '100%', paddingTop: 10, paddingBottom: 0 }}>
+          <TouchableOpacity onPress={onCapture} style={styles.shareButton}>
+            <Text style={styles.shareText}>{i18n.t('button_action_share')}</Text>
+            <Image source={IMG.botonCompartir} />
+          </TouchableOpacity>
+        </Flex>
         <Flex style={{ width: '100%', paddingTop: 20, paddingBottom: 20 }} flex="1" flexDirection="row" alignItems="flex-end">
           <Flex flex="1" style={{ paddingHorizontal: 20 }}>
             <Button onPress={restartQuiz} backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_quiz_restart')}</Button>

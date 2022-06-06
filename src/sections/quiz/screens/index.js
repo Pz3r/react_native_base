@@ -56,6 +56,18 @@ function QuizHomeScreen({ navigation, resetQuiz, setRating }) {
             showRating={false}
             selectedColor="#f63440"
             onFinishRating={onFinishRating} />
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.ratingText}>1</Text>
+            <Text style={styles.ratingText}>2</Text>
+            <Text style={styles.ratingText}>3</Text>
+            <Text style={styles.ratingText}>4</Text>
+            <Text style={styles.ratingText}>5</Text>
+            <Text style={styles.ratingText}>6</Text>
+            <Text style={styles.ratingText}>7</Text>
+            <Text style={styles.ratingText}>8</Text>
+            <Text style={styles.ratingText}>9</Text>
+            <Text style={[styles.ratingText, { marginEnd: 0 }]}>10</Text>
+          </View>
         </Flex>
         <Flex>
           <Button backgroundColor="#00994c" _text={styles.buttonText} onPress={startQuiz}>{i18n.t('button_action_start_quiz')}</Button>
@@ -79,6 +91,13 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 20,
     textAlign: 'center'
+  },
+  ratingText: {
+    width: 21,
+    marginEnd: 5, 
+    color: '#ffffff',
+    textAlign: 'center',
+    fontFamily: 'Inter-Regular',
   },
   subTitle: {
     fontFamily: 'OperaBlackOblique',

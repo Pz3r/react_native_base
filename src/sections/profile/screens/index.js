@@ -85,15 +85,17 @@ function ProfileHomeScreen({ navigation, stamp, shirt }) {
             <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={takePhoto}>{i18n.t('button_action_participate')}</Button>
           </View>
         }
-        <View style={styles.subContainer}>
-          <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
-          <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
-          <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
-          <View style={styles.formContainer}>
-            <Text style={styles.formTitle}>{i18n.t('text_profile_visit_title')}</Text>
-            <VisitForm finishHandler={finishHandler} buttonText={i18n.t('button_action_update_visit')} />
+        {stamp &&
+          <View style={styles.subContainer}>
+            <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
+            <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
+            <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
+            <View style={styles.formContainer}>
+              <Text style={styles.formTitle}>{i18n.t('text_profile_visit_title')}</Text>
+              <VisitForm finishHandler={finishHandler} buttonText={i18n.t('button_action_update_visit')} />
+            </View>
           </View>
-        </View>
+        }
       </ScrollView>
     </ImageBackground>
   )
@@ -189,6 +191,7 @@ const styles = StyleSheet.create({
     fontFamily: 'OperaBlackOblique',
     color: '#f63440',
     fontSize: 30,
+    lineHeight: 30,
     paddingVertical: 10,
     alignSelf: 'center',
   },

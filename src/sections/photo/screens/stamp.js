@@ -84,13 +84,13 @@ function PhotoStampScreen({ navigation }) {
           <Image style={styles.selfie} source={{ uri: `data:image/jpg;base64,${photoBase64}` }} />
           <Image style={styles.overlay} resizeMode="contain" source={FRAMES[selectedShirt]} />
         </ViewShot>
+      </Flex>
+      <LottieView source={Lottie.confettiVertical} autoPlay loop style={{ position: 'absolute', top: 0 }} />
+      <Flex flex="1" alignItems="center" justifyContent="flex-end" style={{ paddingBottom: 20 }}>
         <TouchableOpacity onPress={onCapture} style={styles.shareButton}>
           <Text style={styles.shareText}>{i18n.t('button_action_share')}</Text>
           <Image source={IMG.botonCompartir} />
         </TouchableOpacity>
-      </Flex>
-      <LottieView source={Lottie.confettiVertical} autoPlay loop style={{ position: 'absolute', top: 0 }} />
-      <Flex flex="1" alignItems="center" justifyContent="flex-end" style={{ paddingBottom: 20 }}>
         <Button onPress={nextStep} backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_next')}</Button>
       </Flex>
     </ImageBackground>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     aspectRatio: 137 / 160,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   overlay: {
     position: 'absolute',
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     paddingEnd: 20,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   shareText: {
     color: '#ffffff',
