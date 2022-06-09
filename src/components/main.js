@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'native-base';
+import { Button, Flex } from 'native-base';
 import { connect } from 'react-redux';
 import i18n from 'i18n-js';
 import Modal from 'react-native-modal';
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   },
   innerError: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

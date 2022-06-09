@@ -73,16 +73,15 @@ function PhotoPreviewScreen({ route, navigation, setStamp }) {
     let croppedWidth;
     let croppedHeight;
 
-    if (photoWidth === photoHeight) {
+    if (photoWidth <= photoHeight) {
       croppedWidth = photoWidth * .75;
       croppedHeight = photoHeight;
       diffX = (photoWidth - croppedWidth) / 2;
-
-    } else {
+    } else if (photoWidth > photoHeight) {
       croppedWidth = photoHeight;
       croppedHeight = photoHeight / .75;
       diffY = (photoWidth - croppedHeight) / 2;
-    }
+    } 
 
     console.log(`====== ${TAG}:getProcessedImage diffX:${diffX} / diffY:${diffY} =====`);
     const croppedUri = await ImageEditor.cropImage(`file://${photoPath}`, {

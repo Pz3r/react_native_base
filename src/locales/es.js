@@ -25,6 +25,7 @@ export default {
   button_action_share: 'Compartir',
   button_action_do_quiz: 'Hacer quiz',
   button_action_participate: 'Quiero tomar mi foto',
+  button_action_participate_change: 'Cambiar mi foto',
   button_action_activate_notifications: 'Activar mis notificaciones',
   button_action_start_quiz: 'Comenzar',
   button_action_quiz_next: 'Siguiente',
