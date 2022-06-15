@@ -7,6 +7,7 @@ import LottieView from 'lottie-react-native';
 import * as FileSystem from 'expo-file-system';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18n-js';
+import { connect } from 'react-redux';
 
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
@@ -16,6 +17,7 @@ import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
 import FANS from '../../../data/fans';
 import { NAVIGATION_HOME_SCREEN, NAVIGATION_PHOTO_FORM_SCREEN, NAVIGATION_QUIZ_HOME_SCREEN, NAVIGATION_QUIZ_STACK } from '../../../navigation/constants';
+import { APP_SET_QUIZ_MODE } from '../../../store/actions/app';
 
 const TAG = 'QuizResultScreen';
 
@@ -26,7 +28,7 @@ const FRAMES = [
 
 const STORAGE_QUIZ_RESULT = 'STORAGE_QUIZ_RESULT';
 
-function QuizResultScreen({ navigation }) {
+function QuizResultScreen({ navigation, setQuizMode }) {
   const [resultFan, setResultFan] = useState({});
   const viewShotRef = useRef();
 
@@ -60,7 +62,7 @@ function QuizResultScreen({ navigation }) {
   }, [navigation]);
 
   const finishQuiz = useCallback(() => {
-    navigation.navigate(NAVIGATION_HOME_SCREEN);
+    setQuizMode({ active: false });
   }, [navigation]);
 
   const onCapture = useCallback(async () => {
@@ -195,4 +197,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QuizResultScreen;
+export default connect(
+  (state, ownProps) => ({ ...state.App, ...ownProps }),
+  dispatch => ({
+    setQuizMode: (payload) => {
+      dispatch({
+        type: APP_SET_QUIZ_MODE,
+        payload
+      })
+    },
+  })
+)(QuizResultScreen);

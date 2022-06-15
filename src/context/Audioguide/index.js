@@ -1,7 +1,10 @@
 import React, { createContext, useEffect, useState, useRef } from 'react';
 import Quiet from 'react-native-quiet';
+import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { ENDPOINT_POST_DATE_URL } from '../../utils/endpoints';
+import { NOTIFICATION_ACTION_END } from '../../constants/constants';
 
 const SYNC_OFFSET = 4;
 const SYNC_CATCHUP = 5;
@@ -44,7 +47,8 @@ const QuietProvider = (props) => {
           const formattedDate = yyyy + mm + dd;
           const formattedTime = today.getHours() + '' + today.getMinutes();
           const schedule = formattedDate + formattedTime;
-          console.log(`===== QuietProvider schedule: ${schedule} / ${storedDate} / ${formattedDate} ======`)
+
+          console.log(`===== QuietProvider schedule: ${schedule} / ${storedDate} / ${formattedDate} ======`);
           if (storedDate !== formattedDate) {
             const storeId = await AsyncStorage.getItem(STORAGE_UUID);
 
@@ -75,6 +79,28 @@ const QuietProvider = (props) => {
             }
           } else {
             console.log(`===== QuietProvider NO SEND (OUTTER) storedDate: ${storedDate} formattedDate: ${formattedDate} =====`);
+          }
+
+          // SCHEDULE ENDING NOTIFICATION
+          const storedNotificationDate = await AsyncStorage.getItem('NOTIFICATION_DATE');
+          //const currentDay = `${dd}/${mm}`;
+          const currentDay = `${'08'}/${'14'}`;
+
+          if (storedNotificationDate !== currentDay) {
+            console.log(`===== QuietProvider notification SCHEDULE ======`);
+            await Notifications.scheduleNotificationAsync({
+              content: {
+                title: "You've got mail! 📬",
+                body: 'Here is the notification body',
+                data: { action: NOTIFICATION_ACTION_END },
+              },
+              trigger: { seconds: 15 },
+            });
+
+            console.log(`===== QuietProvider notification STORE ${currentDay} ======`);
+            await AsyncStorage.setItem('NOTIFICATION_DATE', currentDay);
+          } else {
+            console.log(`===== QuietProvider notification ALREADY SCHEDULED ======`);
           }
         })();
       }

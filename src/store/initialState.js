@@ -14,6 +14,8 @@ export default {
     },
     stamp: null,
     shirt: null,
-    quizResult: null
+    quizResult: null,
+    quizMode: false,
+    showQuiz: false,
   }
 };

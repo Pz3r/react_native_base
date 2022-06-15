@@ -14,18 +14,22 @@ import Lottie from 'assets/lottie';
 import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_CAMERA_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN } from '../../../navigation/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
-import { APP_RESET_QUIZ, APP_SET_ANSWER, APP_SET_RATING } from '../../../store/actions/app';
+import { APP_RESET_QUIZ, APP_SET_ANSWER, APP_SET_QUIZ_MODE, APP_SET_RATING } from '../../../store/actions/app';
 
 const TAG = 'QuizHomeScreen';
 
-function QuizHomeScreen({ navigation, resetQuiz, setRating }) {
+function QuizHomeScreen({ navigation, resetQuiz, setRating, setQuizMode, route }) {
 
   useEffect(() => {
     resetQuiz();
   }, []);
 
   const cancel = useCallback(() => {
-    navigation.goBack();
+    if (route.params && route.params['mode']) {
+      navigation.goBack();
+    } else {
+      setQuizMode({ active: false });
+    }
   }, []);
 
   const startQuiz = useCallback(() => {
@@ -50,7 +54,7 @@ function QuizHomeScreen({ navigation, resetQuiz, setRating }) {
           <Text style={styles.paragraph}>{i18n.t('text_quiz_description')}</Text>
           <Text style={styles.ratingParagraph}>{i18n.t('text_quiz_instructions')}</Text>
           <AirbnbRating
-            count={10}          
+            count={10}
             defaultRating={5}
             size={20}
             showRating={false}
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
   },
   ratingText: {
     width: 21,
-    marginEnd: 5, 
+    marginEnd: 5,
     color: '#ffffff',
     textAlign: 'center',
     fontFamily: 'Inter-Regular',
@@ -184,6 +188,12 @@ const styles = StyleSheet.create({
 export default connect(
   (state, ownProps) => ({ ...state.App, ...ownProps }),
   dispatch => ({
+    setQuizMode: (payload) => {
+      dispatch({
+        type: APP_SET_QUIZ_MODE,
+        payload
+      })
+    },
     resetQuiz: () => {
       dispatch({
         type: APP_RESET_QUIZ

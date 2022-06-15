@@ -1,5 +1,5 @@
 import initialState from '../initialState';
-import { APP_SET_ANSWER, APP_RESET_QUIZ, APP_SET_STAMP, APP_SET_RATING } from '../actions/app';
+import { APP_SET_ANSWER, APP_RESET_QUIZ, APP_SET_STAMP, APP_SET_RATING, APP_SET_QUIZ_MODE, APP_SET_SHOW_QUIZ } from '../actions/app';
 
 const resetQuiz = () => {
   return {
@@ -36,6 +36,8 @@ const typeMap = {
     console.log(JSON.stringify(newState));
     return newState;
   },
+  [APP_SET_QUIZ_MODE]: (state, payload) => ({ ...state, quizMode: payload ? payload.active : false }),
+  [APP_SET_SHOW_QUIZ]: (state, payload) => ({ ...state, showQuiz: payload ? payload.mode : null }),
 };
 
 export default function APP(state = initialState, { type, payload }) {

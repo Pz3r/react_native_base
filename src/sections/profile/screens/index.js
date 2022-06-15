@@ -26,7 +26,7 @@ const FRAMES = [
   IMG.smPaniniNegra,
 ];
 
-function ProfileHomeScreen({ navigation, stamp, shirt }) {
+function ProfileHomeScreen({ navigation, stamp, shirt, showQuiz }) {
   const [photoBase64, setPhotoBase64] = useState();
   const [selectedShirt, setSelectedShirt] = useState();
   const viewShotRef = useRef();
@@ -53,7 +53,7 @@ function ProfileHomeScreen({ navigation, stamp, shirt }) {
 
   const onDoQuiz = useCallback(() => {
     console.log(`===== ${TAG}:onDoQuiz =====`);
-    navigation.navigate(NAVIGATION_QUIZ_STACK, { screen: NAVIGATION_QUIZ_HOME_SCREEN });
+    navigation.navigate(NAVIGATION_QUIZ_STACK, { screen: NAVIGATION_QUIZ_HOME_SCREEN, params: { mode: 'back' } });
   }, []);
 
   const finishHandler = () => {
@@ -87,13 +87,17 @@ function ProfileHomeScreen({ navigation, stamp, shirt }) {
         }
         {stamp &&
           <View style={styles.subContainer}>
-            <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
-            <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
-            <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
             <View style={styles.formContainer}>
               <Text style={styles.formTitle}>{i18n.t('text_profile_visit_title')}</Text>
               <VisitForm finishHandler={finishHandler} buttonText={i18n.t('button_action_update_visit')} />
             </View>
+          </View>
+        }
+        {showQuiz &&
+          <View style={styles.subContainer}>
+            <Text style={styles.subTitle}>{i18n.t('text_profile_quiz_title')}</Text>
+            <Text style={styles.quizDescription}>{i18n.t('text_profile_quiz_description')}</Text>
+            <Button style={styles.button} backgroundColor="#00994c" _text={styles.buttonText} onPress={onDoQuiz}>{i18n.t('button_action_do_quiz')}</Button>
           </View>
         }
       </ScrollView>

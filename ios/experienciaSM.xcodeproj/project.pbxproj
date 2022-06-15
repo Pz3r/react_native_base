@@ -58,6 +58,8 @@
 		63AB127E8DFB49B48CD83599 /* Inter-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Regular.ttf"; path = "../src/assets/fonts/Inter-Regular.ttf"; sourceTree = "<group>"; };
 		6747BD47D4A34BF79B610122 /* Inter-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Inter-Light.ttf"; path = "../src/assets/fonts/Inter-Light.ttf"; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-experienciaSM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-experienciaSM.debug.xcconfig"; path = "Target Support Files/Pods-experienciaSM/Pods-experienciaSM.debug.xcconfig"; sourceTree = "<group>"; };
+		77B346732857C20B0094CCE7 /* experienciaSM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = experienciaSM.entitlements; path = experienciaSM/experienciaSM.entitlements; sourceTree = "<group>"; };
+		77B346742857C2D30094CCE7 /* experienciaSMRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = experienciaSMRelease.entitlements; path = experienciaSM/experienciaSMRelease.entitlements; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-experienciaSM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-experienciaSM.release.xcconfig"; path = "Target Support Files/Pods-experienciaSM/Pods-experienciaSM.release.xcconfig"; sourceTree = "<group>"; };
 		996445CCCCFB4F2EAB6D1073 /* OperaOutlineOblique.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OperaOutlineOblique.otf; path = ../src/assets/fonts/OperaOutlineOblique.otf; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = experienciaSM/SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		13B07FAE1A68108700A75B9A /* experienciaSM */ = {
 			isa = PBXGroup;
 			children = (
+				77B346742857C2D30094CCE7 /* experienciaSMRelease.entitlements */,
+				77B346732857C20B0094CCE7 /* experienciaSM.entitlements */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -408,6 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = experienciaSM/experienciaSM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -441,6 +446,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = experienciaSM/experienciaSMRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

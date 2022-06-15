@@ -2,7 +2,8 @@ import 'react-native-gesture-handler';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import * as Notifications from 'expo-notifications';
+import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider } from 'native-base';
@@ -22,6 +23,15 @@ Amplify.configure(awsconfig);
 i18n.translations = locales;
 i18n.fallbacks = true;
 i18n.defaultLocale = 'es';
+
+// Setup notifications
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  })
+});
 
 export default function App() {
 

@@ -13,10 +13,16 @@ function HomeScreen({ navigation, stamp }) {
   const [isPhotoModalVisible, setIsPhotoModalVisible] = useState(false);
 
   useEffect(() => {
+    console.log(`===== HomeScreen:useEffect stamp ${stamp ? stamp.length : 0} =====`);
     if (!stamp) {
+      setIsPhotoModalVisible(true);
+      /*
       setTimeout(() => {
         setIsPhotoModalVisible(true);
       }, 1000);
+      */
+    } else {
+      setIsPhotoModalVisible(false);
     }
   }, [stamp]);
 
