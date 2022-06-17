@@ -92,7 +92,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
   const nextQuestion = useCallback(async () => {
     await setAnswer({ questionId: `answer${questionIndex}`, answerIndex: selectedAnwer });
     if ((questionIndex + 1) <= 4) {
-      navigation.push(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: questionIndex + 1 });
+      navigation.push(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: questionIndex + 1, mode: route.params['mode'] });
     } else {
       setIsLoading(true);
       console.log(JSON.stringify(quiz));
@@ -105,7 +105,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
       const storeId = await AsyncStorage.getItem(STORAGE_UUID);
 
       // TODO ENVIAR RESULTADOS A SERVIDOR
-      try { 
+      try {
         const response = await fetch(
           ENDPOINT_POST_QUIZ_URL,
           {
@@ -115,7 +115,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
               'Content-Type': 'application/json',
               'x-api-key': ENDPOINT_POST_QUIZ_API_KEY
             },
-            body: JSON.stringify({...quiz, storeId})
+            body: JSON.stringify({ ...quiz, storeId })
           }
         );
 
@@ -127,7 +127,7 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
         console.log(error);
         setIsError(true);
       }
-      
+
       /*
       setTimeout(async () => {
         setIsLoading(false);
@@ -213,7 +213,12 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
             setIsError(false);
             setIsDataSent(false);
             if (completed) {
-              navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN);
+              console.log(route.params['mode']);
+              if (route.params && route.params['mode']) {
+                navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN, { mode: 'back' });
+              } else {
+                navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN);
+              }
             }
           }}
         />

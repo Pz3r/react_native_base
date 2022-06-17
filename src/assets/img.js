@@ -76,6 +76,7 @@ const img = {
   aficionadoSabelotodo: require('./img/aficionado-sabelotodo.png'),
   aficionadoVillamelon: require('./img/aficionado-villamelon.png'),
   logoBlanco: require('./img/logo-blanco.png'),
+  logoVMSNuevo: require('./img/logo-VMS-nuevo.png'),
   smImagenOfrenda: require('./img/SM-imagen-ofrenda.jpg'),
   smImagenAdoratorio: require('./img/SM-imagen-adoratorio.jpg'),
   smImagenPlaceholder: require('./img/SM-imagen-placeholder.jpg'),

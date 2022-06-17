@@ -28,7 +28,7 @@ const FRAMES = [
 
 const STORAGE_QUIZ_RESULT = 'STORAGE_QUIZ_RESULT';
 
-function QuizResultScreen({ navigation, setQuizMode }) {
+function QuizResultScreen({ navigation, setQuizMode, route }) {
   const [resultFan, setResultFan] = useState({});
   const viewShotRef = useRef();
 
@@ -62,8 +62,13 @@ function QuizResultScreen({ navigation, setQuizMode }) {
   }, [navigation]);
 
   const finishQuiz = useCallback(() => {
-    setQuizMode({ active: false });
-  }, [navigation]);
+    console.log(route.params['mode'])
+    if (route.params && route.params['mode']) {
+      navigation.navigate(NAVIGATION_HOME_SCREEN);
+    } else {
+      setQuizMode({ active: false });
+    }    
+  }, [navigation, route]);
 
   const onCapture = useCallback(async () => {
     try {
@@ -94,7 +99,7 @@ function QuizResultScreen({ navigation, setQuizMode }) {
     <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
       <ScrollView contentContainerStyle={styles.container}>
         <ViewShot ref={viewShotRef} style={styles.previewContainer}>
-          <Image source={IMG.logoBlanco} />
+          <Image source={IMG.logoVMSNuevo} />
           <Image style={{ alignSelf: 'center' }} source={resultFan.image} />
           <Text style={styles.subTitle}>{i18n.t('quiz_result_title')}</Text>
           <Text style={styles.title}>{i18n.t(resultFan.title)}</Text>

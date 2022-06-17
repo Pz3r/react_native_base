@@ -84,14 +84,14 @@ const QuietProvider = (props) => {
           // SCHEDULE ENDING NOTIFICATION
           const storedNotificationDate = await AsyncStorage.getItem('NOTIFICATION_DATE');
           //const currentDay = `${dd}/${mm}`;
-          const currentDay = `${'08'}/${'14'}`;
+          const currentDay = `${'08'}/${'15'}`;
 
           if (storedNotificationDate !== currentDay) {
             console.log(`===== QuietProvider notification SCHEDULE ======`);
             await Notifications.scheduleNotificationAsync({
               content: {
-                title: "You've got mail! 📬",
-                body: 'Here is the notification body',
+                title: 'Quiz Futbolero',
+                body: 'Contesta en rápido quiz y descubre qué tipo de fan futbolero eres',
                 data: { action: NOTIFICATION_ACTION_END },
               },
               trigger: { seconds: 15 },

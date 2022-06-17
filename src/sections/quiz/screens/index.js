@@ -33,7 +33,12 @@ function QuizHomeScreen({ navigation, resetQuiz, setRating, setQuizMode, route }
   }, []);
 
   const startQuiz = useCallback(() => {
-    navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0 });
+    console.log(route.params['mode'])
+    if (route.params && route.params['mode']) {
+      navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0, mode: 'back' });
+    } else {
+      navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0 });
+    }
   }, []);
 
   const onFinishRating = useCallback(async (rating) => {
