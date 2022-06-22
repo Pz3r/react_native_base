@@ -139,7 +139,7 @@ function MainComponent({
                   </View>
                 </Modal>
                 <Modal isVisible={isEndModalVisible} style={styles.container}>
-                  <View style={styles.innerError}>
+                  <View style={[styles.innerError, { paddingHorizontal: 30 }]}>
                     <Text style={[styles.title, { alignSelf: 'center', textAlign: 'center' }]}>{i18n.t('text_quiz_title')}</Text>
                     <Text style={[styles.paragraph, { color: '#0f2d25' }]}>{i18n.t('text_quiz_description')}</Text>
                     <Button onPress={answerQuiz} width="40%" backgroundColor="#00994c" _text={styles.buttonText}>{i18n.t('button_action_start_quiz')}</Button>

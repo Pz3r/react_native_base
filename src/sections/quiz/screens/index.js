@@ -33,7 +33,7 @@ function QuizHomeScreen({ navigation, resetQuiz, setRating, setQuizMode, route }
   }, []);
 
   const startQuiz = useCallback(() => {
-    console.log(route.params['mode'])
+    //console.log(route.params['mode'])
     if (route.params && route.params['mode']) {
       navigation.navigate(NAVIGATION_QUIZ_QUESTION_SCREEN, { question: 0, mode: 'back' });
     } else {
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'OperaBlackOblique',
     color: '#f63440',
-    fontSize: 64,
-    lineHeight: 73,
+    fontSize: 50,
+    lineHeight: 50,
     paddingTop: 10,
     paddingHorizontal: 20,
     textAlign: 'center'

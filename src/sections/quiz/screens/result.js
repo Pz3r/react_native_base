@@ -62,7 +62,6 @@ function QuizResultScreen({ navigation, setQuizMode, route }) {
   }, [navigation]);
 
   const finishQuiz = useCallback(() => {
-    console.log(route.params['mode'])
     if (route.params && route.params['mode']) {
       navigation.navigate(NAVIGATION_HOME_SCREEN);
     } else {

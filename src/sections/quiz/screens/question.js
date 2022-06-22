@@ -15,7 +15,7 @@ import i18n from 'i18n-js';
 import IMG from 'assets/img';
 import Lottie from 'assets/lottie';
 
-import { NAVIGATION_PHOTO_STAMP_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN, NAVIGATION_QUIZ_RESULT_SCREEN } from '../../../navigation/constants';
+import { NAVIGATION_HOME_STACK, NAVIGATION_PHOTO_STAMP_SCREEN, NAVIGATION_QUIZ_QUESTION_SCREEN, NAVIGATION_QUIZ_RESULT_SCREEN } from '../../../navigation/constants';
 import { SAFE_AREA_PADDING } from '../../../constants/constants';
 import StepHeader from '../../../components/StepHeader/StepHeader';
 import LoaderModal from '../../../components/LoaderModal/LoaderModal';
@@ -120,7 +120,11 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
         );
 
         console.log(`===== ${TAG}:sendQuiz response status: ${response.status} =====`);
-        setIsDataSent(true);
+        
+        setIsLoading(false);
+        setIsError(false);
+        setIsDataSent(false);
+        navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN, { mode: route.params['mode'] });
 
       } catch (error) {
         console.log(`===== ${TAG}:sendQuiz ERROR =====`);
@@ -209,16 +213,13 @@ function QuizQuestionScreen({ route, navigation, setAnswer, quiz }) {
           loaderText={i18n.t('text_loader_sending')}
           errorText={i18n.t('text_loader_sending_error')}
           closeHandler={(completed) => {
+            console.log(`===== CLOSE HANDLER QUESTION ${completed} =====`);
             setIsLoading(false);
             setIsError(false);
             setIsDataSent(false);
             if (completed) {
-              console.log(route.params['mode']);
-              if (route.params && route.params['mode']) {
-                navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN, { mode: 'back' });
-              } else {
+              console.log(`===== CLOSE HANDLER QUESTION NAVIGATE =====`);
                 navigation.navigate(NAVIGATION_QUIZ_RESULT_SCREEN);
-              }
             }
           }}
         />

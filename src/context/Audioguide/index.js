@@ -4,11 +4,11 @@ import * as Notifications from 'expo-notifications';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { ENDPOINT_POST_DATE_URL } from '../../utils/endpoints';
-import { NOTIFICATION_ACTION_END } from '../../constants/constants';
+import { NOTIFICATION_ACTION_END, NOTIFICATION_ACTION_PARTY } from '../../constants/constants';
 
 const SYNC_OFFSET = 4;
 const SYNC_CATCHUP = 5;
-const SHOW_DURATION = 3000;
+const SHOW_DURATION = 2050;
 const STORAGE_UUID = 'STORAGE_UUID';
 
 const { Provider, Consumer } = createContext('audio');
@@ -83,18 +83,28 @@ const QuietProvider = (props) => {
 
           // SCHEDULE ENDING NOTIFICATION
           const storedNotificationDate = await AsyncStorage.getItem('NOTIFICATION_DATE');
-          //const currentDay = `${dd}/${mm}`;
-          const currentDay = `${'08'}/${'15'}`;
+          const currentDay = `${dd}/${mm}`;
+          //const currentDay = `${'08'}/${'22'}`;
 
           if (storedNotificationDate !== currentDay) {
-            console.log(`===== QuietProvider notification SCHEDULE ======`);
+            console.log(`===== QuietProvider notification SCHEDULE PARTY ${(990 - timestamp)} ======`);
+            await Notifications.scheduleNotificationAsync({
+              content: {
+                title: 'Únete a la fiesta',
+                body: '¡Abre la app y únete a la fiesta!',
+                data: { action: NOTIFICATION_ACTION_PARTY },
+              },
+              trigger: { seconds: (990 - timestamp) },
+            });
+
+            console.log(`===== QuietProvider notification SCHEDULE END ======`);
             await Notifications.scheduleNotificationAsync({
               content: {
                 title: 'Quiz Futbolero',
                 body: 'Contesta en rápido quiz y descubre qué tipo de fan futbolero eres',
                 data: { action: NOTIFICATION_ACTION_END },
               },
-              trigger: { seconds: 15 },
+              trigger: { seconds: SHOW_DURATION },
             });
 
             console.log(`===== QuietProvider notification STORE ${currentDay} ======`);

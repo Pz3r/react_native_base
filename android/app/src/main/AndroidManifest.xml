@@ -13,6 +13,7 @@
   <!-- END OPTIONAL PERMISSIONS -->
   <!-- Added permissions -->
   <uses-permission android:name="android.permission.CAMERA"/>
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
   <!-- Optional permissions -->
   <uses-permission android:name="android.permission.RECORD_AUDIO"/>
   <queries>
