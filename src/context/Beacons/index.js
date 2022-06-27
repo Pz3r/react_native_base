@@ -3,7 +3,8 @@ import { Alert, PermissionsAndroid, DeviceEventEmitter, NativeEventEmitter } fro
 import Kontakt, { KontaktModule } from 'react-native-kontaktio'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ENDPOINT_POST_DATE_URL } from "../../utils/endpoints"
-import getDateTimeToString from './helpers/getDateTimeToString'
+import getCurrentDatetimeAsString from './helpers/getCurrentDatetimeAsString'
+import schedulePushNotification from "./helpers/schedulePushNotification";
 
 const {
   init,
@@ -27,7 +28,7 @@ const isAndroid = Platform.OS === 'android'
 const kontaktEmitter = new NativeEventEmitter(KontaktModule)
 const BEACONS_API_KEY = 'iGBmFNpEMuMJNJCQCxQCxIvKOniojBIz'
 const accessBeacons = ['11oz04y7', '11oD00Zq', '11ou04y2', '11oo04xx']
-const exitBeacons = ['11oB00Zo', '11o404yC']
+const exitBeacons = ['11oB00Zo', '11o404yC', '11o104Vd', '11oG00Zt']
 const STORAGE_UUID = 'STORAGE_UUID';
 
 /**
@@ -102,10 +103,8 @@ const beaconSetup = async () => {
   }
 }
 
-
-
 const storeOne = async () => {
-  const now = getDateTimeToString()
+  const now = getCurrentDatetimeAsString()
   const storedDate = await AsyncStorage.getItem('SYNC_FORMATTED_DATE');
 
   if (storedDate !== now.date) {
@@ -143,12 +142,17 @@ const deviceDetected = (beacons) => {
   const exitBeaconsFound = beacons.filter(o => exitBeacons.includes(o.name)).length
   if(exitBeaconsFound > 0) {
     console.log('show push notification')
+    schedulePushNotification()
   }
 }
 
 export const BeaconsProvider = ({ children }) => {
   useEffect(() => {
     beaconSetup()
+
+    // setInterval(() => {
+    //   schedulePushNotification()
+    // }, 1000);
 
     // Android
     DeviceEventEmitter.addListener(
@@ -179,6 +183,6 @@ export const BeaconsProvider = ({ children }) => {
   }, [])
 
   return (
-    <BeaconsContext.Provider>{children}</BeaconsContext.Provider>
+    <BeaconsContext.Provider value={{}}>{children}</BeaconsContext.Provider>
   )
 }
