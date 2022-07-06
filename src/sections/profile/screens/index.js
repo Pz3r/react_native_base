@@ -24,6 +24,7 @@ const TAG = 'ProfileHomeScreen';
 const FRAMES = [
   IMG.smPaniniBlanca,
   IMG.smPaniniNegra,
+  IMG.smPaniniVerde
 ];
 
 function ProfileHomeScreen({ navigation, stamp, shirt, showQuiz }) {

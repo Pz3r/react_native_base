@@ -24,6 +24,7 @@ const TAG = 'PhotoStampScreen';
 const FRAMES = [
   IMG.smPaniniBlanca,
   IMG.smPaniniNegra,
+  IMG.smPaniniVerde
 ];
 
 function PhotoStampScreen({ navigation }) {

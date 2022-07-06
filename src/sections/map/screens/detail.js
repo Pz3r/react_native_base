@@ -27,9 +27,9 @@ function MapDetailScreen({ route, navigation }) {
     navigation.goBack();
   }, [navigation]);
 
-  return (
-    <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
-      {planItem && planItem.cover &&
+  if (planItem && planItem.cover) {
+    return (
+      <ImageBackground resizeMode="cover" style={styles.background} source={IMG.appFondo}>
         <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.top}>
             <StepHeader backButtonHandler={goBack} />
@@ -39,20 +39,28 @@ function MapDetailScreen({ route, navigation }) {
             <Text style={styles.subTitle}>{i18n.t(planItem.title)}</Text>
             <Text style={styles.paragraph}>{i18n.t(planItem.description)}</Text>
           </View>
+          {planItem.extra &&
+            <View style={styles.extraContainer}>
+              <Text style={styles.extraParagraph}>{i18n.t(planItem.extra)}</Text>
+              <Image source={IMG.logoBanorte} />
+            </View>
+          }
         </ScrollView>
-      }
-      {planItem && !planItem.cover &&
-        <>
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={[styles.subTitle, { fontSize: 40, lineHeight: 42, paddingBottom: 0 }]}>{i18n.t('text_plan_item_placeholder_title')}</Text>
-          </View>
-          <View style={[styles.top, { position: 'absolute', top: SAFE_AREA_PADDING.paddingTop,}]}>
-            <StepHeader backButtonHandler={goBack} />
-          </View>
-        </>
-      }
-    </ImageBackground>
+      </ImageBackground>
+    )
+  }
+
+  return (
+    <>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={[styles.subTitle, { fontSize: 40, lineHeight: 42, paddingBottom: 0 }]}>{i18n.t('text_plan_item_placeholder_title')}</Text>
+      </View>
+      <View style={[styles.top, { position: 'absolute', top: SAFE_AREA_PADDING.paddingTop, }]}>
+        <StepHeader backButtonHandler={goBack} />
+      </View>
+    </>
   )
+
 }
 
 const styles = StyleSheet.create({
@@ -63,6 +71,10 @@ const styles = StyleSheet.create({
   infoContainer: {
     paddingVertical: 15,
     paddingHorizontal: 15
+  },
+  extraContainer: {
+    alignItems: 'center',
+    paddingBottom: 40
   },
   top: {
     paddingHorizontal: 15,
@@ -128,6 +140,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     paddingBottom: 20
+  },
+  extraParagraph: {
+    color: '#ffffff',
+    fontFamily: 'Inter-Regular',
+    fontSize: 16,
+    fontWeight: '600',
+    lineHeight: 19,
+    paddingBottom: 20,
+    textAlign: 'center',
+    paddingHorizontal: 30
   },
 });
 

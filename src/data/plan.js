@@ -35,6 +35,7 @@ const PLAN_ITEMS = [
     title: 'text_plan_item_4_title',
     cover: IMG.smImagenTienda,
     description: 'text_plan_item_4_description',
+    extra: 'text_plan_item_4_extra',
   },
   {
     color: '#c2a749',

@@ -270,7 +270,7 @@ function PhotoCameraScreen({ navigation }) {
                 />
                 <Image style={{ position: 'absolute', alignSelf: 'center', height: '20%', resizeMode: 'contain', top: '20%', opacity: isStarted ? 0 : 0 }} source={IMG.manitaClick} />
                 <Text style={{ position: 'absolute', alignSelf: 'center', top: '40%', color: '#ffffff', fontSize: 20, opacity: !isStarted && Platform.OS === 'android' ? 1 : 0 }}>Toca aquí para iniciar</Text>
-                <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaBlanca} />
+                <ImageBackground resizeMode="cover" style={styles.overlay} source={IMG.smCamisaVerde} />
               </View>
             </TapGestureHandler>
           )}
