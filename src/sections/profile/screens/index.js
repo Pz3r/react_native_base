@@ -22,9 +22,8 @@ const STORAGE_SHIRT = 'STORAGE_SHIRT';
 const TAG = 'ProfileHomeScreen';
 
 const FRAMES = [
-  IMG.smPaniniBlanca,
-  IMG.smPaniniNegra,
-  IMG.smPaniniVerde
+  IMG.smPaniniVerde,
+  IMG.smPaniniBlanca
 ];
 
 function ProfileHomeScreen({ navigation, stamp, shirt, showQuiz }) {

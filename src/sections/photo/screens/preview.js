@@ -30,9 +30,8 @@ const PHOTO_WIDTH = 414;
 const PHOTO_HEIGHT = 552;
 
 const SHIRT_OPTIONS = [
-  IMG.smCamisaBlanca,
-  IMG.smCamisaNegra,
   IMG.smCamisaVerde,
+  IMG.smCamisaBlanca
 ];
 
 function PhotoPreviewScreen({ route, navigation, setStamp }) {
