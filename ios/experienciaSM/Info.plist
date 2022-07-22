@@ -70,6 +70,10 @@
 		<string>OperaStencilOblique.otf</string>
 		<string>OperaThinOblique.otf</string>
 		<string>OperaWesternOblique.otf</string>
+		<string>Arvo-Bold.ttf</string>
+		<string>Arvo-BoldItalic.ttf</string>
+		<string>Arvo-Italic.ttf</string>
+		<string>Arvo-Regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>SplashScreen</string>
@@ -85,5 +89,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
 </dict>
 </plist>

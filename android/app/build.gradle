@@ -132,11 +132,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "mx.cocolab.experiencias.seleccion"
+        applicationId "mx.cocolab.kingTutApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 164
-        versionName "1.6.4"
+        versionCode 12
+        versionName "1.2"
     }
     splits {
         abi {

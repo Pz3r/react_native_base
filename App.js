@@ -1,59 +1,46 @@
 import 'react-native-gesture-handler';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
-import * as Notifications from 'expo-notifications';
-import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet } from 'react-native';
+import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from 'native-base';
-import { Provider } from 'react-redux';
-import { Amplify } from 'aws-amplify';
+import AppLoading from 'expo-app-loading';
 import i18n from 'i18n-js';
+import {
+  useFonts,
+  Arvo_400Regular,
+  Arvo_400Regular_Italic,
+  Arvo_700Bold,
+  Arvo_700Bold_Italic,
+} from '@expo-google-fonts/arvo';
 
-import locales from './src/locales';
-import SetupComponent from './src/components/setup';
-import store from './src/store/store';
-import awsconfig from './src/aws-exports';
-
-// Setup Amplify
-Amplify.configure(awsconfig);
+import locales from './src/locales'
+import SetupComponent from './src/setup';
 
 // Setup internationalization
 i18n.translations = locales;
 i18n.fallbacks = true;
-i18n.defaultLocale = 'es';
-
-// Setup notifications
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
-  })
-});
+i18n.defaultLocale = 'en';
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Arvo_400Regular,
+    Arvo_400Regular_Italic,
+    Arvo_700Bold,
+    Arvo_700Bold_Italic,
+  });
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar style="auto" />
-      <NavigationContainer>
-        <Provider store={store}>
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <SafeAreaProvider>
+        <NavigationContainer>
           <NativeBaseProvider>
             <SetupComponent />
           </NativeBaseProvider>
-        </Provider>
-      </NavigationContainer>
-    </SafeAreaProvider>
-  );
+        </NavigationContainer>
+      </SafeAreaProvider>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

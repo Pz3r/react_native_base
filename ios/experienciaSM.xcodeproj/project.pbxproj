@@ -33,6 +33,10 @@
 		EFDE1A6F2F9A4477B1968F50 /* OperaBlackOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C462466CB27414CA444F4DF /* OperaBlackOblique.otf */; };
 		F983092B132D40829988932D /* OperaMediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5B99A2021ADC4995B1AE643A /* OperaMediumOblique.otf */; };
 		FF944DCFB1034376B63B8F7E /* OperaInlineOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = D8D9B47DA9AD4533B396C684 /* OperaInlineOblique.otf */; };
+		9367529ED8AC40D7AB9D095A /* Arvo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 943E615217C243D7A502559F /* Arvo-Bold.ttf */; };
+		B414FEBC0228455AB6543D52 /* Arvo-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 698C1C2911B942DB815A4BE2 /* Arvo-BoldItalic.ttf */; };
+		CE3301EA67B54C239DBA06A3 /* Arvo-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3E14230F51E40F89DF35276 /* Arvo-Italic.ttf */; };
+		F9D0ED4D118141469984B1AC /* Arvo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17B08DEE5B3942F5B1975F9D /* Arvo-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +75,10 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-experienciaSM/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		FFFDEDFB25C9453ABEE2EDE1 /* OperaWesternOblique.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = OperaWesternOblique.otf; path = ../src/assets/fonts/OperaWesternOblique.otf; sourceTree = "<group>"; };
+		943E615217C243D7A502559F /* Arvo-Bold.ttf */ = {isa = PBXFileReference; name = "Arvo-Bold.ttf"; path = "../src/assets/fonts/Arvo-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		698C1C2911B942DB815A4BE2 /* Arvo-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Arvo-BoldItalic.ttf"; path = "../src/assets/fonts/Arvo-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B3E14230F51E40F89DF35276 /* Arvo-Italic.ttf */ = {isa = PBXFileReference; name = "Arvo-Italic.ttf"; path = "../src/assets/fonts/Arvo-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		17B08DEE5B3942F5B1975F9D /* Arvo-Regular.ttf */ = {isa = PBXFileReference; name = "Arvo-Regular.ttf"; path = "../src/assets/fonts/Arvo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,10 @@
 				BB6A0A6324F348D9BD5D8291 /* OperaStencilOblique.otf */,
 				0044969065694D71B6A4B5E2 /* OperaThinOblique.otf */,
 				FFFDEDFB25C9453ABEE2EDE1 /* OperaWesternOblique.otf */,
+				943E615217C243D7A502559F /* Arvo-Bold.ttf */,
+				698C1C2911B942DB815A4BE2 /* Arvo-BoldItalic.ttf */,
+				B3E14230F51E40F89DF35276 /* Arvo-Italic.ttf */,
+				17B08DEE5B3942F5B1975F9D /* Arvo-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -287,6 +299,10 @@
 				27042D7C5DF94C9BA497AC77 /* OperaStencilOblique.otf in Resources */,
 				DD83668ECAA2401FB314B2E5 /* OperaThinOblique.otf in Resources */,
 				01E776507E884F5CBDEB651E /* OperaWesternOblique.otf in Resources */,
+				9367529ED8AC40D7AB9D095A /* Arvo-Bold.ttf in Resources */,
+				B414FEBC0228455AB6543D52 /* Arvo-BoldItalic.ttf in Resources */,
+				CE3301EA67B54C239DBA06A3 /* Arvo-Italic.ttf in Resources */,
+				F9D0ED4D118141469984B1AC /* Arvo-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
