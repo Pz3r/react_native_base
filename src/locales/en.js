@@ -11,8 +11,8 @@ export default {
 
   about_title: 'IMMERSIVE\nKING TUT',
   about_subtitle: 'Boy. King. Hero.',
-  about_text: `Tutankhamun is the most famous ancient Egyptian pharaoh of our time. The story of his life and the magnificent treasures in his tomb intrigue us and capture our imaginations.
-You are about to embark on a journey to unveil the mysteries of ancient Egypt. Become an explorer and discover secret temples and powerful deities carved in stone. Accompany the souls of young Pharaoh Tutankhamun and the Sun god Ra on their voyage through the underworld. Join them in a quest for immortality and the survival of the universe.`,
+  about_text: `Tutankhamun is the most famous ancient Egyptian pharaoh of our time. The story of his life and the magnificent treasures in his tomb intrigue us and capture our imaginations.`,
+  about_text_2: `You are about to embark on a journey to unveil the mysteries of ancient Egypt. Become an explorer and discover secret temples and powerful deities carved in stone. Accompany the souls of young Pharaoh Tutankhamun and the Sun god Ra on their voyage through the underworld. Join them in a quest for immortality and the survival of the universe.`,
   aobut_amudat_title: 'AMDUAT,',
   aobut_amudat_subtitle: 'The Safe Passage Through the Underworld',
   aobut_amudat_text:
@@ -121,7 +121,7 @@ You are about to embark on a journey to unveil the mysteries of ancient Egypt. B
   guide_settings_permissions: 'Permission to listen to the device\'s microphone is needed to use this feature.',
   guide_settings_open: 'Go to settings',
   guide_sync_title: 'This section can only be used during the show.',
-  guide_sync_loading: 'Syncing',
+  guide_sync_loading: 'Your guide to the underworld will start soon',
 
   s1_name: 'Scene 1',
   s1_title: 'A Tomb Discovery',
@@ -203,8 +203,13 @@ You are about to embark on a journey to unveil the mysteries of ancient Egypt. B
   s16_description:
     'Nothing, not even the mighty empire of Egypt, can withstand time. The wind blows day and night over the desert, oblivious to human grandeur and glory. The wind blows, burying memories and dreams. And, yet, hidden in the sand, the heart of our ancestors still beats. Powerful secrets remain hidden, waiting for someone to uncover them.',
 
+  s17_name: 'Scene 17',
+  s18_name: 'Scene 18',
+  s19_name: 'Scene 19',
+  s20_name: 'Scene 20',
+
   halls_title: 'HALLS',
-  halls_tomb_title: 'The Tomb',
+  halls_tomb_title: 'King Tut',
   halls_tomb_text:
     'The immersive experience of King Tut unfolds in a tomb whose walls and floor change like in a dream. Embark on a journey to the fantastic realm of the underworld accompanied by the soul of the boy pharaoh Tutankhamun. Follow the light of the Sun god through the darkness.',
   halls_pharaohs_title: 'Pharaohs',

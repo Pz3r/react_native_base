@@ -26,7 +26,8 @@ function AboutHomeScreen({navigation}) {
           <View style={styles.container}>
             <Text style={styles.title}>{i18n.t('about_title')}</Text>
             <Text style={styles.subTitle}>{i18n.t('about_subtitle')}</Text>
-            <Text style={styles.text}>{i18n.t('about_text')}</Text>
+            <Text style={[styles.text, { paddingBottom: 15 }]}>{i18n.t('about_text')}</Text>
+            <Text style={[styles.text, { paddingTop: 0 }]}>{i18n.t('about_text_2')}</Text>
             <Image source={IMG.ktDividerLine1} style={styles.fullWidthImage} />
             <Text style={styles.title}>{i18n.t('aobut_amudat_title')}</Text>
             <Text style={styles.subTitle}>

@@ -46,6 +46,7 @@ export default function Showcase({ timestamp, isLoop, message }) {
     } else if (timestamp) {
       for (let i = 0; i < GUIDE.length; i++) {
         if (GUIDE[i].start <= timestamp) {
+          console.log(`===== Showcase useEffect setGroup to: ${GUIDE[i].code}`)
           setGroup(GUIDE[i]);
         } else {
           break;

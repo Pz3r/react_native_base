@@ -18,7 +18,6 @@ export default function MainTabNavigator() {
       tabBar={(props) => <AppFooter {...props} />}>
         <Tab.Screen name={SECTION_ABOUT_STACK} component={AboutStackNavigator} />
         <Tab.Screen name={SECTION_GUIDE_STACK} component={GuideStackNavigator} />
-        <Tab.Screen name={SECTION_HALLS_STACK} component={HallsStackNavigator} />
     </Tab.Navigator>
   )
 }
